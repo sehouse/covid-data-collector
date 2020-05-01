@@ -6,13 +6,13 @@
 * Doug (Group Leader)
 
 ### Useful Links:
-* Zoom Meeting: https://us04web.zoom.us/j/9940127177
+* Zoom Meeting: hhttps://us04web.zoom.us/j/77528010922
 * Public API list: https://github.com/public-apis/public-apis
 
 ### Technical Requirements:
 * Must use at least two server-side APIs
 * Must use a CSS framework other than Bootstrap
-** I've used Bulma before, but there's also Material which looks cool
+    * I've used Bulma before, but there's also Material which looks cool
 * Must be interactive (i.e: accept and respond to user input)
 * Use at least one new third-party API
 * Must have a polished UI
