@@ -66,4 +66,4 @@ Github Projects:
 [] - What if there is friction between members? How will you address it?
   * Hash it out amongst ourselves first, if required bring in the adults
 [] - Are there any other agreements you have made as a team, if so what?
-  * 
+  * small eidt
