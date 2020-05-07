@@ -5,26 +5,46 @@ Basic Git/GitHub Workflow:
 ---
 4. open terminal
 5. cd into project directory, example below:
-    ``` cd ~/BootCamp/homework/project-one ```
+    ```bash
+    cd ~/BootCamp/homework/project-one 
+    ```
 6. make sure it's current with what's on GitHub:
-    ``` git pull ```
+    ```bash
+    git pull
+    ```
     * you may get errors here if you have:
         * worked on the project locally previously and not pushed your work up to GitHub
         * not setup the GitHub version as your master repository
 7. create and navigate to your local branch:
     * swap out {NAME OF YOUR BRANCH} with something short and descriptive, no spaces, example below:
-    ``` git checkout -b {NAME OF YOUR BRANCH} ```
-    ``` git checkout -b addHeader ```
+    ```bash
+    git checkout -b {NAME OF YOUR BRANCH} 
+    ```
+    ```bash
+    git checkout -b addHeader 
+    ```
 8. open your editor and do the code, save your changes
 9. add changes to staging, back in the terminal:
-    ``` git add {NAME OF FILE YOU WANT TO ADD} ```
-    ``` git add index.html ```
+    ```bash
+    git add {NAME OF FILE YOU WANT TO ADD}
+    ```
+    ```bash
+    git add index.html
+    ```
 10. commit the changes, ready to push to GitHub:
-    ``` git commit -m '{YOUR MESSAGE OF WHAT YOU'VE DONE HERE}' ```
-    ``` git commit -m 'added the header to main html view' ```
+    ```bash
+    git commit -m '{YOUR MESSAGE OF WHAT YOU'VE DONE HERE}'
+    ```
+    ```bash
+    git commit -m 'added the header to main html view'
+    ```
 11. push the commit to GitHub as a separate branch, no spaces, example below:
-    ``` git push origin {BRANCH NAME HERE} ```
-    ``` git push origin addHeader```
+    ```bash
+    git push origin {BRANCH NAME HERE}
+    ```
+    ```bash
+    git push origin addHeader
+    ```
 ---
 12. log in to GitHub
 13. navigate to your branch
