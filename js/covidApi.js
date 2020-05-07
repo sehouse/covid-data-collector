@@ -33,12 +33,22 @@ function displayData(data){
     );
 
     // ALL THE DATA, UNFILTERED
-    console.log(data.data)
+    // console.log(data.data)
 }
+
+function displayLocation(data){
+    // data.city
+    // data.country
+    // data.loc
+    // data.postal
+    data.region
+    
+}
+
 // TODO PASS THE region TO THE getData FUNCTION, SO WE ONLY CALL THE DATA WE NEED WHEN WE NEED IT, ATM WE'RE MAKING 4 CALLS EVERY PAGE LOAD
 async function getData(region){
     let getCovidStatsBy = async (region) => {
-        return await fetch(`https://covidtracking.com/api/v1/${region}.json`).then(response => response.json())
+        return await fetch(`https://covidtracking.com/api/v1/${region}.json`).then(response => response.json());
     }
     
     let totalUs = await getCovidStatsBy('us/current');
@@ -53,8 +63,14 @@ async function getData(region){
     // displayData({region: 'counties', data: totalCounties})
 }
 
+async function getAddress(region){
+    console.log('here')
+    let getIP = async (region) => {
+        return await fetch(`https://ipinfo.io?token=5fcea70b36eb66`).then(response => response.json());
+    }
+    let ip = await getIP();
+    displayLocation(ip)
+}
+
+getAddress()
 getData()
-
-
-
-
