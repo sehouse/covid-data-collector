@@ -68,16 +68,13 @@ function displayData(data){
     if(data.region == 'country'){
         console.log('country level data is present')
     }
-    if(data.region == 'states'){
-        console.log('states level data is present')
-    }
+    // TODO BONUS: TIME PERMITTING, MAP OF US WITH STATE SPECIFIC DATA ON HOVER
+    // if(data.region == 'states'){
+    //     console.log('states level data is present')
+    // }
     if(data.region == 'state'){
         console.log(`single state ${data.data.state} level data is present`)
     }
-    if(data.region == 'county'){
-        console.log('county level data is present')
-    }
-    // TODO WILL NEED TO WRAP THIS IN A forEach IF HANDLING STATES OR COUNTIES
     // TODO DON'T DISPLAY null OR undefined VALUES
     $('#stats').append(
         `<h1>Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</h1>
@@ -111,18 +108,25 @@ function getStateTwoDigitCode(stateFullName) {
 
 async function getData(region){
     let totalUs;
-    let totalStates;
+    // let totalStates;
     let totalState;
 
     let getCovidStatsBy = async (region) => {
         return await fetch(`https://covidtracking.com/api/v1/${region}.json`).then(response => response.json());
     }
-
-    if(region == 'states'){
-        totalStates = await getCovidStatsBy(`states/current`);
-        displayData({region: 'states', data: totalStates})
+    // TODO: BONUS: TIME PERMITTING BUILD A MAP, THAT DISPLAYS STATE SPECIFIC INFO ON HOVER
+    // if(region == 'states'){
+    //     totalStates = await getCovidStatsBy(`states/current`);
+    //     displayData({region: 'states', data: totalStates})
     // INITIAL LOAD, PRESUMES IT STARTS AT USER'S STATE
-    }else if(region){
+    // }else if(region){
+    //     totalState = await getCovidStatsBy(`states/${region}/current`);
+    //     displayData({region: 'state', data: totalState})
+    // }else{
+    //     totalUs = await getCovidStatsBy(`us/current`);
+    //     displayData({region: 'country', data: totalUs[0]})
+    // }
+    if(region){
         totalState = await getCovidStatsBy(`states/${region}/current`);
         displayData({region: 'state', data: totalState})
     }else{
