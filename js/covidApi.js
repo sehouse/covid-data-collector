@@ -1,3 +1,69 @@
+$(function(){
+    getAddress()
+})
+
+const stateList = {
+    'American Samoa' : 'AS',
+    'Arizona': 'AZ',
+    'Alabama': 'AL',
+    'Alaska':'AK',
+    'Arkansas': 'AR',
+    'California': 'CA',
+    'Colorado': 'CO',
+    'Connecticut': 'CT',
+    'Delaware': 'DE',
+    'Florida': 'FL',
+    'Georgia': 'GA',
+    'Guam' : 'GU',
+    'Hawaii': 'HI',
+    'Idaho': 'ID',
+    'Illinois': 'IL',
+    'Indiana': 'IN',
+    'Iowa': 'IA',
+    'Kansas': 'KS',
+    'Kentucky': 'KY',
+    'Louisiana': 'LA',
+    'Maine': 'ME',
+    'Marshall Islands' : 'MH',
+    'Maryland': 'MD',
+    'Massachusetts': 'MA',
+    'Michigan': 'MI',
+    'Micronesia' : 'FM',
+    'Minnesota': 'MN',
+    'Mississippi': 'MS',
+    'Missouri': 'MO',
+    'Montana': 'MT',
+    'Nebraska': 'NE',
+    'Nevada': 'NV',
+    'New Hampshire': 'NH',
+    'New Jersey': 'NJ',
+    'New Mexico': 'NM',
+    'New York': 'NY',
+    'North Carolina': 'NC',
+    'North Dakota': 'ND',
+    'Northern Marianas' : 'MP',
+    'Ohio' : 'OH',
+    'Oklahoma' : 'OK',
+    'Oregon' : 'OR',
+    'Palau' : 'PW',
+    'Pennsylvania': 'PA',
+    'Puerto Rico' : 'PR',
+    'Rhode Island': 'RI',
+    'South Carolina': 'SC',
+    'South Dakota': 'SD',
+    'Tennessee': 'TN',
+    'Texas': 'TX',
+    'Utah': 'UT',
+    'Vermont': 'VT',
+    'Virginia': 'VA',
+    'Washington': 'WA',
+    'Washington, D.C.' : 'DC',
+    'West Virginia': 'WV',
+    'Wisconsin': 'WI',
+    'Wyoming': 'WY',
+    'Vigrin Islands' : 'VI'
+}
+
 function displayData(data){
     if(data.region == 'country'){
         console.log('country level data is present')
@@ -31,46 +97,44 @@ function displayData(data){
             <li>Data Quality: ${data.data.dataQualityGrade ? data.data.dataQualityGrade : 'N/A'}</li>
         </ul>`
     );
-
-    // ALL THE DATA, UNFILTERED
-    // console.log(data.data)
 }
 
-function displayLocation(data){
-    // data.city
-    // data.country
-    // data.loc
-    // data.postal
-    data.region
-    
+function passToCovidAPI(data){
+    let abbr = (data.country !== 'US' ? data.country : getStateTwoDigitCode(data.region));
+    getData(abbr)
 }
 
-// TODO PASS THE region TO THE getData FUNCTION, SO WE ONLY CALL THE DATA WE NEED WHEN WE NEED IT, ATM WE'RE MAKING 4 CALLS EVERY PAGE LOAD
+// TODO LINK SOURCE IN README https://stackoverflow.com/questions/33790210/get-a-state-name-from-abbreviation
+function getStateTwoDigitCode(stateFullName) {
+    return stateList[stateFullName];
+}
+
 async function getData(region){
+    let totalUs;
+    let totalStates;
+    let totalState;
+
     let getCovidStatsBy = async (region) => {
         return await fetch(`https://covidtracking.com/api/v1/${region}.json`).then(response => response.json());
     }
-    
-    let totalUs = await getCovidStatsBy('us/current');
-    let totalStates = await getCovidStatsBy('states/current')
-// TODO HARDCODED TO NH HERE, WILL NEED TO DYNAMICALLY CHANGE THAT BASED ON GEOLOCAITON API
-    let totalState = await getCovidStatsBy('states/NH/current');
-    let totalCounties = await getCovidStatsBy('counties');
-// TODO MAKE THIS LOOPABLE, IF NEEDED, OR SEND ALL OF THE DATA AT ONCE?
-    // displayData({region: 'country', data: totalUs[0]})
-    // displayData({region: 'states', data: totalStates})
-    displayData({region: 'state', data: totalState})
-    // displayData({region: 'counties', data: totalCounties})
+
+    if(region == 'states'){
+        totalStates = await getCovidStatsBy(`states/current`);
+        displayData({region: 'states', data: totalStates})
+    // INITIAL LOAD, PRESUMES IT STARTS AT USER'S STATE
+    }else if(region){
+        totalState = await getCovidStatsBy(`states/${region}/current`);
+        displayData({region: 'state', data: totalState})
+    }else{
+        totalUs = await getCovidStatsBy(`us/current`);
+        displayData({region: 'country', data: totalUs[0]})
+    }
 }
 
 async function getAddress(region){
-    console.log('here')
     let getIP = async (region) => {
         return await fetch(`https://ipinfo.io?token=5fcea70b36eb66`).then(response => response.json());
     }
     let ip = await getIP();
-    displayLocation(ip)
+    passToCovidAPI(ip)
 }
-
-getAddress()
-getData()
