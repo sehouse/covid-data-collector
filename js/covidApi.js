@@ -81,7 +81,7 @@ function displayData(data){
     }
     // TODO WILL NEED TO WRAP THIS IN A forEach IF HANDLING STATES OR COUNTIES
     // TODO DON'T DISPLAY null OR undefined VALUES
-    $('#stats').append(
+    $('#stats').html(
         `<h1>Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</h1>
         <ul>
             <li>Current as of: ${data.region == 'country' ? data.data.lastModified : data.data.dateModified}</li>
@@ -106,8 +106,17 @@ function displayRegionOptions(){
         $('#state').append(`<option value="${state}">${state}</option>`);
     }
 }
+
 function passToCovidAPI(data){
-    let abbr = (data.country !== 'US' ? data.country : getStateTwoDigitCode(data.region));
+    let abbr;
+    // IF COMING FROM IP ADDRESS, DATA WILL BE AN OBJECT
+    // ELSE, DATA WILL BE A STRING FROM THE FRONTEND OPTIONS LIST
+    if(typeof data == 'object'){
+        abbr = (data.country !== 'US' ? data.country : getStateTwoDigitCode(data.region));
+    }else{
+        abbr = getStateTwoDigitCode(data)
+    }
+
     getData(abbr)
 }
 
@@ -146,6 +155,4 @@ async function getAddress(region){
     passToCovidAPI(ip)
 }
 
-$('.search').on('click', () => {
-    console.log($('#state').val())
-});
+$('.search').on('click', () => { passToCovidAPI($('#state').val()) });
