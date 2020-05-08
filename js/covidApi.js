@@ -1,8 +1,10 @@
 $(function(){
     getAddress()
+    displayRegionOptions()
 })
 
 const stateList = {
+
     'American Samoa' : 'AS',
     'Arizona': 'AZ',
     'Alabama': 'AL',
@@ -99,6 +101,11 @@ function displayData(data){
     );
 }
 
+function displayRegionOptions(){
+    for(state in stateList){
+        $('#state').append(`<option value="${state}">${state}</option>`);
+    }
+}
 function passToCovidAPI(data){
     let abbr = (data.country !== 'US' ? data.country : getStateTwoDigitCode(data.region));
     getData(abbr)
@@ -138,3 +145,7 @@ async function getAddress(region){
     let ip = await getIP();
     passToCovidAPI(ip)
 }
+
+$('.search').on('click', () => {
+    console.log($('#state').val())
+});
