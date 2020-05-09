@@ -31,10 +31,6 @@
   display: none;
 }*/
 
-button:focus{
-  display: none;
-}
-
 .hr{
   background-color:#cc0f35;
   width: 100%;
@@ -56,4 +52,9 @@ button:focus{
   background-color: #9d1d11;
   padding-top: 50px;
   padding-bottom:50px;
+}
+
+footer{
+  background-color: #6d140c;
+  color: white;
 }
