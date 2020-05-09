@@ -1,7 +1,8 @@
 $(function(){
     getAddress()
     displayRegionOptions()
-})
+
+});
 
 const stateList = {
 
@@ -64,18 +65,18 @@ const stateList = {
     'Wisconsin': 'WI',
     'Wyoming': 'WY',
     'Vigrin Islands' : 'VI'
-}
+};
 
 function displayData(data){
     if(data.region == 'country'){
-        console.log('country level data is present')
+        console.log('country level data is present');
     }
     // TODO BONUS: TIME PERMITTING, MAP OF US WITH STATE SPECIFIC DATA ON HOVER
     // if(data.region == 'states'){
     //     console.log('states level data is present')
     // }
     if(data.region == 'state'){
-        console.log(`single state ${data.data.state} level data is present`)
+        console.log(`single state ${data.data.state} level data is present`);
     }
     // TODO DON'T DISPLAY null OR undefined VALUES
     $('#stats').html(
@@ -111,7 +112,7 @@ function passToCovidAPI(data){
     if(typeof data == 'object'){
         abbr = (data.country !== 'US' ? data.country : getStateTwoDigitCode(data.region));
     }else{
-        abbr = getStateTwoDigitCode(data)
+        abbr = getStateTwoDigitCode(data);
     }
 
     getData(abbr)
@@ -144,10 +145,10 @@ async function getData(region){
     // }
     if(region){
         totalState = await getCovidStatsBy(`states/${region}/current`);
-        displayData({region: 'state', data: totalState})
+        displayData({region: 'state', data: totalState});
     }else{
         totalUs = await getCovidStatsBy(`us/current`);
-        displayData({region: 'country', data: totalUs[0]})
+        displayData({region: 'country', data: totalUs[0]});
     }
 }
 
@@ -156,7 +157,10 @@ async function getAddress(region){
         return await fetch(`https://ipinfo.io?token=5fcea70b36eb66`).then(response => response.json());
     }
     let ip = await getIP();
-    passToCovidAPI(ip)
+    passToCovidAPI(ip);
 }
 
-$('.search').on('click', () => { passToCovidAPI($('#state').val()) });
+$('.search').on('click', () => {
+    // TODO PULL CHECKBOX VALUES TO FILTER DATA
+    passToCovidAPI($('#state').val());
+});
