@@ -6,13 +6,22 @@
   box-shadow: none !important;
 }*/
 
+.hero{
+  background-color: #9d1d11;
+}
+
+
 .section{
-  background: hsl(348, 100%, 70%)
+  background:#cc0f35;
 }
 .center {
   display: flex;
   justify-content: center;
 }
+
+/*.notification{
+  color: #b72214;
+}*/
 
 /*.results {
   display: none;
@@ -25,6 +34,7 @@
 button:focus{
   display: none;
 }
+
 .hr{
   background-color:#cc0f35;
   width: 100%;
@@ -34,4 +44,16 @@ button:focus{
 .option{
   display:flex;
   justify-content:center;
+}
+
+.section-search{
+  background-color: #9d1d11;
+  padding-top: 50px;
+  padding-bottom:50px;
+}
+
+.section-clear{
+  background-color: #9d1d11;
+  padding-top: 50px;
+  padding-bottom:50px;
 }
