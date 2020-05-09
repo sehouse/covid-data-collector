@@ -1,138 +1,127 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Covid-19 Data Collector</title>
-    <link rel="stylesheet" href="../css/style.css" />
-  </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Covid-19 Data Collector</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css"
+  />
+  <script
+    src="https://kit.fontawesome.com/8e2f4402c5.js"
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+  <section class="hero">
+    <h1 class="title center">Covid-19 Data Collector Application</h1>
+    <p class="subtitle center">
+      A useful tool to track the statistics related to Covid-19 in your state
+      or a state/territory of your choosing.
+    </p>
+    <br>
+
+  </section>
+
+</body>
+</html>
+
+  
   <body>
-    <div class="header">
-      <h1>Covid-19 Data Collector Application</h1>
-      <p>
-        A useful tool to track the statistics related to Covid-19 in your state
-        or a state/territory of your choosing.
-      </p>
-    </div>
-    <div class="state-selector">
-      <label>Please select a state/territory:</label>
+    
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-flex">
+            <div class="notification">
+            <div class="state-selector">
+              <label>Please select a state/territory:</label>
+              <br />
+              <br />
+              <select id="state">
+                <option value="">--Please choose an option--</option>
+              </select>
+              <br>
+              <br>
+              <figure class="image center">
+                <img src="us-map-example.jpg">
+              </figure>
+            </div>
+          </div>
+          </div>
+            <div class="column">
+              <div class="notification">
+              <div class="data-selector">
+                <p>Please select your desired Covid-19 Data:</p>
+                <br />
+                <input type="checkbox" id="hospitalizedCumulative" />
+                <label for="hospitalizedCumulative">Total Hospitalizations</label>
+                <br />
+                <br />
+                <input type="checkbox" id="hospitalizedCurrently" />
+                <label for="hospitalizedCurrently">Current Hospitalizations</label>
+                <br />
+                <br />
+                <input type="checkbox" id="inIcuCumulative" />
+      <label for="inIcuCumulative">Total ICUs</label>
+                <br />
+                <br />
+                <input type="checkbox" id="inIcuCurrently" />
+                <label for="inIcuCurrently">Current ICUs</label>
+                <br />
+                <br />
+                <input type="checkbox" id="onVentilatorCumulative" />
+      <label for="onVentilatorCumulative">Total Ventilators Used</label>
+                <br />
+                <br />
+                <input type="checkbox" id="onVentilatorCurrently" />
+                <label for="onVentilatorCurrently">Current Ventilators In Use</label>
+                <br />
+                <br />
+                <input type="checkbox" id="recovered" />
+                <label for="recovered">Total Recoveries</label>
+                <br />
+                <br />
+                <input type="checkbox" id="death" />
+                <label for="death">Total Deaths</label>
+                <br />
+                <br />
+                <input type="checkbox" id="totalTestResults" />
+                <label for="totalTestResults">Total Test Results</label>
+                <br />
+                <br />
+                <input type="checkbox" id="negative" />
+                <label for="negative">Total Test Results (Negative)</label>
+                <br />
+                <br />
+                <input type="checkbox" id="positive" />
+                <label for="positive">Total Test Results (Positive)</label>
+                <br />
+                <br />
+                <input type="checkbox" id="dataQualityGrade" />
+                <label for="dataQualityGrade">Data Quality</label>
+                <br />
+                <br />
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <br />
-      <select id="state">
-        <option value="">--Please choose an option--</option>
-        <option value="alabama">Alabama</option>
-        <option value="alaska">Alaska</option>
-        <option value="american-samoa">American Samoa</option>
-        <option value="arizona">Arizona</option>
-        <option value="arkansas">Arkansas</option>
-        <option value="california">California</option>
-        <option value="colorado">Colorado</option>
-        <option value="connecticut">Connecticut</option>
-        <option value="delaware">Delaware</option>
-        <option value="district-of-columbia">District of Columbia</option>
-        <option value="florida">Florida</option>
-        <option value="georgia">Georgia</option>
-        <option value="guam">Guam</option>
-        <option value="hawaii">Hawaii</option>
-        <option value="idaho">Idaho</option>
-        <option value="illinois">Illinois</option>
-        <option value="indiana">Indiana</option>
-        <option value="iowa">Iowa</option>
-        <option value="kansas">Kansas</option>
-        <option value="kentucky">Kentucky</option>
-        <option value="louisiana">Louisiana</option>
-        <option value="maine">Maine</option>
-        <option value="maryland">Maryland</option>
-        <option value="massachusetts">Massachusetts</option>
-        <option value="michigan">Michigan</option>
-        <option value="minnesota">Minnesota</option>
-        <option value="mississippi">Mississippi</option>
-        <option value="missouri">Missouri</option>
-        <option value="montana">Montana</option>
-        <option value="nebraska">Nebraska</option>
-        <option value="nevada">Nevada</option>
-        <option value="new-hampshire">New Hampshire</option>
-        <option value="new-jersey">New Jersey</option>
-        <option value="new-mexico">New Mexico</option>
-        <option value="new-york">New York</option>
-        <option value="north-carolina">North Carolina</option>
-        <option value="north-dakota">North Dakota</option>
-        <option value="northern-mariana-islands"
-          >Northern Mariana Islands</option
-        >
-        <option value="ohio">Ohio</option>
-        <option value="oklahoma">Oklahoma</option>
-        <option value="oregon">Oregon</option>
-        <option value="pennsylvania">Pennsylvania</option>
-        <option value="puerto-rico">Puerto Rico</option>
-        <option value="rhode-island">Rhode Island</option>
-        <option value="south-carolina">South Carolina</option>
-        <option value="south-dakota">South Dakota</option>
-        <option value="tennessee">Tennessee</option>
-        <option value="texas">Texas</option>
-        <option value="us-virgin-islands">US Virgin Islands</option>
-        <option value="utah">Utah</option>
-        <option value="vermont">Vermont</option>
-        <option value="virginia">Virginia</option>
-        <option value="washington">Washington</option>
-        <option value="west-virginia">West Virginia</option>
-        <option value="wisconsin">Wisconsin</option>
-        <option value="wyoming">Wyoming</option>
-      </select>
-    </div>
+    </section>
 
-    <div class="data-selector">
-      <p>Please select your desired Covid-19 Data:</p>
-      <input type="checkbox" id="total-hospital" />
-      <label for="total-hospital">Total Hospitalizations</label>
+    <section class= "section center">
+      <button class="search">Search</button>
       <br />
       <br />
-      <input type="checkbox" id="current-hospital" />
-      <label for="current-hospital">Current Hospitalizations</label>
-      <br />
-      <br />
-      <input type="checkbox" id="total-icu" />
-      <label for="total-icu">Total ICUs</label>
-      <br />
-      <br />
-      <input type="checkbox" id="current-icu" />
-      <label for="current-icu">Current ICUs</label>
-      <br />
-      <br />
-      <input type="checkbox" id="total-vent" />
-      <label for="total-vent">Total Ventilators Used</label>
-      <br />
-      <br />
-      <input type="checkbox" id="current-vent" />
-      <label for="current-vent">Current Ventilators In Use</label>
-      <br />
-      <br />
-      <input type="checkbox" id="total-recover" />
-      <label for="total-recover">Total Recoveries</label>
-      <br />
-      <br />
-      <input type="checkbox" id="total-deaths" />
-      <label for="total-deaths">Total Deaths</label>
-      <br />
-      <br />
-      <input type="checkbox" id="total-test" />
-      <label for="total-test">Total Test Results</label>
-      <br />
-      <br />
-      <input type="checkbox" id="total-test-neg" />
-      <label for="total-test-neg">Total Test Results (Negative)</label>
-      <br />
-      <br />
-      <input type="checkbox" id="total-test-pos" />
-      <label for="total-test-pos">Total Test Results (Positive)</label>
-      <br />
-      <br />
-      <input type="checkbox" id="data-quality" />
-      <label for="data-quality">Data Quality</label>
-      <br />
-      <br />
-    </div>
+    </section>
 
-    <button class="search">Search</button>
-
-    <div id="stats"></div>
+    <section>
+      <div id="stats"></div>
+    </section>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/covidApi.js"></script>
   </body>
