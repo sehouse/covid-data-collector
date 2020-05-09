@@ -6,6 +6,9 @@
   box-shadow: none !important;
 }*/
 
+.section{
+  background: hsl(348, 100%, 70%)
+}
 .center {
   display: flex;
   justify-content: center;
@@ -18,3 +21,17 @@
 .frontPage {
   display: none;
 }*/
+
+button:focus{
+  display: none;
+}
+.hr{
+  background-color:#cc0f35;
+  width: 100%;
+  height: 3px;
+}
+
+.option{
+  display:flex;
+  justify-content:center;
+}
