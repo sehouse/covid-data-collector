@@ -46,3 +46,13 @@ footer{
   display: flex;
   justify-content: center;
 }
+
+h1.data-region{
+  font-weight: bold;
+}
+
+ul.list{
+  box-shadow: none;
+  background-color:#feecf0;
+  list-style-type: circle;
+}

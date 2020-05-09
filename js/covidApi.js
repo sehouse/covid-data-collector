@@ -79,21 +79,22 @@ function displayData(data){
     }
     // TODO DON'T DISPLAY null OR undefined VALUES
     $('#stats').html(
-        `<h1>Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</h1>
-        <ul>
-            <li>*Current as of: ${data.region == 'country' ? data.data.lastModified : data.data.dateModified}</li>
-            <li>*Total hospitalizations: ${data.data.hospitalizedCumulative}</li>
-            <li>*Current Hospitalizations: ${data.data.hospitalizedCurrently}</li>
-            <li>*Total ICUs: ${data.data.inIcuCumulative}</li>
-            <li>*Current ICUs: ${data.data.inIcuCurrently}</li>
-            <li>*Total Ventilators used: ${data.data.onVentilatorCumulative}</li>
-            <li>*Current Ventilators in use: ${data.data.onVentilatorCurrently}</li>
-            <li>*Total Recoveries: ${data.data.recovered}</li>
-            <li>*Total Deaths: ${data.data.death}</li>
-            <li>*Total Test Results: ${data.data.totalTestResults}</li>
-            <li>*Total Test Results (Negative): ${data.data.negative}</li>
-            <li>*Total Test Results (Positive): ${data.data.positive}</li>
-            <li>*Data Quality: ${data.data.dataQualityGrade ? data.data.dataQualityGrade : 'N/A'}</li>
+        `<h1 class="data-region">Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</h1>
+        <ul class="list">
+        <br>
+            <li>Current as of: ${data.region == 'country' ? data.data.lastModified : data.data.dateModified}</li>
+            <li>Total hospitalizations: ${data.data.hospitalizedCumulative}</li>
+            <li>Current Hospitalizations: ${data.data.hospitalizedCurrently}</li>
+            <li>Total ICUs: ${data.data.inIcuCumulative}</li>
+            <li>Current ICUs: ${data.data.inIcuCurrently}</li>
+            <li>Total Ventilators used: ${data.data.onVentilatorCumulative}</li>
+            <li>Current Ventilators in use: ${data.data.onVentilatorCurrently}</li>
+            <li>Total Recoveries: ${data.data.recovered}</li>
+            <li>Total Deaths: ${data.data.death}</li>
+            <li>Total Test Results: ${data.data.totalTestResults}</li>
+            <li>Total Test Results (Negative): ${data.data.negative}</li>
+            <li>Total Test Results (Positive): ${data.data.positive}</li>
+            <li>Data Quality: ${data.data.dataQualityGrade ? data.data.dataQualityGrade : 'N/A'}</li>
         </ul>`
     );
 }
