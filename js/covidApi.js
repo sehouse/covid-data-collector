@@ -2,8 +2,6 @@ $(function(){
     getAddress()
     displayRegionOptions()
 
-});
-
 const stateList = {
 
     'American Samoa' : 'AS',
@@ -65,24 +63,27 @@ const stateList = {
     'Wisconsin': 'WI',
     'Wyoming': 'WY',
     'Vigrin Islands' : 'VI'
-};
 
 function displayData(data, display){
     if(data.region == 'country'){
         console.log('country level data is present');
+  
     }
     // TODO BONUS: TIME PERMITTING, MAP OF US WITH STATE SPECIFIC DATA ON HOVER
     // if(data.region == 'states'){
     //     console.log('states level data is present')
     // }
     if(data.region == 'state'){
+
         console.log(`single state ${data.data.state} level data is present`);
+      
     }
     // TODO DON'T DISPLAY null OR undefined VALUES
     $('#stats').html(
         `<h1>Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</h1>
         <ul>
             <li>Current as of: ${data.region == 'country' ? data.data.lastModified : data.data.dateModified}</li>
+
             ${display.hospitalizedCumulative ? `<li>Total hospitalizaitons: ${data.data.hospitalizedCumulative}</li>` : ''}
             ${display.hospitalizedCurrently ? `<li>Current Hospitalizations: ${data.data.hospitalizedCurrently}</li>` : ''}
             ${display.inIcuCumulative ? `<li>Total ICUs: ${data.data.inIcuCumulative}</li>` : ''}
@@ -190,5 +191,7 @@ function confirmCheckBoxes(parent){
     })
 
     return displayOptions;
+  
 }
 
+$('.search').on('click', () => { passToCovidAPI($('#state').val()) });
