@@ -79,22 +79,22 @@ function displayData(data){
     }
     // TODO DON'T DISPLAY null OR undefined VALUES
     $('#stats').html(
-        `<h1 class="data-region">Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</h1>
+        `<h1 class="data-region"><u>Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</u></h1>
         <ul class="list">
         <br>
-            <li>Current as of: ${data.region == 'country' ? data.data.lastModified : data.data.dateModified}</li>
-            <li>Total hospitalizations: ${data.data.hospitalizedCumulative}</li>
-            <li>Current Hospitalizations: ${data.data.hospitalizedCurrently}</li>
-            <li>Total ICUs: ${data.data.inIcuCumulative}</li>
-            <li>Current ICUs: ${data.data.inIcuCurrently}</li>
-            <li>Total Ventilators used: ${data.data.onVentilatorCumulative}</li>
-            <li>Current Ventilators in use: ${data.data.onVentilatorCurrently}</li>
-            <li>Total Recoveries: ${data.data.recovered}</li>
-            <li>Total Deaths: ${data.data.death}</li>
-            <li>Total Test Results: ${data.data.totalTestResults}</li>
-            <li>Total Test Results (Negative): ${data.data.negative}</li>
-            <li>Total Test Results (Positive): ${data.data.positive}</li>
-            <li>Data Quality: ${data.data.dataQualityGrade ? data.data.dataQualityGrade : 'N/A'}</li>
+            <li><u>Current as of:</u> <em>${data.region == 'country' ? data.data.lastModified : data.data.dateModified}</em></li>
+            <li><u>Total hospitalizations:</u> <em>${data.data.hospitalizedCumulative}</em></li>
+            <li><u>Current Hospitalizations:</u> <em>${data.data.hospitalizedCurrently}</em></li>
+            <li><u>Total ICUs:</u> <em>${data.data.inIcuCumulative}</em></li>
+            <li><u>Current ICUs:</u> <em>${data.data.inIcuCurrently}</em></li>
+            <li><u>Total Ventilators used:</u> <em>${data.data.onVentilatorCumulative}</em></li>
+            <li><u>Current Ventilators in use:</u> <em>${data.data.onVentilatorCurrently}</em></li>
+            <li><u>Total Recoveries:</u> <em>${data.data.recovered}</em></li>
+            <li><u>Total Deaths:</u> <em>${data.data.death}</em></li>
+            <li><u>Total Test Results:</u> <em>${data.data.totalTestResults}</em></li>
+            <li><u>Total Test Results (Negative):</u> <em>${data.data.negative}</em></li>
+            <li><u>Total Test Results (Positive):</u> <em>${data.data.positive}</em></li>
+            <li><u>Data Quality:</u> <em>${data.data.dataQualityGrade ? data.data.dataQualityGrade : 'N/A'}</em></li>
         </ul>`
     );
 }
@@ -145,7 +145,7 @@ async function getData(region){
     // }
     if(region){
         totalState = await getCovidStatsBy(`states/${region}/current`);
-        displayData({region: 'state', data: totalState})
+        displayData({region: 'State/Territory of', data: totalState})
     }else{
         totalUs = await getCovidStatsBy(`us/current`);
         displayData({region: 'country', data: totalUs[0]})
@@ -160,4 +160,4 @@ async function getAddress(region){
     passToCovidAPI(ip)
 }
 
-$('.search').on('click', () => { passToCovidAPI($('#state').val()) })
+$('.section-search').on('click', () => { passToCovidAPI($('#state').val()) })
