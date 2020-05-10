@@ -160,4 +160,11 @@ async function getAddress(region){
     passToCovidAPI(ip)
 }
 
-$('.section-search').on('click', () => { passToCovidAPI($('#state').val()) })
+$('.section-search').on('click', () => { passToCovidAPI($('#state').val());
+$('.frontPage').hide();
+$('.results').show();
+})
+
+$('.section-clear').on('click', () => {
+location.reload();
+})
