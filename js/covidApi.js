@@ -175,11 +175,15 @@ async function getAddress(region){
     passToCovidAPI(ip)
 }
 
-$('.section-search').on('click', () => { passToCovidAPI($('#state').val());
+$('.control-search').on('click', () => { passToCovidAPI($('#state').val());
     $('.frontPage').hide();
     $('.results').show();
 })
 
 $('.control-clear').on('click', () => {
     location.reload();
+})
+
+$('.control-home').on('click', () => {
+    window.location.href='index.html';
 })
