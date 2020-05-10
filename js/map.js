@@ -11,7 +11,6 @@ $("input[type='radio']").on('click', function(){
 
 function loadMap(datum){
     Highcharts.getJSON('https://covidtracking.com/api/v1/states/current.json', function (data) {
-        // console.log(data)
         // REMOVE TERRITORIES & RENAME STATE PROPERTY TO PLAY NICE WITH HIGHCHARTS MAP
         data.splice(51, 5)
         data.forEach((state) => {

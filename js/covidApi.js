@@ -67,7 +67,6 @@ const stateList = {
 }
 
 function displayData(data){
-// TODO DON'T DISPLAY null OR undefined VALUES
 // TODO CHECKBOXES CONDITIONALLY DISPLAYING THE DATA IN THE MAP / LIST / GRAPH
 // TODO MIGHT BE ABLE TO LOOP THROUGH THESE VARS, LESS CODE THAT WAY
     console.log(data)
