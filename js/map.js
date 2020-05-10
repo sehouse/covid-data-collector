@@ -1,11 +1,11 @@
 $(function(){
     loadMap('death')
 })
+
 $("input[type='radio']").on('click', function(){
-    // console.log(this.value)
     loadMap(this.value)
 })
-// todo pass different data points into this, not just death
+
 // todo slider for historical data
 // TODO FIND A MAP THAT INCLUDES THE TERRRITORIES
 
@@ -14,12 +14,17 @@ function loadMap(datum){
         // console.log(data)
         // REMOVE TERRITORIES & RENAME STATE PROPERTY TO PLAY NICE WITH HIGHCHARTS MAP
         data.splice(51, 5)
-        data.forEach((state) =>{
+        data.forEach((state) => {
             state.code = state.state;
             state.value = state[datum];
             delete state.state;
             delete state[datum];
         })
+        // SET THE MIN/MAX RANGE FOR COLOR SCALE
+        let min = Math.min.apply(Math, data.map(function(state) { return state.value; })); 
+        let max = Math.max.apply(Math, data.map(function(state) { return state.value; }));
+
+        console.log(`${min} | ${max}`)
         // Instantiate the map
         Highcharts.mapChart('map', {
             chart: {
@@ -52,8 +57,9 @@ function loadMap(datum){
             },
     
             colorAxis: {
-                min: 1,
-                max: 10000,
+                // MIN OF 0 KILLS THE MAP, DISPLAY AS 1
+                min: (min == 0 ? 1 : min),
+                max: max,
                 type: 'logarithmic',
                 stops: [
     // COLOR
