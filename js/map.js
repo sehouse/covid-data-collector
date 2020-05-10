@@ -1,8 +1,13 @@
+$(function(){
+    loadMap('death')
+})
+$("input[type='radio']").on('click', function(){
+    // console.log(this.value)
+    loadMap(this.value)
+})
 // todo pass different data points into this, not just death
 // todo slider for historical data
-// $().on('click', () =>  {
-
-// })
+// TODO FIND A MAP THAT INCLUDES THE TERRRITORIES
 
 function loadMap(datum){
     Highcharts.getJSON('https://covidtracking.com/api/v1/states/current.json', function (data) {
@@ -77,27 +82,3 @@ function loadMap(datum){
         });
     });
 }
-
-loadMap('recovered')
-
-//Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/us-population-density.json', function (data) {
-// return await fetch(`https://covidtracking.com/api/v1/us/current.json`).then(response => response.json());
-// $( async function(){
-//     let getCovidStatsBy = async () => {
-//         return await fetch(`https://covidtracking.com/api/v1/states/current.json`).then(response => response.json());
-//     }
-//     let totalUs = await getCovidStatsBy()
-//     // let test = localStorage.getItem('doug');
-//     let removed = totalUs.splice(51, 5)
-//     console.log(removed)
-// })
-// $('.search').on('click', async () => {
-//     // let totalUS
-//     let getCovidStatsBy = async () => {
-//         return await fetch(`https://covidtracking.com/api/v1/states/current.json`).then(response => response.json());
-//     }
-//     let totalUs = await getCovidStatsBy()
-//     // let test = localStorage.getItem('doug');
-//     console.log(totalUs)
-// });
-
