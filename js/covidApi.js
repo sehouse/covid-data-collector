@@ -180,6 +180,6 @@ $('.section-search').on('click', () => { passToCovidAPI($('#state').val());
     $('.results').show();
 })
 
-$('.section-clear').on('click', () => {
+$('.control-clear').on('click', () => {
     location.reload();
 })
