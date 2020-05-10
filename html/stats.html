@@ -19,10 +19,10 @@
 
       <div class="container">
 
-        <figure class="image center">
-          <img src="covid-tracker-logo.png" style="max-width: 512px;" />
-          <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png-->
-        </figure>
+        <figure class="image">
+            <img src="covid-logo-assets/data/covid-logo-branch-header.png"/>
+            <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png-->
+          </figure>
         <!--TODO: Add a Navbar-->
         <br />
       
@@ -37,129 +37,137 @@
 
         <br />
         <div class="container">
-          <div class="columns">
-            <div class="column is-flex" >
-              <div class="notification is-danger is-light">
-                <div class="state-selector">
-
-                  <p class="is-size-4 has-text-centered has-text-weight-semibold">
-                    Please select a state/territory:
-                  </p>
-
-                  <hr class="hr" />
-
-                  <div class="option">
-
-                    <select id="state">
-                      <option value="">
-                        --Please choose an option--
-                      </option>
-                    </select>
-
+            <div class="columns">
+              <div class="column is-flex" >
+                <div class="notification is-danger is-light">
+                  <div class="state-selector">
+  
+                      <figure class="image"> 
+                          <img src="covid-logo-assets/data/covid-logo-state-select.png">
+                              </figure>
+  
+                    <hr class="hr" />
+  
+                    <div class="option">
+  
+                      <select id="state">
+                        <option value="">
+                          --Please choose an option--
+                        </option>
+                      </select>
+  
+                    </div>
+  
+                    <hr class="hr" />
+                    <br />
+  
                   </div>
-
-                  <hr class="hr" />
-
-                <div class="data-selector is-size-6">
-
-                  <p class="is-size-4 has-text-centered has-text-weight-semibold">
-                    Please select your desired Covid-19 Data:
-                  </p>
-                  <hr class="hr" />
-
-                  <input type="checkbox" id="hospitalizedCumulative" />
-                  <label for="hospitalizedCumulative">
-                    Total Hospitalizations
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="hospitalizedCurrently" />
-                  <label for="hospitalizedCurrently">
-                    Current Hospitalizations
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="inIcuCumulative" />
-                  <label for="inIcuCumulative">
-                    Total ICUs
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="inIcuCurrently" />
-                  <label for="inIcuCurrently">
-                    Current ICUs
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="onVentilatorCumulative" />
-                  <label for="onVentilatorCumulative">
-                    Total Ventilators Used
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="onVentilatorCurrently" />
-                  <label for="onVentilatorCurrently">
-                    Current Ventilators In Use
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="recovered" />
-                  <label for="recovered">
-                    Total Recoveries
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="death" />
-                  <label for="death">
-                    Total Deaths
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="totalTestResults" />
-                  <label for="totalTestResults">
-                    Total Test Results
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="negative" />
-                  <label for="negative">
-                    Total Test Results (Negative)
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="positive" />
-                  <label for="positive">
-                    Total Test Results (Positive)
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="dataQualityGrade" />
-                  <label for="dataQualityGrade">
-                    Data Quality
-                  </label>
-                  <br />
-                  <br />
-                  <br />
-
+                </div>
+              </div>
+  
+              <div class="column">
+                <div class="notification is-danger is-light">
+                  <div class="data-selector is-size-6">
+  
+                      <figure class="image"> 
+                          <img src="covid-logo-assets/data/covid-logo-data-select.png">
+                              </figure>
+  
+                              <hr class="hr" />
+  
+                    <input type="checkbox" id="hospitalizedCumulative" />
+                    <label for="hospitalizedCumulative">
+                      Total Hospitalizations
+                    </label>
+                    <br />
+                    <br />
+  
+                    <input type="checkbox" id="hospitalizedCurrently" />
+                    <label for="hospitalizedCurrently">
+                      Current Hospitalizations
+                    </label>
+                    <br />
+                    <br />
+  
+                    <input type="checkbox" id="inIcuCumulative" />
+                    <label for="inIcuCumulative">
+                      Total ICUs
+                    </label>
+                    <br />
+                    <br />
+  
+                    <input type="checkbox" id="inIcuCurrently" />
+                    <label for="inIcuCurrently">
+                      Current ICUs
+                    </label>
+                    <br />
+                    <br />
+  
+                    <input type="checkbox" id="onVentilatorCumulative" />
+                    <label for="onVentilatorCumulative">
+                      Total Ventilators Used
+                    </label>
+                    <br />
+                    <br />
+  
+                    <input type="checkbox" id="onVentilatorCurrently" />
+                    <label for="onVentilatorCurrently">
+                      Current Ventilators In Use
+                    </label>
+                    <br />
+                    <br />
+  
+                    <input type="checkbox" id="recovered" />
+                    <label for="recovered">
+                      Total Recoveries
+                    </label>
+                    <br />
+                    <br />
+  
+                    <input type="checkbox" id="death" />
+                    <label for="death">
+                      Total Deaths
+                    </label>
+                    <br />
+                    <br />
+  
+                    <input type="checkbox" id="totalTestResults" />
+                    <label for="totalTestResults">
+                      Total Test Results
+                    </label>
+                    <br />
+                    <br />
+  
+                    <input type="checkbox" id="negative" />
+                    <label for="negative">
+                      Total Test Results (Negative)
+                    </label>
+                    <br />
+                    <br />
+  
+                    <input type="checkbox" id="positive" />
+                    <label for="positive">
+                      Total Test Results (Positive)
+                    </label>
+                    <br />
+                    <br />
+  
+                    <input type="checkbox" id="dataQualityGrade" />
+                    <label for="dataQualityGrade">
+                      Data Quality
+                    </label>
+                    <br />
+                    <br />
+                    <br />
+  
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <br />
-
-      </section>
+          <br />
+  
+        </section>
 
       <section class="section-search center">
 
@@ -190,21 +198,26 @@
 
     <section class="results">
 
-      <section class="section">
-
-        <div class="container center">
-          <div class="columns">
-            <div class="column">
-              <div class="notification is-danger is-light">
-
-                <div id="stats">
+        <section class="section">
+  
+          <div class="container center">
+            <div class="columns">
+                  <div class="column">
+                      <div class="notification is-danger is-light">
+                  <figure class="image">
+                      <img src="covid-logo-assets/data/covid-logo-stats-display.png">
+                          </figure>
+                          <hr class="hr" />
+                          <div id="stats">
+                          </div>
+                          </div>
+                      </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-      </section>
+  
+        </section>
 
       <section class="section-clear center">
 
