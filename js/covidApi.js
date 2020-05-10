@@ -1,6 +1,7 @@
 $(function(){
     getAddress()
     displayRegionOptions()
+})
 
 const stateList = {
 
@@ -62,43 +63,78 @@ const stateList = {
     'West Virginia': 'WV',
     'Wisconsin': 'WI',
     'Wyoming': 'WY',
-    'Vigrin Islands' : 'VI'
+    'Virgin Islands' : 'VI'
+}
 
-function displayData(data, display){
+function displayData(data){
     if(data.region == 'country'){
-        console.log('country level data is present');
-  
+        console.log('country level data is present')
     }
     // TODO BONUS: TIME PERMITTING, MAP OF US WITH STATE SPECIFIC DATA ON HOVER
     // if(data.region == 'states'){
     //     console.log('states level data is present')
     // }
     if(data.region == 'state'){
-
-        console.log(`single state ${data.data.state} level data is present`);
-      
+        console.log(`single state ${data.data.state} level data is present`)
     }
     // TODO DON'T DISPLAY null OR undefined VALUES
-    $('#stats').html(
-        `<h1>Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</h1>
-        <ul>
-            <li>Current as of: ${data.region == 'country' ? data.data.lastModified : data.data.dateModified}</li>
 
-            ${display.hospitalizedCumulative ? `<li>Total hospitalizaitons: ${data.data.hospitalizedCumulative}</li>` : ''}
-            ${display.hospitalizedCurrently ? `<li>Current Hospitalizations: ${data.data.hospitalizedCurrently}</li>` : ''}
-            ${display.inIcuCumulative ? `<li>Total ICUs: ${data.data.inIcuCumulative}</li>` : ''}
-            ${display.inIcuCurrently ? `<li>Current ICUs: ${data.data.inIcuCurrently}</li>` : ''}
-            ${display.onVentilatorCumulative ? `<li>Total Ventilators used: ${data.data.onVentilatorCumulative}</li>` : ''}
-            ${display.onVentilatorCurrently ? `<li>Current Ventilators in use: ${data.data.onVentilatorCurrently}</li>` : ''}
-            ${display.recovered ? `<li>Total Recoveries: ${data.data.recovered}</li>` : ''}
-            ${display.death ? `<li>Total Deaths: ${data.data.death}</li>` : ''}
-            ${display.totalTestResults ? `<li>Total Test Results: ${data.data.totalTestResults}</li>` : ''}
-            ${display.negative ? `<li>Total Test Results (Negative): ${data.data.negative}</li>` : ''}
-            ${display.positive ? `<li>Total Test Results (Positive): ${data.data.positive}</li>` : ''}
-            ${display.dataQualityGrade ? `<li>Data Quality: ${data.data.dataQualityGrade ? data.data.dataQualityGrade : 'N/A'}</li>` : ''}
+    var hospitalizationsCumulative = data.data.hospitalizationsCumulative;
+    var nullHospitalizationsCumulative = (hospitalizationsCumulative != null ? hospitalizationsCumulative : "Data Unknown");
+    
+    var hospitalizedCurrently= data.data.hospitalizedCurrently;
+    var nullhospitalizedCurrently = (hospitalizedCurrently != null ? hospitalizedCurrently : "Data Unknown");
+
+    var inIcuCumulative = data.data.inIcuCumulative;
+    var nullInIcuCumulative = (inIcuCumulative != null ? inIcuCumulative : "Data Unknown");
+
+    var inIcuCurrently = data.data.inIcuCurrently;
+    var nullinIcuCurrently = (inIcuCurrently != null ? inIcuCurrently : "Data Unknown");
+
+    var ventilatorCumulative = data.data.onVentilatorCumulative;
+    var nullVentilatorCumulative = (ventilatorCumulative != null ? ventilatorCumulative : "Data Unknown");
+
+    var ventilatorCurrently = data.data.onVentilatorCurrently;
+    var nullVentilatorCurrently = (ventilatorCurrently != null ? ventilatorCurrently : "Data Unknown");
+
+    var recovered = data.data.recovered;
+    var nullRecovered = (recovered != null ? recovered : "Data Unknown");
+
+    var death = data.data.death;
+    var nullDeath = (death != null ? death : "Data Unknown");
+
+    var totalTestResults = data.data.totalTestResults;
+    var nullTotalTestResults = (totalTestResults != null ? totalTestResults : "Data Unknown");
+
+    var negative = data.data.negative;
+    var nullNegative = (negative != null ? negative : "Data Unknown");
+
+    var positive = data.data.positive;
+    var nullPositive = (positive != null ? positive : "Data Unknown");
+
+    $('#stats').html(
+        `<h1 class="data-region"><u>Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</u></h1>
+        <ul class="list">
+        <br>
+            <li><u>Current as of:</u> <em>${data.region == 'country' ? data.data.lastModified : data.data.dateModified}</em></li>
+            <li><u>Total hospitalizations:</u> <em>${nullHospitalizationsCumulative}</em></li>
+            <li><u>Current Hospitalizations:</u> <em>${nullhospitalizedCurrently}</em></li>
+            <li><u>Total ICUs:</u> <em>${nullInIcuCumulative}</em></li>
+            <li><u>Current ICUs:</u> <em>${nullinIcuCurrently}</em></li>
+            <li><u>Total Ventilators used:</u> <em>${nullVentilatorCumulative}</em></li>
+            <li><u>Current Ventilators in use:</u> <em>${nullVentilatorCurrently}</em></li>
+            <li><u>Total Recoveries:</u> <em>${nullRecovered}</em></li>
+            <li><u>Total Deaths:</u> <em>${nullDeath}</em></li>
+            <li><u>Total Test Results:</u> <em>${nullTotalTestResults}</em></li>
+            <li><u>Total Test Results (Negative):</u> <em>${nullNegative}</em></li>
+            <li><u>Total Test Results (Positive):</u> <em>${nullPositive}</em></li>
+            <li><u>Data Quality:</u> <em>${data.data.dataQualityGrade ? data.data.dataQualityGrade : 'Data Unknown'}</em></li>
         </ul>`
+        
     );
 }
+
+
 
 function displayRegionOptions(){
     for(state in stateList){
@@ -108,12 +144,12 @@ function displayRegionOptions(){
 
 function passToCovidAPI(data){
     let abbr;
-    // IF COMING FROM IP ADDRESS, LOCATION DATA WILL BE AN OBJECT
-    // ELSE, LOCATION DATA WILL BE A STRING FROM THE FRONTEND OPTIONS LIST
+    // IF COMING FROM IP ADDRESS, DATA WILL BE AN OBJECT
+    // ELSE, DATA WILL BE A STRING FROM THE FRONTEND OPTIONS LIST
     if(typeof data == 'object'){
         abbr = (data.country !== 'US' ? data.country : getStateTwoDigitCode(data.region));
     }else{
-        abbr = getStateTwoDigitCode(data);
+        abbr = getStateTwoDigitCode(data)
     }
 
     getData(abbr)
@@ -146,10 +182,10 @@ async function getData(region){
     // }
     if(region){
         totalState = await getCovidStatsBy(`states/${region}/current`);
-        displayData({region: 'state', data: totalState}, confirmCheckBoxes($('.data-selector')));
+        displayData({region: 'State/Territory of', data: totalState})
     }else{
         totalUs = await getCovidStatsBy(`us/current`);
-        displayData({region: 'country', data: totalUs[0]}, confirmCheckBoxes($('.data-selector')));
+        displayData({region: 'country', data: totalUs[0]})
     }
 }
 
@@ -158,40 +194,14 @@ async function getAddress(region){
         return await fetch(`https://ipinfo.io?token=5fcea70b36eb66`).then(response => response.json());
     }
     let ip = await getIP();
-    passToCovidAPI(ip);
+    passToCovidAPI(ip)
 }
 
-$('.search').on('click', () => {
-    // TODO PULL CHECKBOX VALUES TO FILTER DATA
-    passToCovidAPI($('#state').val());
-    
-});
+$('.section-search').on('click', () => { passToCovidAPI($('#state').val());
+$('.frontPage').hide();
+$('.results').show();
+})
 
-function confirmCheckBoxes(parent){
-    let inputs = parent.children('input');
-    let displayOptions = {
-        hospitalizedCumulative : false,
-        hospitalizedCurrently : false,
-        inIcuCumulative : false,
-        inIcuCurrently : false,
-        onVentilatorCumulative : false,
-        onVentilatorCurrently : false,
-        recovered : false,
-        death : false,
-        totalTestResults : false,
-        negative : false,
-        positive : false,
-        dataQualityGrade : false
-    };
-
-    inputs.each(function() {
-        if(this.checked){
-            displayOptions[this.id] = true;
-        }
-    })
-
-    return displayOptions;
-  
-}
-
-$('.search').on('click', () => { passToCovidAPI($('#state').val()) });
+$('.section-clear').on('click', () => {
+location.reload();
+})
