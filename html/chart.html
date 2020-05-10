@@ -19,10 +19,11 @@
 
       <div class="container">
 
-        <figure class="image center">
-          <img src="covid-tracker-logo.png" style="max-width: 512px;" />
-          <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png-->
-        </figure>
+        
+        <figure class="image">
+            <img src="covid-logo-assets/chart/covid-logo-branch-header.png"/>
+            <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png-->
+          </figure>
         <!--TODO: Add a Navbar-->
         <br />
       
@@ -41,9 +42,9 @@
               <div class="notification is-danger is-light">
                 <div class="state-selector">
 
-                  <p class="is-size-4 has-text-centered has-text-weight-semibold">
-                    Please select a state/territory:
-                  </p>
+                    <figure class="image"> 
+                        <img src="covid-logo-assets/chart/covid-logo-state-select.png">
+                            </figure>
 
                   <hr class="hr" />
 
@@ -72,10 +73,11 @@
               <div class="notification is-danger is-light">
                 <div class="data-selector is-size-6">
 
-                  <p class="is-size-4 has-text-centered has-text-weight-semibold">
-                    Please select your desired Covid-19 Data:
-                  </p>
-                  <hr class="hr" />
+                    <figure class="image"> 
+                        <img src="covid-logo-assets/chart/covid-logo-data-select.png">
+                            </figure>
+
+                            <hr class="hr" />
 
                   <input type="checkbox" id="hospitalizedCumulative" />
                   <label for="hospitalizedCumulative">
@@ -204,16 +206,31 @@
 
         <div class="container center">
           <div class="columns">
-            <div class="column">
+            <div class="column is-flex">
               <div class="notification is-danger is-light">
+
+                <figure class="image"> 
+                    <img src="covid-logo-assets/chart/covid-logo-chart-display.png">
+                        </figure>
+
+                        <hr class="hr" />
 
                 <figure class="image center">
                   <img src="chart-example.png" style="max-width: 512px;" />
                 </figure>
-                <hr class="hr" />
+            </div>
+        </div>
 
-                <div id="stats">
-                </div>
+                <div class="column">
+                    <div class="notification is-danger is-light">
+                <figure class="image">
+                    <img src="covid-logo-assets/chart/covid-logo-stats-display.png">
+                        </figure>
+                        <hr class="hr" />
+                        <div id="stats">
+                        </div>
+                        </div>
+                    </div>
               </div>
             </div>
           </div>
