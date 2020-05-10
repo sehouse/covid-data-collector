@@ -78,26 +78,63 @@ function displayData(data){
         console.log(`single state ${data.data.state} level data is present`)
     }
     // TODO DON'T DISPLAY null OR undefined VALUES
+
+    var hospitalizationsCumulative = data.data.hospitalizationsCumulative;
+    var nullHospitalizationsCumulative = (hospitalizationsCumulative != null ? hospitalizationsCumulative : "Data Unknown");
+    
+    var hospitalizedCurrently= data.data.hospitalizedCurrently;
+    var nullhospitalizedCurrently = (hospitalizedCurrently != null ? hospitalizedCurrently : "Data Unknown");
+
+    var inIcuCumulative = data.data.inIcuCumulative;
+    var nullInIcuCumulative = (inIcuCumulative != null ? inIcuCumulative : "Data Unknown");
+
+    var inIcuCurrently = data.data.inIcuCurrently;
+    var nullinIcuCurrently = (inIcuCurrently != null ? inIcuCurrently : "Data Unknown");
+
+    var ventilatorCumulative = data.data.onVentilatorCumulative;
+    var nullVentilatorCumulative = (ventilatorCumulative != null ? ventilatorCumulative : "Data Unknown");
+
+    var ventilatorCurrently = data.data.onVentilatorCurrently;
+    var nullVentilatorCurrently = (ventilatorCurrently != null ? ventilatorCurrently : "Data Unknown");
+
+    var recovered = data.data.recovered;
+    var nullRecovered = (recovered != null ? recovered : "Data Unknown");
+
+    var death = data.data.death;
+    var nullDeath = (death != null ? death : "Data Unknown");
+
+    var totalTestResults = data.data.totalTestResults;
+    var nullTotalTestResults = (totalTestResults != null ? totalTestResults : "Data Unknown");
+
+    var negative = data.data.negative;
+    var nullNegative = (negative != null ? negative : "Data Unknown");
+
+    var positive = data.data.positive;
+    var nullPositive = (positive != null ? positive : "Data Unknown");
+
     $('#stats').html(
         `<h1 class="data-region"><u>Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</u></h1>
         <ul class="list">
         <br>
             <li><u>Current as of:</u> <em>${data.region == 'country' ? data.data.lastModified : data.data.dateModified}</em></li>
-            <li><u>Total hospitalizations:</u> <em>${data.data.hospitalizedCumulative}</em></li>
-            <li><u>Current Hospitalizations:</u> <em>${data.data.hospitalizedCurrently}</em></li>
-            <li><u>Total ICUs:</u> <em>${data.data.inIcuCumulative}</em></li>
-            <li><u>Current ICUs:</u> <em>${data.data.inIcuCurrently}</em></li>
-            <li><u>Total Ventilators used:</u> <em>${data.data.onVentilatorCumulative}</em></li>
-            <li><u>Current Ventilators in use:</u> <em>${data.data.onVentilatorCurrently}</em></li>
-            <li><u>Total Recoveries:</u> <em>${data.data.recovered}</em></li>
-            <li><u>Total Deaths:</u> <em>${data.data.death}</em></li>
-            <li><u>Total Test Results:</u> <em>${data.data.totalTestResults}</em></li>
-            <li><u>Total Test Results (Negative):</u> <em>${data.data.negative}</em></li>
-            <li><u>Total Test Results (Positive):</u> <em>${data.data.positive}</em></li>
-            <li><u>Data Quality:</u> <em>${data.data.dataQualityGrade ? data.data.dataQualityGrade : 'N/A'}</em></li>
+            <li><u>Total hospitalizations:</u> <em>${nullHospitalizationsCumulative}</em></li>
+            <li><u>Current Hospitalizations:</u> <em>${nullhospitalizedCurrently}</em></li>
+            <li><u>Total ICUs:</u> <em>${nullInIcuCumulative}</em></li>
+            <li><u>Current ICUs:</u> <em>${nullinIcuCurrently}</em></li>
+            <li><u>Total Ventilators used:</u> <em>${nullVentilatorCumulative}</em></li>
+            <li><u>Current Ventilators in use:</u> <em>${nullVentilatorCurrently}</em></li>
+            <li><u>Total Recoveries:</u> <em>${nullRecovered}</em></li>
+            <li><u>Total Deaths:</u> <em>${nullDeath}</em></li>
+            <li><u>Total Test Results:</u> <em>${nullTotalTestResults}</em></li>
+            <li><u>Total Test Results (Negative):</u> <em>${nullNegative}</em></li>
+            <li><u>Total Test Results (Positive):</u> <em>${nullPositive}</em></li>
+            <li><u>Data Quality:</u> <em>${data.data.dataQualityGrade ? data.data.dataQualityGrade : 'Data Unknown'}</em></li>
         </ul>`
+        
     );
 }
+
+
 
 function displayRegionOptions(){
     for(state in stateList){
