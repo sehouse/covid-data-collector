@@ -12,13 +12,11 @@
     <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
 
   </head>
-
   <body>
 
     <section class="hero">
 
       <div class="container">
-
         <figure class="image">
           <img src="covid-logo-assets/map/covid-logo-branch-header.png"/>
           <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png-->
@@ -40,18 +38,12 @@
             <div class="column" >
               <div class="notification is-danger is-light">
                 <div class="state-selector">
-
+                  <div class="background">
                     <figure class="image"> 
                         <img src="covid-logo-assets/map/covid-logo-map-data-select.png">
                             </figure>
-
-                  <hr class="hr" />
-
-                  <!-- <figure class="image center">
-                    <img src="us-map-example.jpg" />
-                  </figure> -->
-                  <div id="map"></div>
-
+                  </div>
+                  <br>
                   <div class="control">
                     <label class="radio">
                       <input type="radio" name="datum" value="death">
@@ -82,6 +74,12 @@
                       Total Test Results (Negative)
                     </label>
                   </div>
+                  <br>
+
+                  <!-- <figure class="image center">
+                    <img src="us-map-example.jpg" />
+                  </figure> -->
+                  <div id="map"></div>
 
                 </div>
               </div>
