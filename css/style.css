@@ -56,3 +56,7 @@ ul.list{
   background-color:#feecf0;
   list-style-type: disc;
 }
+
+.notification{
+  width: 100%;
+}
