@@ -1,6 +1,7 @@
 $(function(){
     getAddress()
     displayRegionOptions()
+})
 
 const stateList = {
 
@@ -63,21 +64,11 @@ const stateList = {
     'Wisconsin': 'WI',
     'Wyoming': 'WY',
     'Vigrin Islands' : 'VI'
+}
 
 function displayData(data, display){
-    if(data.region == 'country'){
-        console.log('country level data is present');
-  
-    }
+    console.log(data)
     // TODO BONUS: TIME PERMITTING, MAP OF US WITH STATE SPECIFIC DATA ON HOVER
-    // if(data.region == 'states'){
-    //     console.log('states level data is present')
-    // }
-    if(data.region == 'state'){
-
-        console.log(`single state ${data.data.state} level data is present`);
-      
-    }
     // TODO DON'T DISPLAY null OR undefined VALUES
     $('#stats').html(
         `<h1>Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</h1>
@@ -194,4 +185,7 @@ function confirmCheckBoxes(parent){
   
 }
 
-$('.search').on('click', () => { passToCovidAPI($('#state').val()) });
+$('.search').on('click', () => { 
+    passToCovidAPI($('#state').val()) 
+    localStorage.setItem('doug', 'this is doug')
+});

@@ -6,11 +6,20 @@
     box-shadow: none !important;
   }*/
   
-  .center {
+.center {
   display: flex;
   justify-content: center;
 }
 
-#stats {
-  display: none;
+#container {
+  /* height: 500px; */
+  /* min-width: 310px; */
+  /* max-width: 600px; */
+  margin: 0 auto; 
+}
+
+.loading {
+  margin-top: 10em;
+  text-align: center;
+  color: gray;
 }

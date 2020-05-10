@@ -4,15 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Covid-19 Data Collector</title>
-  <link rel="stylesheet" href="/css/style.css" />
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css"
   />
-  <script
-    src="https://kit.fontawesome.com/8e2f4402c5.js"
-    crossorigin="anonymous"
-  ></script>
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+
 </head>
 <body>
   <section class="hero">
@@ -35,7 +33,7 @@
       <div class="container">
         <div class="columns">
           <div class="column is-flex">
-            <div class="notification">
+            <div class="notification" style="width: 100%;">
             <div class="state-selector">
               <label>Please select a state/territory:</label>
               <br />
@@ -45,9 +43,9 @@
               </select>
               <br>
               <br>
-              <figure class="image center">
-                <img src="us-map-example.jpg">
-              </figure>
+
+              <div class="center" id="map"></div>
+
             </div>
           </div>
           </div>
@@ -119,10 +117,19 @@
       <br />
     </section>
 
-    <section>
-      <div id="stats"></div>
+    <section id="stats">
+      <!-- <div id="stats"></div> -->
     </section>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>    
     <script src="../js/covidApi.js"></script>
+    <script src="../js/map.js"></script>    
   </body>
 </html>
