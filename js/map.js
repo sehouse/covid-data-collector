@@ -6,6 +6,7 @@ Highcharts.getJSON('https://covidtracking.com/api/v1/states/current.json', funct
     data.splice(51, 5)
     data.forEach((state) =>{
         state.code = state.state;
+        state.value = state.death;
         delete state.state;
     })
     // Instantiate the map
@@ -27,7 +28,7 @@ Highcharts.getJSON('https://covidtracking.com/api/v1/states/current.json', funct
         legend: {
             layout: 'horizontal',
             borderWidth: 0,
-            backgroundColor: 'rgba(255,255,255,0.85)',
+            backgroundColor: 'rgba(255,255,255,0.25)',
             floating: true,
             verticalAlign: 'top',
             y: 25
@@ -39,6 +40,7 @@ Highcharts.getJSON('https://covidtracking.com/api/v1/states/current.json', funct
 
         colorAxis: {
             min: 1,
+            max: 10000,
             type: 'logarithmic',
             // minColor: '#AAA',
             // maxColor: '#000',
@@ -67,14 +69,10 @@ Highcharts.getJSON('https://covidtracking.com/api/v1/states/current.json', funct
             },
             name: 'Deaths',
             tooltip: {
-                pointFormat: '{point.code}: {point.death}'
-                // pointFormat: '{point.state}: {point.death}'
-
+                pointFormat: '{point.code}: {point.value}'
             }
         }]
     });
-    console.log(map.map)
-
 });
 
 

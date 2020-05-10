@@ -67,19 +67,11 @@ const stateList = {
 }
 
 function displayData(data){
-    if(data.region == 'country'){
-        console.log('country level data is present')
-    }
-    // TODO BONUS: TIME PERMITTING, MAP OF US WITH STATE SPECIFIC DATA ON HOVER
-    // if(data.region == 'states'){
-    //     console.log('states level data is present')
-    // }
-    if(data.region == 'state'){
-        console.log(`single state ${data.data.state} level data is present`)
-    }
-    // TODO DON'T DISPLAY null OR undefined VALUES
-
-    var hospitalizationsCumulative = data.data.hospitalizationsCumulative;
+// TODO DON'T DISPLAY null OR undefined VALUES
+// TODO CHECKBOXES CONDITIONALLY DISPLAYING THE DATA IN THE MAP / LIST / GRAPH
+// TODO MIGHT BE ABLE TO LOOP THROUGH THESE VARS, LESS CODE THAT WAY
+    console.log(data)
+    var hospitalizationsCumulative = data.data.hospitalizedCumulative;
     var nullHospitalizationsCumulative = (hospitalizationsCumulative != null ? hospitalizationsCumulative : "Data Unknown");
     
     var hospitalizedCurrently= data.data.hospitalizedCurrently;
@@ -111,7 +103,9 @@ function displayData(data){
 
     var positive = data.data.positive;
     var nullPositive = (positive != null ? positive : "Data Unknown");
-
+// TODO SHOW FULL STATE NAME, CAN USE THE LIST CREATED ABOVE
+// TODO CHANGE CURRENT AS OF TIME STAMP TO HUMAN READABLE MM/DD/YYYY
+// TODO CONDITIONALLY SHOW LIST ITEMS BASED ON IF THE ASSOCIATED CHECKBOX WAS CHECKED
     $('#stats').html(
         `<h1 class="data-region"><u>Region Level: ${data.region} ${data.data.state ? data.data.state : ''}</u></h1>
         <ul class="list">
@@ -133,8 +127,6 @@ function displayData(data){
         
     );
 }
-
-
 
 function displayRegionOptions(){
     for(state in stateList){
@@ -161,24 +153,12 @@ function getStateTwoDigitCode(stateFullName) {
 
 async function getData(region){
     let totalUs;
-    // let totalStates;
     let totalState;
 
     let getCovidStatsBy = async (region) => {
         return await fetch(`https://covidtracking.com/api/v1/${region}.json`).then(response => response.json());
     }
-    // TODO: BONUS: TIME PERMITTING BUILD A MAP, THAT DISPLAYS STATE SPECIFIC INFO ON HOVER
-    // if(region == 'states'){
-    //     totalStates = await getCovidStatsBy(`states/current`);
-    //     displayData({region: 'states', data: totalStates})
-    // INITIAL LOAD, PRESUMES IT STARTS AT USER'S STATE
-    // }else if(region){
-    //     totalState = await getCovidStatsBy(`states/${region}/current`);
-    //     displayData({region: 'state', data: totalState})
-    // }else{
-    //     totalUs = await getCovidStatsBy(`us/current`);
-    //     displayData({region: 'country', data: totalUs[0]})
-    // }
+
     if(region){
         totalState = await getCovidStatsBy(`states/${region}/current`);
         displayData({region: 'State/Territory of', data: totalState})
@@ -197,11 +177,10 @@ async function getAddress(region){
 }
 
 $('.section-search').on('click', () => { passToCovidAPI($('#state').val());
-// TODO CHECKBOXES CONDITIONALLY DISPLAYING THE DATA IN THE MAP / LIST / GRAPH
-$('.frontPage').hide();
-$('.results').show();
+    $('.frontPage').hide();
+    $('.results').show();
 })
 
 $('.section-clear').on('click', () => {
-location.reload();
+    location.reload();
 })
