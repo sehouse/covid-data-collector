@@ -46,60 +46,32 @@
                 <div class="state-selector">
 
                   <p class="is-size-4 has-text-centered has-text-weight-semibold">
-                    Please select a state/territory:
+                    Map:
                   </p>
 
                   <hr class="hr" />
 
-                  <div class="option">
+                  <figure class="image center">
+                    <img src="us-covid-map-example.png" />
+                  </figure>
+                  
 
-                    <select id="state">
-                      <option value="">
-                        --Please choose an option--
-                      </option>
-                    </select>
+                </div>
+              </div>
+            </div>
 
-                  </div>
+            <div class="column is-flex">
+              <div class="notification is-danger is-light">
+                <div class="data-selector is-size-6">
 
+                  <p class="is-size-4 has-text-centered has-text-weight-semibold">
+                    Chart:
+                  </p>
                   <hr class="hr" />
-                  <br />
-
-                  <!-- <figure class="image center">
-                    <img src="us-map-example.jpg" />
-                  </figure> -->
-                  <div id="map"></div>
-
-                  <div class="control">
-                    <label class="radio">
-                      <input type="radio" name="datum" value="death">
-                      Deaths
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="recovered">
-                      Recovered
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="hospitalizedCumulative">
-                      Total Hospitalizations
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="hospitalizedCurrently">
-                      Current Hospitalizations
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="totalTestResults">
-                      Total Test Results
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="positive">
-                      Total Test Results (Positive)
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="negative">
-                      Total Test Results (Negative)
-                    </label>
-                  </div>
-
+                  <figure class="image center">
+                    <img src="chart-example.png" />
+                  </figure>
+                  
                 </div>
               </div>
             </div>
@@ -109,157 +81,18 @@
                 <div class="data-selector is-size-6">
 
                   <p class="is-size-4 has-text-centered has-text-weight-semibold">
-                    Please select your desired Covid-19 Data:
+                    Data:
                   </p>
                   <hr class="hr" />
-
-                  <input type="checkbox" id="hospitalizedCumulative" />
-                  <label for="hospitalizedCumulative">
-                    Total Hospitalizations
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="hospitalizedCurrently" />
-                  <label for="hospitalizedCurrently">
-                    Current Hospitalizations
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="inIcuCumulative" />
-                  <label for="inIcuCumulative">
-                    Total ICUs
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="inIcuCurrently" />
-                  <label for="inIcuCurrently">
-                    Current ICUs
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="onVentilatorCumulative" />
-                  <label for="onVentilatorCumulative">
-                    Total Ventilators Used
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="onVentilatorCurrently" />
-                  <label for="onVentilatorCurrently">
-                    Current Ventilators In Use
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="recovered" />
-                  <label for="recovered">
-                    Total Recoveries
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="death" />
-                  <label for="death">
-                    Total Deaths
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="totalTestResults" />
-                  <label for="totalTestResults">
-                    Total Test Results
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="negative" />
-                  <label for="negative">
-                    Total Test Results (Negative)
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="positive" />
-                  <label for="positive">
-                    Total Test Results (Positive)
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="dataQualityGrade" />
-                  <label for="dataQualityGrade">
-                    Data Quality
-                  </label>
-                  <br />
-                  <br />
-                  <br />
-
+                  <figure class="image center">
+                    <img src="covid-data-example.png" />
+                  </figure>
+                  
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <br />
-
-      </section>
-
-      <section class="section-search center">
-
-        <br />
-        <button class="button is-danger is-outlined is-light is-medium is-rounded">
-          <span>Search</span>
-          <span class="icon is-medium">
-            <i class="fas fa-search"></i>
-          </span>
-        </button>
-        <br />
-        <br />
-
-      </section>
-
-    </section>
-
-    <section class="results">
-
-      <section class="section">
-
-        <div class="container center">
-          <div class="columns">
-            <div class="column">
-              <div class="notification is-danger is-light">
-
-                <figure class="image center">
-                  <img src="us-map-example.jpg" style="max-width: 512px;" />
-                </figure>
-                <hr class="hr" />
-
-                <figure class="image center">
-                  <img src="chart-example.png" style="max-width: 512px;" />
-                </figure>
-                <hr class="hr" />
-
-                <div id="stats">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <section class="section-clear center">
-
-        <button class="button is-danger is-outlined is-light is-medium is-rounded">
-          <span>Clear Search Data</span>
-          <span class="icon is-medium">
-            <i class="fas fa-eraser"></i>
-          </span>
-        </button>
-        <br />
         <br />
 
       </section>
