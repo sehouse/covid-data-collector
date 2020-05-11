@@ -22,6 +22,12 @@
 }
 
 .section-search {
+  background-color: #feecf0;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.section-home {
   background-color: #9d1d11;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -88,11 +94,16 @@ ul.list {
   background-color: #9d1d11;
 }
 
-.navbar-text:hover {
-  color: #9d1d11;
+.navbar-item:hover {
+  background-color: #9d1d11;
 }
+
 .navbar-text {
   color: white;
+}
+
+.navbar-text:hover {
+  color: #9d1d11;
 }
 .navbar-menu {
   background-color: #9d1d11;
