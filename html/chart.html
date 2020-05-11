@@ -1,288 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
 
-    <title>US COVID-19 Charts and Graphs</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css"/>
-    <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
+  <title>US COVID-19 Charts and Graphs</title>
 
-  </head>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" />
+  <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
 
-  <body>
+</head>
 
-    <section class="hero">
+<body>
 
+  <section class="hero">
+
+    <div class="container">
+
+
+      <figure class="image">
+        <img src="covid-logo-assets/chart/covid-logo-branch-header.png" />
+        <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png
+          
+          Custom Logo Font courtesy of https://www.font-generator.com/fonts/ByronMark1/ and author Richard Polt-->
+      </figure>
+      <!--TODO: Add a Navbar-->
+      <br />
+
+    </div>
+
+  </section>
+
+  <section class="frontPage">
+
+    <section class="section">
+
+      <br />
       <div class="container">
-
-        
-        <figure class="image">
-            <img src="covid-logo-assets/chart/covid-logo-branch-header.png"/>
-            <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png-->
-          </figure>
-        <!--TODO: Add a Navbar-->
-        <br />
-      
-      </div>
-
-    </section>
-
-    <section class="frontPage">
-
-      <section class="section">
-
-        <br />
-        <div class="container">
-          <div class="columns">
-            <div class="column is-flex" >
-              <div class="notification is-danger is-light">
-                <div class="state-selector">
-                  <div class="background">
-                    <figure class="image center"> 
-                        <img src="covid-logo-assets/chart/covid-logo-state-select.png">
-                            </figure>
-                  </div>
-                  <br>
-                  <div class="option">
-
-                    <select id="state">
-                      <option value="">
-                        --Please choose an option--
-                      </option>
-                    </select>
-
-                  </div>
-
-                  <hr class="hr" />
-                  <br />
-
-                  <figure class="image center">
-                    <img src="chart-example.png" />
-                  </figure>
-
-                </div>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="notification is-danger is-light">
-                <div class="data-selector is-size-6">
-                  <div class="background">
-                    <figure class="image center"> 
-                        <img src="covid-logo-assets/chart/covid-logo-data-select.png">
-                            </figure>
-                  </div>
-                  <br>
-                  <input type="checkbox" id="hospitalizedCumulative" />
-                  <label for="hospitalizedCumulative">
-                    Total Hospitalizations
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="hospitalizedCurrently" />
-                  <label for="hospitalizedCurrently">
-                    Current Hospitalizations
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="inIcuCumulative" />
-                  <label for="inIcuCumulative">
-                    Total ICUs
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="inIcuCurrently" />
-                  <label for="inIcuCurrently">
-                    Current ICUs
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="onVentilatorCumulative" />
-                  <label for="onVentilatorCumulative">
-                    Total Ventilators Used
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="onVentilatorCurrently" />
-                  <label for="onVentilatorCurrently">
-                    Current Ventilators In Use
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="recovered" />
-                  <label for="recovered">
-                    Total Recoveries
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="death" />
-                  <label for="death">
-                    Total Deaths
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="totalTestResults" />
-                  <label for="totalTestResults">
-                    Total Test Results
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="negative" />
-                  <label for="negative">
-                    Total Test Results (Negative)
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="positive" />
-                  <label for="positive">
-                    Total Test Results (Positive)
-                  </label>
-                  <br />
-                  <br />
-
-                  <input type="checkbox" id="dataQualityGrade" />
-                  <label for="dataQualityGrade">
-                    Data Quality
-                  </label>
-                  <br />
-                  <br />
-                  <br />
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br />
-
-      </section>
-
-      <section class="section-search center">
-
-        <div class="field is-grouped">
-            <p class="control-search">
-                <button class="button is-danger is-outlined is-light is-medium is-rounded">
-                    <span>Search</span>
-                    <span class="icon is-medium">
-                      <i class="fas fa-search"></i>
-                    </span>
-                  </button>
-            </p>
-            <p class="control-home">
-               <button class="button is-danger is-outlined is-light is-medium is-rounded">
-                    <span>Return to Home</span>
-                    <span class="icon is-medium">
-                      <i class="fas fa-home"></i>
-                    </span>
-                  </button>
-            </p>
-
-        <br />
-        <br />
-
-      </section>
-
-    </section>
-
-    <section class="results">
-
-      <section class="section">
-
-        <div class="container center">
-          <div class="columns">
-            <div class="column is-flex">
-              <div class="notification is-danger is-light">
+        <div class="columns">
+          <div class="column is-flex">
+            <div class="notification is-danger is-light">
+              <div class="state-selector">
                 <div class="background">
-                  <figure class="image center"> 
-                    <img src="covid-logo-assets/chart/covid-logo-chart-display.png">
+                  <figure class="image center">
+                    <img src="covid-logo-assets/chart/covid-logo-state-select.png">
                   </figure>
                 </div>
                 <br>
-                <figure class="image center">
-                  <img src="chart-example.png" style="max-width: 512px;" />
-                </figure>
+                <div class="option">
+
+                  <select id="state">
+                    <option value="">
+                      --Please choose an option--
+                    </option>
+                  </select>
+
+                </div>
+
+                <hr class="hr" />
+                <br />
+                <div class="placeholder-image">
+                  <figure class="image center">
+                    <img src="chart-example.png" />
+                  </figure>
+                </div>
               </div>
             </div>
+          </div>
 
-            <div class="column">
-                <div class="notification is-danger is-light">
-                  <div class= "background">
-                    <figure class="image center">
-                      <img src="covid-logo-assets/chart/covid-logo-stats-display.png">
-                    </figure>
-                  </div>
-                  <br>
-                  <div id="stats">
-                  </div>
+          <div class="column">
+            <div class="notification is-danger is-light">
+              <div class="data-selector is-size-6">
+                <div class="background">
+                  <figure class="image center">
+                    <img src="covid-logo-assets/chart/covid-logo-data-select.png">
+                  </figure>
                 </div>
+                <br>
+                <input type="checkbox" id="hospitalizedCumulative" />
+                <label for="hospitalizedCumulative">
+                  Total Hospitalizations
+                </label>
+                <br />
+                <br />
+
+                <input type="checkbox" id="hospitalizedCurrently" />
+                <label for="hospitalizedCurrently">
+                  Current Hospitalizations
+                </label>
+                <br />
+                <br />
+
+                <input type="checkbox" id="inIcuCumulative" />
+                <label for="inIcuCumulative">
+                  Total ICUs
+                </label>
+                <br />
+                <br />
+
+                <input type="checkbox" id="inIcuCurrently" />
+                <label for="inIcuCurrently">
+                  Current ICUs
+                </label>
+                <br />
+                <br />
+
+                <input type="checkbox" id="onVentilatorCumulative" />
+                <label for="onVentilatorCumulative">
+                  Total Ventilators Used
+                </label>
+                <br />
+                <br />
+
+                <input type="checkbox" id="onVentilatorCurrently" />
+                <label for="onVentilatorCurrently">
+                  Current Ventilators In Use
+                </label>
+                <br />
+                <br />
+
+                <input type="checkbox" id="recovered" />
+                <label for="recovered">
+                  Total Recoveries
+                </label>
+                <br />
+                <br />
+
+                <input type="checkbox" id="death" />
+                <label for="death">
+                  Total Deaths
+                </label>
+                <br />
+                <br />
+
+                <input type="checkbox" id="totalTestResults" />
+                <label for="totalTestResults">
+                  Total Test Results
+                </label>
+                <br />
+                <br />
+
+                <input type="checkbox" id="negative" />
+                <label for="negative">
+                  Total Test Results (Negative)
+                </label>
+                <br />
+                <br />
+
+                <input type="checkbox" id="positive" />
+                <label for="positive">
+                  Total Test Results (Positive)
+                </label>
+                <br />
+                <br />
+
+                <input type="checkbox" id="dataQualityGrade" />
+                <label for="dataQualityGrade">
+                  Data Quality
+                </label>
+                <br />
+                <br />
+                <br />
+
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      <br />
 
-      </section>
+    </section>
 
-      <section class="section-clear center">
+    <section class="section-search center">
 
-<div class="field is-grouped">
-    <p class="control-clear">
-      <button class="button is-danger is-outlined is-light is-medium is-rounded">
-            <span>Clear Search Data</span>
+      <div class="field is-grouped">
+        <p class="control-search">
+          <button class="button is-danger is-outlined is-light is-medium is-rounded">
+            <span>Search</span>
             <span class="icon is-medium">
-              <i class="fas fa-eraser"></i>
+              <i class="fas fa-search"></i>
             </span>
           </button>
-    </p>
-    <p class="control-home">
-       <button class="button is-danger is-outlined is-light is-medium is-rounded">
+        </p>
+        <p class="control-home">
+          <button class="button is-danger is-outlined is-light is-medium is-rounded">
             <span>Return to Home</span>
             <span class="icon is-medium">
               <i class="fas fa-home"></i>
             </span>
           </button>
-    </p>
-  </div>
-        <br />
-        <br />
+        </p>
 
-      </section>
+        <br />
+        <br />
 
     </section>
 
-    <footer>
+  </section>
 
-      <div class="content has-text-centered">
-        <p>
-          COVID-19 Data Tracker placeholder footer text.
-        </p>
+  <section class="results">
 
+    <section class="section">
+
+      <div class="container center">
+        <div class="columns">
+          <div class="column is-flex">
+            <div class="notification is-danger is-light">
+              <div class="background">
+                <figure class="image center">
+                  <img src="covid-logo-assets/chart/covid-logo-chart-display.png">
+                </figure>
+              </div>
+              <br>
+
+              <div class="placeholder-image">
+              <figure class="image center">
+                <img src="chart-example.png"/>
+              </figure>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="notification is-danger is-light">
+              <div class="background">
+                <figure class="image center">
+                  <img src="covid-logo-assets/chart/covid-logo-stats-display.png">
+                </figure>
+              </div>
+              <br>
+              <div id="stats">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-    </footer>
+    </section>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
-    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-    <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>    
-    <script src="../js/covidApi.js"></script>
-    <script src="../js/map.js"></script>    
-  </body>
+    <section class="section-clear center">
+
+      <div class="field is-grouped">
+        <p class="control-clear">
+          <button class="button is-danger is-outlined is-light is-medium is-rounded">
+            <span>Clear Search Data</span>
+            <span class="icon is-medium">
+              <i class="fas fa-eraser"></i>
+            </span>
+          </button>
+        </p>
+        <p class="control-home">
+          <button class="button is-danger is-outlined is-light is-medium is-rounded">
+            <span>Return to Home</span>
+            <span class="icon is-medium">
+              <i class="fas fa-home"></i>
+            </span>
+          </button>
+        </p>
+      </div>
+      <br />
+      <br />
+
+    </section>
+
+  </section>
+
+  <footer>
+
+    <div class="content has-text-centered">
+      <p>
+        COVID-19 Data Tracker placeholder footer text.
+      </p>
+
+    </div>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
+  <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+  <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
+  <script src="../js/covidApi.js"></script>
+  <script src="../js/map.js"></script>
+</body>
 
 </html>

@@ -1,130 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
 
-    <title>US COVID-19 Map</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css"/>
-    <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
+  <title>US COVID-19 Map</title>
 
-  </head>
-  <body>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" />
+  <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
 
-    <section class="hero">
+</head>
 
+<body>
+
+  <section class="hero">
+
+    <div class="container">
+      <figure class="image">
+        <img src="covid-logo-assets/map/covid-logo-branch-header.png" />
+        <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png
+          
+          Custom Logo Font courtesy of https://www.font-generator.com/fonts/ByronMark1/ and author Richard Polt-->
+      </figure>
+      <!--TODO: Add Navbar-->
+      <br />
+
+    </div>
+
+  </section>
+
+
+  <section class="frontPage">
+
+    <section class="section">
+
+      <br />
       <div class="container">
-        <figure class="image">
-          <img src="covid-logo-assets/map/covid-logo-branch-header.png"/>
-          <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png-->
-        </figure>
-        <!--TODO: Add Navbar-->
-        <br />
-      
-      </div>
+        <div class="columns">
+          <div class="column">
+            <div class="notification is-danger is-light">
+              <div class="state-selector">
+                <div class="background">
+                  <figure class="image">
+                    <img src="covid-logo-assets/map/covid-logo-map-data-select.png">
+                  </figure>
+                </div>
+                <br>
+                <div class="control">
+                  <label class="radio">
+                    <input type="radio" name="datum" value="death">
+                    Deaths
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="datum" value="recovered">
+                    Recovered
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="datum" value="hospitalizedCumulative">
+                    Total Hospitalizations
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="datum" value="hospitalizedCurrently">
+                    Current Hospitalizations
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="datum" value="totalTestResults">
+                    Total Test Results
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="datum" value="positive">
+                    Total Test Results (Positive)
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="datum" value="negative">
+                    Total Test Results (Negative)
+                  </label>
+                </div>
+                <br>
 
-    </section>
-
-    <section class="frontPage">
-
-      <section class="section">
-
-        <br />
-        <div class="container">
-          <div class="columns">
-            <div class="column" >
-              <div class="notification is-danger is-light">
-                <div class="state-selector">
-                  <div class="background">
-                    <figure class="image"> 
-                        <img src="covid-logo-assets/map/covid-logo-map-data-select.png">
-                            </figure>
-                  </div>
-                  <br>
-                  <div class="control">
-                    <label class="radio">
-                      <input type="radio" name="datum" value="death">
-                      Deaths
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="recovered">
-                      Recovered
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="hospitalizedCumulative">
-                      Total Hospitalizations
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="hospitalizedCurrently">
-                      Current Hospitalizations
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="totalTestResults">
-                      Total Test Results
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="positive">
-                      Total Test Results (Positive)
-                    </label>
-                    <label class="radio">
-                      <input type="radio" name="datum" value="negative">
-                      Total Test Results (Negative)
-                    </label>
-                  </div>
-                  <br>
-
-                  <!-- <figure class="image center">
+                <!-- <figure class="image center">
                     <img src="us-map-example.jpg" />
                   </figure> -->
-                  <div id="map"></div>
+                <div id="map"></div>
 
-                </div>
               </div>
             </div>
+          </div>
 
     </section>
 
-      <section class="section-clear center">
+    <section class="section-clear center">
 
-        <p class="control-home">
-            <button class="button is-danger is-outlined is-light is-medium is-rounded">
-                 <span>Return to Home</span>
-                 <span class="icon is-medium">
-                   <i class="fas fa-home"></i>
-                 </span>
-               </button>
-         </p>
-        <br />
-        <br />
-
-      </section>
+      <p class="control-home">
+        <button class="button is-danger is-outlined is-light is-medium is-rounded">
+          <span>Return to Home</span>
+          <span class="icon is-medium">
+            <i class="fas fa-home"></i>
+          </span>
+        </button>
+      </p>
+      <br />
+      <br />
 
     </section>
 
-    <footer>
+  </section>
 
-      <div class="content has-text-centered">
-        <p>
-          COVID-19 Data Tracker placeholder footer text.
-        </p>
+  <footer>
 
-      </div>
+    <div class="content has-text-centered">
+      <p>
+        COVID-19 Data Tracker placeholder footer text.
+      </p>
 
-    </footer>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
-    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-    <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>    
-    <script src="../js/covidApi.js"></script>
-    <script src="../js/map.js"></script>    
-  </body>
+  </footer>
 
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
+  <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+  <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
+  <script src="../js/covidApi.js"></script>
+  <script src="../js/map.js"></script>
+</body>
 </html>

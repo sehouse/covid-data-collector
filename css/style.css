@@ -64,4 +64,9 @@ ul.list {
 .background {
   background-color: #9d1d11;
   border-radius: 5px;
+  box-shadow: 0 0 3pt 2pt black;
+}
+
+.placeholder-image {
+  box-shadow: 0 0 3pt 2pt black;
 }
