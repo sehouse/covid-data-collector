@@ -1,10 +1,12 @@
-$(function(){
-    displayRegionOptions()
-    // LOAD DEFAULT VIEW
-// todo add geolocation function for initial load, to pass the state value in here
 // todo create specific js files for each view, map, chart, stats
 // todo call all of htose js files on homepage for the views there, replacing the images
-    getStateData('NH', displayOptions)
+  // TODO LINK SOURCE IN README https://stackoverflow.com/questions/33790210/get-a-state-name-from-abbreviation
+
+$(function(){
+    displayRegionOptions()
+    // GETS IP ADDRESS DATA, PASSES IT THROUGH A FILTER FUNCTION, THEN TO COVID API, THEN TO HIGHCHARTS
+    // LOAD STATE / DEATH DATA BASED ON USER GEOLOCATION
+    getAddress()
 })
 
 let displayOptions = {
@@ -19,7 +21,8 @@ let displayOptions = {
     totalTestResults : false,
     negative : false,
     positive : false,
-    dataQualityGrade : false
+    dataQualityGrade : false,
+    all : false
 };
 
 const stateList = {
@@ -92,6 +95,12 @@ function displayRegionOptions() {
 
 function getCheckboxChoices(parent){
     let inputs = parent.children('input');
+    if(inputs.all){
+        inputs.each(function() {
+            displayOptions[this.id] = true;
+        })
+        return displayOptions;
+    }
     inputs.each(function() {
         if(this.checked){
             displayOptions[this.id] = true;
@@ -121,15 +130,36 @@ function redoSeries(dates, display){
     return arr;
 }
 
+async function getAddress() {
+    let getIP = async () => {
+      return await fetch(
+        `https://ipinfo.io?token=5fcea70b36eb66`
+      ).then((response) => response.json());
+    };
+    let ip = await getIP();
+    passToCovidAPI(ip);
+}
+
+function passToCovidAPI(data) {
+    // MODIFY DATA IF REQUESITNG A TERRITORY
+    let abbr = data.country !== "US" ? data.country : getStateTwoDigitCode(data.region);  
+    getStateData(abbr, displayOptions);
+}
+  
+function getStateTwoDigitCode(stateFullName) {
+    return stateList[stateFullName];
+}
+
+
 async function getStateData(region, choices) {
-    let today = moment();
+    let yesterday = moment().subtract(1, "days");
     let dates = [];
     let pastToPresent = [];
     let data;
 
     for(let i = 0; i < 5; i++){
-        dates.push(today.format('YYYYMMDD'));
-        today.subtract(7, "days");
+        dates.push(yesterday.format('YYYYMMDD'));
+        yesterday.subtract(7, "days");
     }
 
     let getCovidStatsBy = async (regionAndTime) => {
@@ -186,7 +216,6 @@ function displayChart(data, display){
                 label: {
                     connectorAllowed: false
                 },
-// TODO MAKE RANGE DYNAMIC, CURRENT MONTH -5 THROUGH TO CURRENT MONTH
 // todo formating this shit is ugly, maybe just show day
 // todo Date.UTC(2010, 0, 1),
                 pointStart: data[4].date
@@ -208,12 +237,10 @@ function displayChart(data, display){
                 }
             }]
         }
-    
     });
 }
 
 // TODO MAKE THE CALL ON STATE SELECTION AND OR DISPLAY OPTIONS AND REMOVE THE SEARCH BUTTON
-// todo search without state selected is 404ing
 $(".control-search").on("click", function(){
     let choices = getCheckboxChoices($('.data-selector'));
     if($('#state').val()){
