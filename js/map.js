@@ -34,6 +34,7 @@ function loadMap(datum){
             },
     
             title: {
+// TODO DATUM NEEDS BE HUMAN READABLE
                 text: `US Covid-19 ${datum} / State`
             },
     

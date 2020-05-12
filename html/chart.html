@@ -77,9 +77,15 @@
                 <hr class="hr" />
                 <br />
                 <div class="placeholder-image">
-                  <figure class="image center">
+                  <figure class="highcharts-figure">
+                    <div id="container"></div>
+                    <p class="highcharts-description">
+                        SOME FILLER TEXT EXPLAINING HIGH-LEVEL WHAT IS GOING ON IN THE CHART ABOVE
+                    </p>
+                </figure>
+                  <!-- <figure class="image center">
                     <img src="chart-example.png" />
-                  </figure>
+                  </figure> -->
                 </div>
               </div>
             </div>
@@ -220,6 +226,7 @@
 
   </section>
 
+  <!-- TODO DEAR SCOTT, TIRED DOUG NO UNDERSTAND WHY THERE'S DUPLICATE HTML BELOW -->
   <section class="results">
 
     <section class="section">
@@ -234,7 +241,6 @@
                 </figure>
               </div>
               <br>
-
               <div class="placeholder-image">
                 <figure class="image center">
                   <img src="chart-example.png" />
@@ -297,17 +303,16 @@
     </div>
 
   </footer>
-
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
   <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
-  <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/data.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-  <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
-  <script src="../js/covidApi.js"></script>
-  <!--<script src="../js/map.js"></script>-->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <!-- <script src="../js/covidApi.js"></script> -->
+  <script src="../js/chart.js"></script>
 </body>
 
 </html>
