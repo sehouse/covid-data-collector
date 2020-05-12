@@ -216,5 +216,7 @@ function displayChart(data, display){
 // todo search without state selected is 404ing
 $(".control-search").on("click", function(){
     let choices = getCheckboxChoices($('.data-selector'));
-    getStateData(stateList[$("#state").val()], choices);
+    if($('#state').val()){
+        getStateData(stateList[$("#state").val()], choices);
+    }
 });
