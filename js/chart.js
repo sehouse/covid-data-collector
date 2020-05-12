@@ -1,39 +1,158 @@
 $(function(){
-    loadChart()
+    displayRegionOptions()
+    // LOAD DEFAULT VIEW
+    getStateData('NH', displayOptions)
 })
 
-// $("input[type='radio']").on('click', function(){
-//     loadChart(this.value)
-// })
+let displayOptions = {
+    hospitalizedCumulative : false,
+    hospitalizedCurrently : false,
+    inIcuCumulative : false,
+    inIcuCurrently : false,
+    onVentilatorCumulative : false,
+    onVentilatorCurrently : false,
+    recovered : false,
+    death : true,
+    totalTestResults : false,
+    negative : false,
+    positive : false,
+    dataQualityGrade : false
+};
 
-// grab state
-// https://covidtracking.com/api/v1/states/${state}/${date}.json
-// https://covidtracking.com/api/v1/states/NH/20200510.json
-// YYYYMMDD
-// 20200122 earliest with one state and one data point
-// todays date
-// make 5 calls to api, today, today -30, today minus 60, etc
-//  might want to use moment for the math on that
-// push each response into a master array
-// 
-function loadChart(state){
-    let pastToPresent = [];
-    // last five weeks
-    let hardDates = [20200101, 20200201, 20200301, 20200401, 20200501];
-    let date = new Date();
+const stateList = {
+    "American Samoa": "AS",
+    "Arizona": "AZ",
+    "Alabama": "AL",
+    "Alaska": "AK",
+    "Arkansas": "AR",
+    "California": "CA",
+    "Colorado": "CO",
+    "Connecticut": "CT",
+    "Delaware": "DE",
+    "Florida": "FL",
+    "Georgia": "GA",
+    "Guam": "GU",
+    "Hawaii": "HI",
+    "Idaho": "ID",
+    "Illinois": "IL",
+    "Indiana": "IN",
+    "Iowa": "IA",
+    "Kansas": "KS",
+    "Kentucky": "KY",
+    "Louisiana": "LA",
+    "Maine": "ME",
+    "Marshall Islands": "MH",
+    "Maryland": "MD",
+    "Massachusetts": "MA",
+    "Michigan": "MI",
+    "Micronesia": "FM",
+    "Minnesota": "MN",
+    "Mississippi": "MS",
+    "Missouri": "MO",
+    "Montana": "MT",
+    "Nebraska": "NE",
+    "Nevada": "NV",
+    "New Hampshire": "NH",
+    "New Jersey": "NJ",
+    "New Mexico": "NM",
+    "New York": "NY",
+    "North Carolina": "NC",
+    "North Dakota": "ND",
+    "Northern Marianas": "MP",
+    "Ohio": "OH",
+    "Oklahoma": "OK",
+    "Oregon": "OR",
+    "Palau": "PW",
+    "Pennsylvania": "PA",
+    "Puerto Rico": "PR",
+    "Rhode Island": "RI",
+    "South Carolina": "SC",
+    "South Dakota": "SD",
+    "Tennessee": "TN",
+    "Texas": "TX",
+    "Utah": "UT",
+    "Vermont": "VT",
+    "Virginia": "VA",
+    "Washington": "WA",
+    "Washington, D.C.": "DC",
+    "West Virginia": "WV",
+    "Wisconsin": "WI",
+    "Wyoming": "WY",
+    "Virgin Islands": "VI",
+};
 
-    hardDates.forEach(date => {
-        Highcharts.getJSON(`https://covidtracking.com/api/v1/states/NH/${date}.json`, function (data) {
-            pastToPresent.push(data)
-        });
+function displayRegionOptions() {
+    for (state in stateList) {
+      $("#state").append(`<option value="${state}">${state}</option>`);
+    }
+}
+
+function getCheckboxChoices(parent){
+    let inputs = parent.children('input');
+    inputs.each(function() {
+        if(this.checked){
+            displayOptions[this.id] = true;
+        }else{
+            displayOptions[this.id] = false;
+        }
     })
-    console.log(pastToPresent)
-    
+
+    return displayOptions;
+}
+
+// todo need to sort by date, not certain if it'll come back sorted being all async and stuff
+function redoSeries(dates, display){
+    let arr = [];
+    for(option in display){
+        if(display[option] === true){
+            let obj = {};
+            obj.name = option;
+            obj.data = [];
+
+            dates.forEach(date => {
+                obj.data.unshift(date[option])
+            })
+            arr.push(obj)
+        }
+    }
+    return arr;
+}
+
+async function getStateData(region, choices) {
+    let today = moment();
+    let dates = [];
+    let pastToPresent = [];
+    let data;
+
+    for(let i = 0; i < 5; i++){
+        dates.push(today.format('YYYYMMDD'));
+        today.subtract(7, "days");
+    }
+
+    let getCovidStatsBy = async (regionAndTime) => {
+      return await fetch(
+        `https://covidtracking.com/api/v1/${regionAndTime}.json`
+      ).then((response) => response.json());
+    };
+
+    // https://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
+    for (date of dates) {
+        data = await getCovidStatsBy(`states/${region}/${date}`)
+        pastToPresent.push(data);
+    }
+
+    displayChart(pastToPresent, choices)
+}
+
+function displayChart(data, display){
+    let dataToPlot = redoSeries(data, display);
+    let startDate = moment(data[4].date, 'YYYYMMDD').format('MM/DD/YYYY');
+    let endDate = moment(data[0].date, 'YYYYMMDD').format('MM/DD/YYYY');
 
     Highcharts.chart('container', {
 
         title: {
-            text: '{state} Covid-19 Data, {current minus 5 MM} - {current YYYY-MM-DD}'
+            text: `${data[0].state} Covid-19 Data, ${startDate} - ${endDate}`
         },
     
         subtitle: {
@@ -48,8 +167,8 @@ function loadChart(state){
     
         xAxis: {
             accessibility: {
-                // TODO MAKE RANGE DYNAMIC, CURRENT MONTH -5 THROUGH TO CURRENT MONTH
-                rangeDescription: 'Range: 2010 to 2017'
+// TODO MAKE RANGE DYNAMIC, CURRENT MONTH -5 THROUGH TO CURRENT MONTH
+                rangeDescription: `Range: ${startDate} to ${endDate}`
             }
         },
     
@@ -64,28 +183,14 @@ function loadChart(state){
                 label: {
                     connectorAllowed: false
                 },
-            // TODO MAKE RANGE DYNAMIC, CURRENT MONTH -5 THROUGH TO CURRENT MONTH
-                pointStart: 2010
+// TODO MAKE RANGE DYNAMIC, CURRENT MONTH -5 THROUGH TO CURRENT MONTH
+// todo formating this shit is ugly, maybe just show day
+// todo Date.UTC(2010, 0, 1),
+                pointStart: data[4].date
             }
         },
-    // todo names and data need to be dynamic for calls to covidtracking
-        series: [{
-            name: 'Installation',
-            data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-        }, {
-            name: 'Manufacturing',
-            data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-        }, {
-            name: 'Sales & Distribution',
-            data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-        }, {
-            name: 'Project Development',
-            data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-        }, {
-            name: 'Other',
-            data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-        }],
-    
+// todo names and data need to be dynamic for calls to covidtracking
+        series: dataToPlot,
         responsive: {
             rules: [{
                 condition: {
@@ -104,82 +209,9 @@ function loadChart(state){
     });
 }
 
-
-
-
-    // Highcharts.getJSON('https://covidtracking.com/api/v1/states/current.json', function (data) {
-    //     // REMOVE TERRITORIES & RENAME STATE PROPERTY TO PLAY NICE WITH HIGHCHARTS MAP
-    //     data.splice(51, 5)
-    //     data.forEach((state) => {
-    //         state.code = state.state;
-    //         state.value = state[datum];
-    //         delete state.state;
-    //         delete state[datum];
-    //     })
-    //     // SET THE MIN/MAX RANGE FOR COLOR SCALE
-    //     let min = Math.min.apply(Math, data.map(function(state) { return state.value; })); 
-    //     let max = Math.max.apply(Math, data.map(function(state) { return state.value; }));
-
-    //     console.log(`${min} | ${max}`)
-    //     // Instantiate the map
-    //     Highcharts.mapChart('map', {
-    //         chart: {
-    //             map: 'countries/us/us-all',
-    //             borderWidth: 2,
-    // // COLOR
-    //             borderColor: '#FF0000'
-    //         },
-    
-    //         title: {
-    //             text: `US Covid-19 ${datum} / State`
-    //         },
-    
-    //         exporting: {
-    //             sourceWidth: 600,
-    //             sourceHeight: 500
-    //         },
-    
-    //         legend: {
-    //             layout: 'horizontal',
-    //             borderWidth: 0,
-    //             backgroundColor: 'rgba(255,255,255,0.25)',
-    //             floating: true,
-    //             verticalAlign: 'top',
-    //             y: 25
-    //         },
-    
-    //         mapNavigation: {
-    //             enabled: true
-    //         },
-    
-    //         colorAxis: {
-    //             // MIN OF 0 KILLS THE MAP, DISPLAY AS 1
-    //             min: (min == 0 ? 1 : min),
-    //             max: max,
-    //             type: 'logarithmic',
-    //             stops: [
-    // // COLOR
-    //                 [0, '#FFA07A'],
-    //                 [0.67, '#FF0000'],
-    //                 [1, '#800000']
-    //             ]
-    //         },
-    
-    //         series: [{
-    //             animation: {
-    //                 duration: 1000
-    //             },
-    //             data: data,
-    //             joinBy: ['postal-code', 'code'],
-    //             dataLabels: {
-    //                 enabled: true,
-    //                 color: '#FFFFFF',
-    //                 format: '{point.code}'
-    //             },
-    //             name: datum,
-    //             tooltip: {
-    //                 pointFormat: '{point.code}: {point.value}'
-    //             }
-    //         }]
-    //     });
-    // });
+// TODO MAKE THE CALL ON STATE SELECTION AND OR DISPLAY OPTIONS AND REMOVE THE SEARCH BUTTON
+// todo search without state selected is 404ing
+$(".control-search").on("click", function(){
+    let choices = getCheckboxChoices($('.data-selector'));
+    getStateData(stateList[$("#state").val()], choices);
+});
