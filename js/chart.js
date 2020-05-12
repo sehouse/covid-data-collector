@@ -1,6 +1,9 @@
 $(function(){
     displayRegionOptions()
     // LOAD DEFAULT VIEW
+// todo add geolocation function for initial load, to pass the state value in here
+// todo create specific js files for each view, map, chart, stats
+// todo call all of htose js files on homepage for the views there, replacing the images
     getStateData('NH', displayOptions)
 })
 
