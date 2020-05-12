@@ -1,6 +1,8 @@
 // todo create specific js files for each view, map, chart, stats
 // todo call all of htose js files on homepage for the views there, replacing the images
-  // TODO LINK SOURCE IN README https://stackoverflow.com/questions/33790210/get-a-state-name-from-abbreviation
+// TODO LINK SOURCE IN README https://stackoverflow.com/questions/33790210/get-a-state-name-from-abbreviation
+// todo link source https://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
+// todo link source https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
 
 $(function(){
     displayRegionOptions()
@@ -23,6 +25,22 @@ let displayOptions = {
     positive : false,
     dataQualityGrade : false,
     all : false
+};
+
+const covidStatsList = {
+    "hospitalizedCumulative" : "Total Hospitalizations",
+    "hospitalizedCurrently" : "Current Hospitalizations",
+    "inIcuCumulative" : "Total ICUs",
+    "inIcuCurrently" : "Current ICUs",
+    "onVentilatorCumulative" : "Total Ventilators Used",
+    "onVentilatorCurrently" : "Current Ventilators In Use",
+    "recovered" : "Total Recoveries",
+    "death" : "Total Deaths",
+    "totalTestResults" : "Total Test Results",
+    "negative" : "Total Test Results (Negative)",
+    "positive" : "Total Test Results (Positive)",
+    "dataQualityGrade" : "Data Quality",
+    "all" : "All"
 };
 
 const stateList = {
@@ -87,6 +105,10 @@ const stateList = {
     "Virgin Islands": "VI",
 };
 
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+}
+
 function displayRegionOptions() {
     for (state in stateList) {
       $("#state").append(`<option value="${state}">${state}</option>`);
@@ -118,7 +140,7 @@ function redoSeries(dates, display){
     for(option in display){
         if(display[option] === true){
             let obj = {};
-            obj.name = option;
+            obj.name = covidStatsList[option];
             obj.data = [];
 
             dates.forEach(date => {
@@ -150,7 +172,6 @@ function getStateTwoDigitCode(stateFullName) {
     return stateList[stateFullName];
 }
 
-
 async function getStateData(region, choices) {
     let yesterday = moment().subtract(1, "days");
     let dates = [];
@@ -168,7 +189,6 @@ async function getStateData(region, choices) {
       ).then((response) => response.json());
     };
 
-    // https://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
     for (date of dates) {
         data = await getCovidStatsBy(`states/${region}/${date}`)
         pastToPresent.push(data);
@@ -183,9 +203,8 @@ function displayChart(data, display){
     let endDate = moment(data[0].date, 'YYYYMMDD').format('MM/DD/YYYY');
 
     Highcharts.chart('container', {
-
         title: {
-            text: `${data[0].state} Covid-19 Data, ${startDate} - ${endDate}`
+            text: `${getKeyByValue(stateList, data[0].state)} Covid-19 Data <br/>${startDate} - ${endDate}`
         },
     
         subtitle: {
