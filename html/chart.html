@@ -16,23 +16,37 @@
 
 <body>
 
-  <section class="hero">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item">
+        <img src="covid-logo-assets/map/covid-logo-branch-header.png" />
+      </a>
 
-    <div class="container">
-
-
-      <figure class="image">
-        <img src="covid-logo-assets/chart/covid-logo-branch-header.png" />
-        <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png
-          
-          Custom Logo Font courtesy of https://www.font-generator.com/fonts/ByronMark1/ and author Richard Polt-->
-      </figure>
-      <!--TODO: Add a Navbar-->
-      <br />
-
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
 
-  </section>
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="index.html">
+          <p class="navbar-text">Home</p>
+        </a>
+        <a class="navbar-item" href="map.html">
+          <p class="navbar-text">Map</p>
+        </a>
+        <a class="navbar-item" href="chart.html">
+          <p class="navbar-text">Chart/Graph</p>
+        </a>
+        <a class="navbar-item" href="stats.html">
+          <p class="navbar-text">Statistics</p>
+        </a>
+      </div>
+    </div>
+  </nav>
 
   <section class="frontPage">
 
@@ -71,7 +85,7 @@
             </div>
           </div>
 
-          <div class="column">
+          <div class="column is-flex">
             <div class="notification is-danger is-light">
               <div class="data-selector is-size-6">
                 <div class="background">
@@ -164,7 +178,20 @@
                 <br />
                 <br />
                 <br />
-
+                <section class="section-search center">
+                  <div class="field is-grouped">
+                    <p class="control-search">
+                      <button class="button is-danger is-outlined is-light is-medium is-rounded">
+                        <span>Search</span>
+                        <span class="icon is-medium">
+                          <i class="fas fa-search"></i>
+                        </span>
+                      </button>
+                    </p>
+                    <br />
+                    <br />
+                  </div>
+                </section>
               </div>
             </div>
           </div>
@@ -174,17 +201,9 @@
 
     </section>
 
-    <section class="section-search center">
+    <section class="section-home center">
 
       <div class="field is-grouped">
-        <p class="control-search">
-          <button class="button is-danger is-outlined is-light is-medium is-rounded">
-            <span>Search</span>
-            <span class="icon is-medium">
-              <i class="fas fa-search"></i>
-            </span>
-          </button>
-        </p>
         <p class="control-home">
           <button class="button is-danger is-outlined is-light is-medium is-rounded">
             <span>Return to Home</span>
@@ -217,14 +236,14 @@
               <br>
 
               <div class="placeholder-image">
-              <figure class="image center">
-                <img src="chart-example.png"/>
-              </figure>
+                <figure class="image center">
+                  <img src="chart-example.png" />
+                </figure>
               </div>
             </div>
           </div>
 
-          <div class="column">
+          <div class="column is-flex">
             <div class="notification is-danger is-light">
               <div class="background">
                 <figure class="image center">
@@ -288,7 +307,7 @@
   <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
   <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
   <script src="../js/covidApi.js"></script>
-  <script src="../js/map.js"></script>
+  <!--<script src="../js/map.js"></script>-->
 </body>
 
 </html>

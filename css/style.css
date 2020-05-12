@@ -22,6 +22,12 @@
 }
 
 .section-search {
+  background-color: #feecf0;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.section-home {
   background-color: #9d1d11;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -37,7 +43,7 @@
   padding-bottom: 50px;
 }
 
-footer {
+.content {
   background-color: #6d140c;
   color: white;
 }
@@ -69,4 +75,36 @@ ul.list {
 
 .placeholder-image {
   box-shadow: 0 0 3pt 2pt black;
+}
+
+.content-box {
+  background-color: #feecf0;
+  height: 100%;
+  width: 100%;
+  border: 20px solid #feecf0;
+  box-shadow: 0 0 3pt 2pt black;
+  border-radius: 5px;
+}
+
+.navbar-brand {
+  background-color: #9d1d11;
+}
+
+.navbar-item {
+  background-color: #9d1d11;
+}
+
+.navbar-item:hover {
+  background-color: #9d1d11;
+}
+
+.navbar-text {
+  color: white;
+}
+
+.navbar-text:hover {
+  color: #9d1d11;
+}
+.navbar-menu {
+  background-color: #9d1d11;
 }
