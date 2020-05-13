@@ -122,13 +122,7 @@ function displayStatsOption() {
 
 function setCheckboxChoices(){
     let choices = $('#options').children('input');
-    let toggle = true;
-
     choices.prop("checked", !choices.prop("checked"));
-
-    // choices.each(function(){
-    //     this.checked = toggle;
-    // })
 }
 
 function getCheckboxChoices(parent){
@@ -221,7 +215,7 @@ function displayChart(data, display){
         parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('DD')),
     ];
 
-    Highcharts.chart('container', {
+    Highcharts.chart('chart', {
         title: {
             text: `${getKeyByValue(stateList, data[0].state)} Covid-19 Data <br/>${startDate} - ${endDate}`
         },
@@ -284,6 +278,7 @@ $(".control-search").on("click", function(){
         $(".frontPage").hide();
         $(".results").show();
     }
+// TODO TOAST WOULD BE NICE HERE AS WELL, REMIND THE USER THAT THIS VIEW REQUIRES TWO INPUTS
 });
 
 $(".control-clear").on("click", () => {
