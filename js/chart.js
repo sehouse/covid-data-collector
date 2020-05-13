@@ -111,12 +111,12 @@ function displayRegionOptions() {
 
 function getCheckboxChoices(parent){
     let inputs = parent.children('input');
-    if(inputs.all.checked){
-        inputs.each(function() {
-            displayOptions[this.id] = true;
-        })
-        return displayOptions;
-    }
+    // if(inputs.all.checked){
+    //     inputs.each(function() {
+    //         displayOptions[this.id] = true;
+    //     })
+    //     return displayOptions;
+    // }
     inputs.each(function() {
         if(this.checked){
             displayOptions[this.id] = true;
@@ -192,6 +192,10 @@ async function getStateData(region, choices) {
 
 function displayChart(data, display){
     let dataToPlot = redoSeries(data, display);
+    if(dataToPlot.length == 0){
+        // todo toast
+        return;
+    }
     let startDate = moment(data[4].date, 'YYYYMMDD').format('MM/DD/YYYY');
     let endDate = moment(data[0].date, 'YYYYMMDD').format('MM/DD/YYYY');
     // UGLY BUT COULDN'T FIND A SUITABLE METHOD FROM MOMENTJS
