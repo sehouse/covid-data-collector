@@ -4,6 +4,21 @@ $(function () {
   displayStatsOption();
 });
 
+let displayOptions = {
+  hospitalizedCumulative : false,
+  hospitalizedCurrently : false,
+  inIcuCumulative : false,
+  inIcuCurrently : false,
+  onVentilatorCumulative : false,
+  onVentilatorCurrently : false,
+  recovered : false,
+  death : true,
+  totalTestResults : false,
+  negative : false,
+  positive : false,
+  dataQualityGrade : false,
+};
+
 const covidStatsList = {
   "hospitalizedCumulative" : "Total Hospitalizations",
   "hospitalizedCurrently" : "Current Hospitalizations",
@@ -81,6 +96,10 @@ const stateList = {
   "Virgin Islands": "VI",
 };
 
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
+}
+
 function displayStatsOption() {
   for (stat in covidStatsList) {
     $("#options").append(
@@ -93,88 +112,47 @@ function displayStatsOption() {
 }
 
 function displayData(data) {
-  // TODO CHECKBOXES CONDITIONALLY DISPLAYING THE DATA IN THE MAP / LIST /
-  // TODO MIGHT BE ABLE TO LOOP THROUGH THESE VARS, LESS CODE THAT WAY
-  console.log(data);
-  var hospitalizationsCumulative = data.data.hospitalizedCumulative;
-  var nullHospitalizationsCumulative =
-    hospitalizationsCumulative != null
-      ? hospitalizationsCumulative
-      : "Data Unknown";
-
-  var hospitalizedCurrently = data.data.hospitalizedCurrently;
-  var nullhospitalizedCurrently =
-    hospitalizedCurrently != null ? hospitalizedCurrently : "Data Unknown";
-
-  var inIcuCumulative = data.data.inIcuCumulative;
-  var nullInIcuCumulative =
-    inIcuCumulative != null ? inIcuCumulative : "Data Unknown";
-
-  var inIcuCurrently = data.data.inIcuCurrently;
-  var nullinIcuCurrently =
-    inIcuCurrently != null ? inIcuCurrently : "Data Unknown";
-
-  var ventilatorCumulative = data.data.onVentilatorCumulative;
-  var nullVentilatorCumulative =
-    ventilatorCumulative != null ? ventilatorCumulative : "Data Unknown";
-
-  var ventilatorCurrently = data.data.onVentilatorCurrently;
-  var nullVentilatorCurrently =
-    ventilatorCurrently != null ? ventilatorCurrently : "Data Unknown";
-
-  var recovered = data.data.recovered;
-  var nullRecovered = recovered != null ? recovered : "Data Unknown";
-
-  var death = data.data.death;
-  var nullDeath = death != null ? death : "Data Unknown";
-
-  var totalTestResults = data.data.totalTestResults;
-  var nullTotalTestResults =
-    totalTestResults != null ? totalTestResults : "Data Unknown";
-
-  var negative = data.data.negative;
-  var nullNegative = negative != null ? negative : "Data Unknown";
-
-  var positive = data.data.positive;
-  var nullPositive = positive != null ? positive : "Data Unknown";
-  // TODO SHOW FULL STATE NAME, CAN USE THE LIST CREATED ABOVE
-  // TODO CHANGE CURRENT AS OF TIME STAMP TO HUMAN READABLE MM/DD/YYYY
-  // TODO CONDITIONALLY SHOW LIST ITEMS BASED ON IF THE ASSOCIATED CHECKBOX WAS CHECKED
-  $("#stats").html(
-    `<h1 class="data-region"><u>Region Level: ${data.region} ${
-      data.data.state ? data.data.state : ""
-    }</u></h1>
-        <ul class="list">
-        <br>
-            <li><u>Current as of:</u> <em>${
-              data.region == "country"
-                ? data.data.lastModified
-                : data.data.dateModified
-            }</em></li>
-            <li><u>Total hospitalizations:</u> <em>${nullHospitalizationsCumulative}</em></li>
-            <li><u>Current Hospitalizations:</u> <em>${nullhospitalizedCurrently}</em></li>
-            <li><u>Total ICUs:</u> <em>${nullInIcuCumulative}</em></li>
-            <li><u>Current ICUs:</u> <em>${nullinIcuCurrently}</em></li>
-            <li><u>Total Ventilators used:</u> <em>${nullVentilatorCumulative}</em></li>
-            <li><u>Current Ventilators in use:</u> <em>${nullVentilatorCurrently}</em></li>
-            <li><u>Total Recoveries:</u> <em>${nullRecovered}</em></li>
-            <li><u>Total Deaths:</u> <em>${nullDeath}</em></li>
-            <li><u>Total Test Results:</u> <em>${nullTotalTestResults}</em></li>
-            <li><u>Total Test Results (Negative):</u> <em>${nullNegative}</em></li>
-            <li><u>Total Test Results (Positive):</u> <em>${nullPositive}</em></li>
-            <li><u>Data Quality:</u> <em>${
-              data.data.dataQualityGrade
-                ? data.data.dataQualityGrade
-                : "Data Unknown"
-            }</em></li>
-        </ul>`
+  $("#stats").html('');
+  $("#stats").append(
+    `<h1 class="data-region"><u>Region Level: 
+      ${data.region} ${data.data.state ? getKeyByValue(stateList ,data.data.state) : ""}
+      </u></h1>
+      <li><u>Current as of</u>: <em>
+      ${moment(data.region == "country"
+          ? data.data.lastModified
+          : data.data.dateModified).format('MM/DD/YYYY')
+      }</em></li>`
   );
-}
+
+  for(option in displayOptions) {
+    if(displayOptions[option] == true){
+      $("#stats").append(
+        `<li><u>${covidStatsList[option]}</u>: <em>${data.data[option] == null ? 'Unknown/Untracked' : data.data[option]}</em></li>`
+      )
+    }
+  }
+};
 
 function displayRegionOptions() {
   for (state in stateList) {
     $("#state").append(`<option value="${state}">${state}</option>`);
   }
+}
+
+function getCheckboxChoices(){
+  let inputs = $('#options').children('input');
+  inputs.each(function() {
+      if(this.checked){
+          displayOptions[this.id] = true;
+      }else{
+          displayOptions[this.id] = false;
+      }
+  })
+}
+
+function setCheckboxChoices(){
+  let choices = $('#options').children('input');
+  choices.prop("checked", !choices.prop("checked"));
 }
 
 function passToCovidAPI(data) {
@@ -190,7 +168,6 @@ function passToCovidAPI(data) {
   getData(abbr);
 }
 
-// TODO LINK SOURCE IN README https://stackoverflow.com/questions/33790210/get-a-state-name-from-abbreviation
 function getStateTwoDigitCode(stateFullName) {
   return stateList[stateFullName];
 }
@@ -226,6 +203,7 @@ async function getAddress(region) {
 
 $(".control-search").on("click", () => {
   passToCovidAPI($("#state").val());
+  getCheckboxChoices()
   $(".frontPage").hide();
   $(".results").show();
 });
@@ -242,3 +220,7 @@ $(".navbar-burger").on("click", () => {
   $(".navbar-burger").toggleClass("is-active");
   $(".navbar-menu").toggleClass("is-active");
 });
+
+$("#checkAll").on("click", () => {
+  setCheckboxChoices()
+})

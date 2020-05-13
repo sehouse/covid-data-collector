@@ -1,5 +1,7 @@
+/* TODO: FIRST RULE IS A BIT OF A HACK TO FORCE THE RED BACKGROUD TO THE BOTTOM OF THE PAGE, IS THERE A MORE ELEGANT SOLUTION? */
 #map,
-#chart{
+#chart,
+#stats{
   min-height: 50vh;
 }
 
