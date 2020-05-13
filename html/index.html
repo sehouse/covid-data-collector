@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link
+      rel="icon"
+      type="image/png"
+      href="covid-logo-assets/index/covid-logo-virus-favicon.png"
+    />
+
     <title>US COVID-19 Tracker</title>
 
-    <link rel="stylesheet" href="../css/style.css" />
+    <link 
+      rel="stylesheet" 
+      href="../css/style.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css"
     />
+
     <script
       src="https://kit.fontawesome.com/8e2f4402c5.js"
       crossorigin="anonymous"
@@ -18,85 +29,144 @@
   </head>
 
   <body>
+
     <section class="hero">
+
       <div class="container">
+
         <figure class="image center">
+
           <img
             id="covid-logo-main"
             src="covid-logo-assets/index/covid-logo-main-header.png"
           />
+
           <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png
           
           Custom Logo Font courtesy of https://www.font-generator.com/fonts/ByronMark1/ and author Richard Polt-->
+
         </figure>
+
       </div>
 
       <figure class="image center">
+
         <img
           id="covid-subtitle"
           src="covid-logo-assets/index/covid-subtitle.png"
         />
+
       </figure>
-      <br />
+
     </section>
 
     <section class="frontPage">
+
       <section class="section">
+
+        <figure class="image">
+
+          <img
+            id="covid-directions"
+            src="covid-logo-assets/index/covid-logo-directions.png"
+          />
+
+        </figure>
+
+        <br />
+        <br />
+
         <div class="container">
+
           <div class="columns">
+
             <div class="column is-flex">
+
               <a href="map.html">
+
                 <div class="content-box">
+
                   <div class="state-selector">
+
                     <div class="background">
+
                       <figure class="image center">
+
                         <img
                           id="covid-logo-map"
                           src="covid-logo-assets/index/covid-logo-map.png"
                         />
+
                       </figure>
+
                     </div>
+
                     <br />
+
                     <div class="placeholder-image">
+
                       <figure class="image center">
+
                         <img
                           src="us-covid-map-example.png"
                           alt="US COVID-19 Map"
                         />
+
                       </figure>
+
                     </div>
+
                     <br />
                     <br />
                     <br />
                     <br />
                     <br />
                     <br />
+
                   </div>
+
                 </div>
+
               </a>
+
             </div>
 
             <div class="column is-flex">
+
               <a href="chart.html">
+
                 <div class="content-box">
+
                   <div class="data-selector is-size-6">
+
                     <div class="background">
+
                       <figure class="image center">
+
                         <img
                           id="covid-logo-chart"
                           src="covid-logo-assets/index/covid-logo-chart.png"
                         />
+
                       </figure>
+
                     </div>
+
                     <br />
+
                     <div class="placeholder-image">
+
                       <figure class="image center">
+
                         <img
-                          src="chart-example.png"
+                          src="covid-logo-assets/index/covid-chart-example.png"
                           alt="US COVID-19 Data Chart/Graph"
                         />
+
                       </figure>
+
                     </div>
+
                     <br />
                     <br />
                     <br />
@@ -104,61 +174,88 @@
                     <br />
                     <br />
                     <br />
+
                   </div>
+
                 </div>
+
               </a>
+
             </div>
 
             <div class="column is-flex">
+
               <a href="stats.html">
+
                 <div class="content-box">
+
                   <div class="data-selector is-size-6">
+
                     <div class="background">
+
                       <figure class="image center">
+
                         <img
                           src="covid-logo-assets/index/covid-logo-stats.png"
                         />
+
                       </figure>
+
                     </div>
+
                     <br />
+
                     <div class="placeholder-image">
+
                       <figure class="image center">
+
                         <img
                           src="covid-data-example.png"
                           alt="US COVID-19 Data"
                         />
+
                       </figure>
+
                     </div>
+
                   </div>
+
                 </div>
+
               </a>
+
             </div>
+
           </div>
+
         </div>
+
         <br />
+
       </section>
+
     </section>
 
     <footer>
+
       <div class="content has-text-centered">
+
         <p>
-          COVID-19 Data Tracker placeholder footer text.
+          COVID-19 Data Tracker 2020 DW/SH.
         </p>
+
       </div>
+
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script 
+      src="https://code.jquery.com/jquery-3.4.1.min.js">
+    </script>
+
     <script
       src="https://kit.fontawesome.com/8e2f4402c5.js"
       crossorigin="anonymous"
     ></script>
-    <!--<script src="https://code.highcharts.com/maps/highmaps.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-    <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>-->
-    <script src="../js/covidApi.js"></script>
-    <!-- <script src="../js/map.js"></script>-->
   </body>
+
 </html>

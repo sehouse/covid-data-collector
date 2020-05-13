@@ -6,6 +6,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<link
+      rel="icon"
+      type="image/png"
+      href="covid-logo-assets/chart/covid-logo-virus-favicon.png"
+    />
+
   <title>US COVID-19 Charts and Graphs</title>
 
   <link rel="stylesheet" href="../css/style.css" />
@@ -17,7 +23,7 @@
 <body>
 
   <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
+    <div class="navbar-brand is-flex">
       <a class="navbar-item">
         <img src="covid-logo-assets/map/covid-logo-branch-header.png" />
       </a>
@@ -77,13 +83,10 @@
                 <hr class="hr" />
                 <br />
                 <div class="placeholder-image">
-                  <figure class="highcharts-figure">
-                    <div id="container"></div>
-                    <p class="highcharts-description">
-                        Data provided to CovidTracking.com from State agencies. Not all agencies track or have tracked all data.
-                    </p>
-                  </figure>
-                </div>
+                <figure class="image center">
+                  <img src="covid-logo-assets/chart/covid-chart-example.png" />
+                </figure>
+              </div>
               </div>
             </div>
           </div>
@@ -183,6 +186,14 @@
                 <br />
                 <section class="section-search center">
                   <div class="field is-grouped">
+                    <p class="control-all">
+                      <button class="button is-danger is-outlined is-light is-medium is-rounded">
+                        <span>Check All</span>
+                        <span class="icon is-medium">
+                          <i class="fas fa-check-square"></i>
+                        </span>
+                      </button>
+                    </p>
                     <p class="control-search">
                       <button class="button is-danger is-outlined is-light is-medium is-rounded">
                         <span>Search</span>
@@ -223,13 +234,12 @@
 
   </section>
 
-  <!-- TODO DEAR SCOTT, TIRED DOUG NO UNDERSTAND WHY THERE'S DUPLICATE HTML BELOW -->
   <section class="results">
 
     <section class="section">
 
-      <div class="container center">
-        <div class="columns">
+      <div class="container center is-flex">
+        <div class="columns is-flex">
           <div class="column is-flex">
             <div class="notification is-danger is-light">
               <div class="background">
@@ -238,24 +248,23 @@
                 </figure>
               </div>
               <br>
-              <div class="placeholder-image">
-                <figure class="image center">
-                  <img src="chart-example.png" />
-                </figure>
-              </div>
-            </div>
-          </div>
+               <div class="option is-flex">
+                  <select id="state">
+                    <option value="">
+                      --Please choose an option--
+                    </option>
+                  </select>
+                </div>
+                 <hr class="hr" />
 
-          <div class="column is-flex">
-            <div class="notification is-danger is-light">
-              <div class="background">
-                <figure class="image center">
-                  <img src="covid-logo-assets/chart/covid-logo-stats-display.png">
-                </figure>
-              </div>
-              <br>
-              <div id="stats">
-              </div>
+              <div class="placeholder-image is-flex">
+                  <figure class="highcharts-figure">
+                    <div id="container"></div>
+                    <p class="highcharts-description center">
+                        Above are the timeline statistics related to the data set of your choice.
+                    </p>
+                  </figure>
+                </div>
             </div>
           </div>
         </div>
@@ -294,7 +303,7 @@
 
     <div class="content has-text-centered">
       <p>
-        COVID-19 Data Tracker placeholder footer text.
+        COVID-19 Data Tracker 2020 DW/SH.
       </p>
 
     </div>

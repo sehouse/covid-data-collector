@@ -6,45 +6,80 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+   <link
+      rel="icon"
+      type="image/png"
+      href="covid-logo-assets/map/covid-logo-virus-favicon.png"
+    />
+
   <title>US COVID-19 Map</title>
 
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" />
-  <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
+  <link 
+    rel="stylesheet" 
+    href="../css/style.css" 
+  />
+
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" 
+  />
+
+  <script 
+    src="https://kit.fontawesome.com/8e2f4402c5.js" 
+    crossorigin="anonymous">
+  </script>
 
 </head>
 
 <body>
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item">
-      <img src="covid-logo-assets/map/covid-logo-branch-header.png" />
-    </a>
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
 
-  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-brand">
+
+      <a class="navbar-item">
+
+      <img 
+      src="covid-logo-assets/map/covid-logo-branch-header.png" 
+      />
+
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+
+      </a>
+
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+
     <div class="navbar-end">
-        <a class="navbar-item" href="index.html">
+
+      <a class="navbar-item" href="index.html">
         <p class= "navbar-text">Home</p>
       </a>
-          <a class="navbar-item" href="map.html">
+
+      <a class="navbar-item" href="map.html">
             <p class= "navbar-text">Map</p>
-          </a>
-          <a class="navbar-item" href="chart.html">
+      </a>
+          
+      <a class="navbar-item" href="chart.html">
             <p class= "navbar-text">Chart/Graph</p>
-          </a>
-          <a class="navbar-item" href="stats.html">
+      </a>
+          
+      <a class="navbar-item" href="stats.html">
             <p class= "navbar-text">Statistics</p>
-          </a>
+      </a>
+      
     </div>
-  </div>
-</nav>
+
+    </div>
+
+  </nav>
 
   <section class="frontPage">
 
@@ -93,10 +128,6 @@
                   </label>
                 </div>
                 <br>
-
-                <!-- <figure class="image center">
-                    <img src="us-map-example.jpg" />
-                  </figure> -->
                 <div id="map"></div>
 
               </div>
@@ -115,33 +146,66 @@
           </span>
         </button>
       </p>
+
       <br />
       <br />
 
     </section>
 
   </section>
-
+//
   <footer>
 
     <div class="content has-text-centered">
+
       <p>
-        COVID-19 Data Tracker placeholder footer text.
+        COVID-19 Data Tracker 2020 DW/SH.
       </p>
 
     </div>
 
   </footer>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
-  <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/data.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-  <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
-  <script src="../js/covidApi.js"></script>
-  <script src="../js/map.js"></script>
+  <script 
+    src="https://code.jquery.com/jquery-3.4.1.min.js">
+  </script>
+
+  <script 
+    src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous">
+  </script>
+
+  <script 
+    src="https://code.highcharts.com/maps/highmaps.js">
+  </script>
+
+  <script 
+    src="https://code.highcharts.com/maps/modules/data.js">
+  </script>
+
+  <script 
+    src="https://code.highcharts.com/maps/modules/drilldown.js">
+  </script>
+
+  <script 
+    src="https://code.highcharts.com/maps/modules/exporting.js">
+  </script>
+
+  <script 
+    src="https://code.highcharts.com/maps/modules/offline-exporting.js">
+  </script>
+
+  <script 
+    src="https://code.highcharts.com/mapdata/countries/us/us-all.js">
+  </script>
+
+  <script 
+    src="../js/covidApi.js">
+  </script>
+
+  <script 
+    src="../js/map.js">
+  </script>
+
 </body>
+
 </html>
