@@ -204,6 +204,7 @@ async function getAddress(region) {
 $(".control-search").on("click", () => {
   passToCovidAPI($("#state").val());
   getCheckboxChoices()
+// TODO SEARCH WITH CHECKBOX SHOULD BE BLOCKEDWITH A FRIELDNY TOAST
   $(".frontPage").hide();
   $(".results").show();
 });
