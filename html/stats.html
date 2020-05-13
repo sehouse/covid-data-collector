@@ -14,7 +14,6 @@
 
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" />
-  <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -102,96 +101,15 @@
                   </figure>
                 </div>
                 <br />
-
-                <input type="checkbox" id="hospitalizedCumulative" />
-                <label for="hospitalizedCumulative">
-                  Total Hospitalizations
-                </label>
-                <br />
-                <br />
-
-                <input type="checkbox" id="hospitalizedCurrently" />
-                <label for="hospitalizedCurrently">
-                  Current Hospitalizations
-                </label>
-                <br />
-                <br />
-
-                <input type="checkbox" id="inIcuCumulative" />
-                <label for="inIcuCumulative">
-                  Total ICUs
-                </label>
-                <br />
-                <br />
-
-                <input type="checkbox" id="inIcuCurrently" />
-                <label for="inIcuCurrently">
-                  Current ICUs
-                </label>
-                <br />
-                <br />
-
-                <input type="checkbox" id="onVentilatorCumulative" />
-                <label for="onVentilatorCumulative">
-                  Total Ventilators Used
-                </label>
-                <br />
-                <br />
-
-                <input type="checkbox" id="onVentilatorCurrently" />
-                <label for="onVentilatorCurrently">
-                  Current Ventilators In Use
-                </label>
-                <br />
-                <br />
-
-                <input type="checkbox" id="recovered" />
-                <label for="recovered">
-                  Total Recoveries
-                </label>
-                <br />
-                <br />
-
-                <input type="checkbox" id="death" />
-                <label for="death">
-                  Total Deaths
-                </label>
-                <br />
-                <br />
-
-                <input type="checkbox" id="totalTestResults" />
-                <label for="totalTestResults">
-                  Total Test Results
-                </label>
-                <br />
-                <br />
-
-                <input type="checkbox" id="negative" />
-                <label for="negative">
-                  Total Test Results (Negative)
-                </label>
-                <br />
-                <br />
-
-                <input type="checkbox" id="positive" />
-                <label for="positive">
-                  Total Test Results (Positive)
-                </label>
-                <br />
-                <br />
-
-                <input type="checkbox" id="dataQualityGrade" />
-                <label for="dataQualityGrade">
-                  Data Quality
-                </label>
-                <br />
-                <br />
+                <span id="options">
+                  <!-- CHECKBOXES DYNAMICALLY INSERTED HERE -->
+                </span>
                 <br />
 
                 <section class="section-search center">
                   <div class="field is-grouped">
                      <p class="control-all">
-                      <button class="button is-danger is-outlined is-light is-medium is-rounded">
+                      <button id="checkAll" class="button is-danger is-outlined is-light is-medium is-rounded">
                         <span>Check All</span>
                         <span class="icon is-medium">
                           <i class="fas fa-check-square"></i>
@@ -302,15 +220,9 @@
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://kit.fontawesome.com/8e2f4402c5.js" crossorigin="anonymous"></script>
-  <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/data.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/drilldown.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-  <script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
-  <script src="../js/covidApi.js"></script>
-  <!--<script src="../js/map.js"></script>-->
+  <script src="https://kit.fontawesome.com/8e2f4402c5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
+  <script src="../js/stats.js"></script>
 </body>
 
 </html>
