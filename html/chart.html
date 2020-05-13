@@ -23,7 +23,7 @@
 <body>
 
   <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
+    <div class="navbar-brand is-flex">
       <a class="navbar-item">
         <img src="covid-logo-assets/map/covid-logo-branch-header.png" />
       </a>
@@ -186,6 +186,14 @@
                 <br />
                 <section class="section-search center">
                   <div class="field is-grouped">
+                    <p class="control-all">
+                      <button class="button is-danger is-outlined is-light is-medium is-rounded">
+                        <span>Check All</span>
+                        <span class="icon is-medium">
+                          <i class="fas fa-check-square"></i>
+                        </span>
+                      </button>
+                    </p>
                     <p class="control-search">
                       <button class="button is-danger is-outlined is-light is-medium is-rounded">
                         <span>Search</span>
@@ -230,8 +238,8 @@
 
     <section class="section">
 
-      <div class="container center">
-        <div class="columns">
+      <div class="container center is-flex">
+        <div class="columns is-flex">
           <div class="column is-flex">
             <div class="notification is-danger is-light">
               <div class="background">
@@ -240,7 +248,7 @@
                 </figure>
               </div>
               <br>
-               <div class="option">
+               <div class="option is-flex">
                   <select id="state">
                     <option value="">
                       --Please choose an option--
@@ -249,11 +257,11 @@
                 </div>
                  <hr class="hr" />
 
-              <div class="placeholder-image">
+              <div class="placeholder-image is-flex">
                   <figure class="highcharts-figure">
                     <div id="container"></div>
-                    <p class="highcharts-description">
-                        SOME FILLER TEXT EXPLAINING HIGH-LEVEL WHAT IS GOING ON IN THE CHART ABOVE
+                    <p class="highcharts-description center">
+                        Above are the timeline statistics related to the data set of your choice.
                     </p>
                   </figure>
                 </div>
@@ -295,7 +303,7 @@
 
     <div class="content has-text-centered">
       <p>
-        COVID-19 Data Tracker placeholder footer text.
+        COVID-19 Data Tracker 2020 DW/SH.
       </p>
 
     </div>
