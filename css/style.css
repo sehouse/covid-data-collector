@@ -1,10 +1,4 @@
-/* TODO: FIRST RULE IS A BIT OF A HACK TO FORCE THE RED BACKGROUD TO THE BOTTOM OF THE PAGE, IS THERE A MORE ELEGANT SOLUTION? */
-#map,
-#chart,
-#stats{
-  min-height: 50vh;
-}
-
+/* ALL PAGES */
 .hero {
   background-color: #9d1d11;
 }
@@ -124,7 +118,33 @@ ul.list {
   background-color: #9d1d11;
 }
 
-/* CHART STYLING */
+/* CHART */
+/* TODO: RULE IS A BIT OF A HACK TO FORCE THE RED BACKGROUND TO THE BOTTOM OF THE PAGE, IS THERE A MORE ELEGANT SOLUTION? */
+#chart,
+#stats{
+  min-height: 50vh;
+}
+
+#chart{
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  #chart {
+    height: 100vh;
+  }
+}
+
+#map,
+#frontPageStat,
+#resultPageStat,
+#frontPageChart,
+#resultsChart{
+  display: flex;
+  align-items: center;
+  min-height: 50vh;
+}
+
 .highcharts-figure{
   min-width: 95%;
   margin: 1em auto;
@@ -164,4 +184,62 @@ ul.list {
 }
 .highcharts-data-table tr:hover {
   background: #f1f7ff;
+}
+
+/* LOADING SPINNER */
+/* https://github.com/DanielHearn/css-loaders */
+.loaderContainer{
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  /* border: 2px dotted red; */
+}
+
+.loading {
+  animation: loaderAnim 1.25s infinite;
+  height: 50px;
+  outline: 1px solid transparent;
+  width: 50px;
+}
+
+.loading #largeBox {
+  background-color: #9d1d11;
+  height: 3em;
+  outline: 1px solid transparent;
+  position: fixed;
+  width: 3em;
+}
+
+.loading #smallBox {
+  animation: smallBoxAnim 1.25s alternate infinite ease-in-out;
+  background-color: #feecf0;
+  height: 3em;
+  outline: 1px solid transparent;
+  position: fixed;
+  width: 3em;
+  z-index: 1;
+}
+
+@keyframes smallBoxAnim {
+  0% {
+    transform: scale(0.2);
+  }
+  100% {
+    transform: scale(0.75);
+  }
+}
+
+@keyframes loaderAnim {
+  0% {
+    transform-origin: center;
+    transform:  rotate(0deg);
+  }
+  100% {
+    transform-origin: center;
+    transform: rotate(90deg);
+  }
 }

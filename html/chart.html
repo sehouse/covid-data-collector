@@ -51,7 +51,7 @@
       </div>
     </div>
   </nav>
-
+<!-- DISPLAYS ON INITIAL NAV TO PAGE -->
   <section class="frontPage">
 
     <section class="section">
@@ -81,10 +81,13 @@
                 <hr class="hr" />
                 <br />
                 <div class="placeholder-image">
-                <figure class="image center">
-                  <img src="covid-logo-assets/chart/covid-chart-example.png" />
-                </figure>
-              </div>
+                  <figure class="image center" id="frontPageChart">
+                    <!-- INJECT CHART HERE -->
+                  </figure>
+                  <p class="highcharts-description center">
+                    Above are the timeline statistics related to the data set of your choice.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -152,6 +155,7 @@
 
   </section>
 
+<!-- DISPLAYS AFTER SEARCH -->
   <section class="results">
 
     <section class="section">
@@ -168,13 +172,15 @@
               <br>
 
               <div class="placeholder-image is-flex">
-                  <figure class="highcharts-figure">
-                    <div id="chart"></div>
-                    <p class="highcharts-description center">
-                        Above are the timeline statistics related to the data set of your choice.
-                    </p>
+                  <figure class="highcharts-figure" id="resultsChart">
+                  <!-- INJECT CHART HERE -->
                   </figure>
-                </div>
+                 
+              </div>
+              <br/>
+              <p class="highcharts-description center">
+                Above are the timeline statistics related to the data set of your choice.
+              </p>
             </div>
           </div>
         </div>

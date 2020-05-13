@@ -1,10 +1,11 @@
 $(function(){
     displayRegionOptions()
     displayStatsOption()
-    // TODO ASK SCOTT IF WE SHOULD LOAD THIS 
+    $("#chart").remove();
+    displayLoader("#frontPageChart")    
     // GETS IP ADDRESS DATA, PASSES IT THROUGH A FILTER FUNCTION, THEN TO COVID API, THEN TO HIGHCHARTS
     // LOAD STATE / DEATH DATA BASED ON USER GEOLOCATION
-    // getAddress()
+    getAddress()
 })
 
 let displayOptions = {
@@ -120,6 +121,17 @@ function displayStatsOption() {
     }
 }
 
+function displayLoader(view){
+    $(view).append(
+        `<div class='loaderContainer'>
+            <div class='loading'>
+                <div id='largeBox'></div>
+                <div id='smallBox'></div>
+            </div>
+        </div>`
+    )
+}
+
 function setCheckboxChoices(){
     let choices = $('#options').children('input');
     choices.prop("checked", !choices.prop("checked"));
@@ -155,25 +167,25 @@ function redoSeries(dates, display){
     return arr;
 }
 // TODO ASK SCOTT IF DESIRED TO LOAD INITIAL CHART BASED ON GEO DATA
-// async function getAddress() {
-//     let getIP = async () => {
-//       return await fetch(
-//         `https://ipinfo.io?token=5fcea70b36eb66`
-//       ).then((response) => response.json());
-//     };
-//     let ip = await getIP();
-//     passToCovidAPI(ip);
-// }
+async function getAddress() {
+    let getIP = async () => {
+      return await fetch(
+        `https://ipinfo.io?token=5fcea70b36eb66`
+      ).then((response) => response.json());
+    };
+    let ip = await getIP();
+    passToCovidAPI(ip);
+}
 
-// function passToCovidAPI(data) {
-//     // MODIFY DATA IF REQUESITNG A TERRITORY
-//     let abbr = data.country !== "US" ? data.country : getStateTwoDigitCode(data.region);  
-//     getStateData(abbr, displayOptions);
-// }
+function passToCovidAPI(data) {
+    // MODIFY DATA IF REQUESITNG A TERRITORY
+    let abbr = data.country !== "US" ? data.country : getStateTwoDigitCode(data.region);  
+    getStateData(abbr, displayOptions);
+}
   
-// function getStateTwoDigitCode(stateFullName) {
-//     return stateList[stateFullName];
-// }
+function getStateTwoDigitCode(stateFullName) {
+    return stateList[stateFullName];
+}
 
 async function getStateData(region, choices) {
     let yesterday = moment().subtract(1, "days");
@@ -214,7 +226,12 @@ function displayChart(data, display){
         parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('MM')),
         parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('DD')),
     ];
+    // CONDITIONALLY REMOVE SPINNER & ADD DIV FOR CHART TO RESIDE IN 
+    let parent = $(".loaderContainer").parent();
+    $('.loaderContainer').remove()
+    parent.prepend("<div id='chart'></div>");
 
+    // CREATE CHART
     Highcharts.chart('chart', {
         title: {
             text: `${getKeyByValue(stateList, data[0].state)} Covid-19 Data <br/>${startDate} - ${endDate}`
@@ -274,6 +291,8 @@ function displayChart(data, display){
 $(".control-search").on("click", function(){
     let choices = getCheckboxChoices($('#options'));
     if($('#state').val()){
+        $("#chart").remove();
+        displayLoader("#resultsChart")
         getStateData(stateList[$("#state").val()], choices);
         $(".frontPage").hide();
         $(".results").show();
