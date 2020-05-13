@@ -1,9 +1,3 @@
-// todo create specific js files for each view, map, chart, stats
-// todo call all of htose js files on homepage for the views there, replacing the images
-// TODO LINK SOURCE IN README https://stackoverflow.com/questions/33790210/get-a-state-name-from-abbreviation
-// todo link source https://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
-// todo link source https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
-
 $(function(){
     displayRegionOptions()
     // GETS IP ADDRESS DATA, PASSES IT THROUGH A FILTER FUNCTION, THEN TO COVID API, THEN TO HIGHCHARTS
@@ -201,6 +195,11 @@ function displayChart(data, display){
     let dataToPlot = redoSeries(data, display);
     let startDate = moment(data[4].date, 'YYYYMMDD').format('MM/DD/YYYY');
     let endDate = moment(data[0].date, 'YYYYMMDD').format('MM/DD/YYYY');
+    let utcArr = [
+        parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('YYYY')),
+        parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('MM')),
+        parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('DD')),
+    ];
 
     Highcharts.chart('container', {
         title: {
@@ -218,8 +217,8 @@ function displayChart(data, display){
         },
     
         xAxis: {
+            type: 'datetime',
             accessibility: {
-// TODO MAKE RANGE DYNAMIC, CURRENT MONTH -5 THROUGH TO CURRENT MONTH
                 rangeDescription: `Range: ${startDate} to ${endDate}`
             }
         },
@@ -235,12 +234,11 @@ function displayChart(data, display){
                 label: {
                     connectorAllowed: false
                 },
-// todo formating this shit is ugly, maybe just show day
-// todo Date.UTC(2010, 0, 1),
-                pointStart: data[4].date
+                // Highcharts like utc, because life is suffering
+                pointStart: Date.UTC(utcArr[0], utcArr[1] - 1, utcArr[2]), 
+                pointInterval: 24 * 3600 * 1000 * 7 // ONE WEEK INTERVALS
             }
         },
-// todo names and data need to be dynamic for calls to covidtracking
         series: dataToPlot,
         responsive: {
             rules: [{
