@@ -122,8 +122,6 @@ function displayStatsOption() {
 }
 
 function displayLoader(view){
-    // frontPageChart
-    // resultsChart
     $(view).append(
         `<div class='loaderContainer'>
             <div class='loading'>

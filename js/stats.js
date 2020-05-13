@@ -1,22 +1,24 @@
 $(function () {
+  $("#stats").remove();
+  displayLoader("#frontPageStat")    
   getAddress();
   displayRegionOptions();
   displayStatsOption();
 });
 
 let displayOptions = {
-  hospitalizedCumulative : false,
-  hospitalizedCurrently : false,
-  inIcuCumulative : false,
-  inIcuCurrently : false,
-  onVentilatorCumulative : false,
-  onVentilatorCurrently : false,
-  recovered : false,
+  hospitalizedCumulative : true,
+  hospitalizedCurrently : true,
+  inIcuCumulative : true,
+  inIcuCurrently : true,
+  onVentilatorCumulative : true,
+  onVentilatorCurrently : true,
+  recovered : true,
   death : true,
-  totalTestResults : false,
-  negative : false,
-  positive : false,
-  dataQualityGrade : false,
+  totalTestResults : true,
+  negative : true,
+  positive : true,
+  dataQualityGrade : true
 };
 
 const covidStatsList = {
@@ -100,6 +102,17 @@ function getKeyByValue(object, value) {
   return Object.keys(object).find(key => object[key] === value);
 }
 
+function displayLoader(view){
+  $(view).append(
+      `<div class='loaderContainer'>
+          <div class='loading'>
+              <div id='largeBox'></div>
+              <div id='smallBox'></div>
+          </div>
+      </div>`
+  )
+}
+
 function displayStatsOption() {
   for (stat in covidStatsList) {
     $("#options").append(
@@ -112,16 +125,20 @@ function displayStatsOption() {
 }
 
 function displayData(data) {
-  $("#stats").html('');
-  $("#stats").append(
-    `<h1 class="data-region"><u>Region Level: 
-      ${data.region} ${data.data.state ? getKeyByValue(stateList ,data.data.state) : ""}
-      </u></h1>
-      <li><u>Current as of</u>: <em>
-      ${moment(data.region == "country"
-          ? data.data.lastModified
-          : data.data.dateModified).format('MM/DD/YYYY')
-      }</em></li>`
+    // CONDITIONALLY REMOVE SPINNER & ADD DIV FOR CHART TO RESIDE IN 
+    let parent = $(".loaderContainer").parent();
+    $('.loaderContainer').remove()
+    parent.prepend("<div id='stats'></div>");
+
+    $("#stats").append(
+      `<h1 class="data-region"><u>Region Level: 
+        ${data.region} ${data.data.state ? getKeyByValue(stateList ,data.data.state) : ""}
+        </u></h1>
+        <li><u>Current as of</u>: <em>
+        ${moment(data.region == "country"
+            ? data.data.lastModified
+            : data.data.dateModified).format('MM/DD/YYYY')
+        }</em></li>`
   );
 
   for(option in displayOptions) {
@@ -202,12 +219,22 @@ async function getAddress(region) {
 }
 
 $(".control-search").on("click", () => {
+  $("#stats").remove();
+  displayLoader("#resultPageStat")
+
   passToCovidAPI($("#state").val());
   getCheckboxChoices()
 // TODO SEARCH WITH CHECKBOX SHOULD BE BLOCKEDWITH A FRIELDNY TOAST
   $(".frontPage").hide();
   $(".results").show();
 });
+
+
+// $("#stats").remove();
+// displayLoader("#frontPageStat")    
+// getAddress();
+// displayRegionOptions();
+// displayStatsOption();
 
 $(".control-clear").on("click", () => {
   location.reload();

@@ -136,6 +136,8 @@ ul.list {
 }
 
 #map,
+#frontPageStat,
+#resultPageStat,
 #frontPageChart,
 #resultsChart{
   display: flex;
@@ -194,7 +196,7 @@ ul.list {
   margin: 0;
   text-align: center;
   width: 100%;
-  border: 2px dotted red;
+  /* border: 2px dotted red; */
 }
 
 .loading {

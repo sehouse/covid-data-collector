@@ -50,6 +50,7 @@
       </div>
     </div>
   </nav>
+<!-- DISPLAYS ON INITIAL NAV TO PAGE -->
 
   <section class="frontPage">
 
@@ -80,14 +81,16 @@
 
                 <hr class="hr" />
                 <br />
+
                 <div class="placeholder-image">
-                  <figure class="image center">
-                      <img
-                        src="covid-data-example.png"
-                        alt="US COVID-19 Data"
-                      />
-                    </figure>
+                  <figure class="image center" id="frontPageStat">
+                    <!-- INJECT STAT HERE -->
+                  </figure>
                 </div>
+                <br/>
+                <p class="center" style="text-align: center;">
+                  Above are the current statistics related to your State. Source: https://covidtracking.com/
+                </p>
               </div>
             </div>
           </div>
@@ -156,6 +159,8 @@
 
   </section>
 
+  <!-- DISPLAYS AFTER SEARCH -->
+
   <section class="results">
 
     <section class="section">
@@ -170,7 +175,16 @@
                 </figure>
               </div>
               <br />
-              <div id="stats">
+
+                <div class="placeholder-image">
+                  <figure class="image center" id="resultPageStat">
+                    <!-- INJECT STAT HERE -->
+                  </figure>
+                </div>
+                <br/>
+                <p class="center" style="text-align: center;">
+                  Above are the current statistics based on the State of your choice & desired data set. Source: https://covidtracking.com/
+                </p>
               </div>
             </div>
           </div>
