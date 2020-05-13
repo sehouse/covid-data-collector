@@ -1,7 +1,23 @@
 $(function () {
   getAddress();
   displayRegionOptions();
+  displayStatsOption();
 });
+
+const covidStatsList = {
+  "hospitalizedCumulative" : "Total Hospitalizations",
+  "hospitalizedCurrently" : "Current Hospitalizations",
+  "inIcuCumulative" : "Total ICUs",
+  "inIcuCurrently" : "Current ICUs",
+  "onVentilatorCumulative" : "Total Ventilators Used",
+  "onVentilatorCurrently" : "Current Ventilators In Use",
+  "recovered" : "Total Recoveries",
+  "death" : "Total Deaths",
+  "totalTestResults" : "Total Test Results",
+  "negative" : "Total Test Results (Negative)",
+  "positive" : "Total Test Results (Positive)",
+  "dataQualityGrade" : "Data Quality",
+};
 
 const stateList = {
   "American Samoa": "AS",
@@ -65,8 +81,19 @@ const stateList = {
   "Virgin Islands": "VI",
 };
 
+function displayStatsOption() {
+  for (stat in covidStatsList) {
+    $("#options").append(
+        `<input type="checkbox" id=${stat} />
+        <label for=${stat}>${covidStatsList[stat]}</label>
+        <br />
+        <br />`
+    );
+  }
+}
+
 function displayData(data) {
-  // TODO CHECKBOXES CONDITIONALLY DISPLAYING THE DATA IN THE MAP / LIST / GRAPH
+  // TODO CHECKBOXES CONDITIONALLY DISPLAYING THE DATA IN THE MAP / LIST /
   // TODO MIGHT BE ABLE TO LOOP THROUGH THESE VARS, LESS CODE THAT WAY
   console.log(data);
   var hospitalizationsCumulative = data.data.hospitalizedCumulative;
