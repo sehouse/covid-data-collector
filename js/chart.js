@@ -111,7 +111,7 @@ function displayRegionOptions() {
 
 function getCheckboxChoices(parent){
     let inputs = parent.children('input');
-    if(inputs.all){
+    if(inputs.all.checked){
         inputs.each(function() {
             displayOptions[this.id] = true;
         })
@@ -128,7 +128,6 @@ function getCheckboxChoices(parent){
     return displayOptions;
 }
 
-// todo need to sort by date, not certain if it'll come back sorted being all async and stuff
 function redoSeries(dates, display){
     let arr = [];
     for(option in display){
@@ -195,6 +194,7 @@ function displayChart(data, display){
     let dataToPlot = redoSeries(data, display);
     let startDate = moment(data[4].date, 'YYYYMMDD').format('MM/DD/YYYY');
     let endDate = moment(data[0].date, 'YYYYMMDD').format('MM/DD/YYYY');
+    // UGLY BUT COULDN'T FIND A SUITABLE METHOD FROM MOMENTJS
     let utcArr = [
         parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('YYYY')),
         parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('MM')),
@@ -257,7 +257,6 @@ function displayChart(data, display){
     });
 }
 
-// TODO MAKE THE CALL ON STATE SELECTION AND OR DISPLAY OPTIONS AND REMOVE THE SEARCH BUTTON
 $(".control-search").on("click", function(){
     let choices = getCheckboxChoices($('.data-selector'));
     if($('#state').val()){
