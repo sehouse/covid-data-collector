@@ -1,7 +1,8 @@
 $(function(){
     displayRegionOptions()
-    // LOAD DEFAULT VIEW
-    getStateData('NH', displayOptions)
+    // GETS IP ADDRESS DATA, PASSES IT THROUGH A FILTER FUNCTION, THEN TO COVID API, THEN TO HIGHCHARTS
+    // LOAD STATE / DEATH DATA BASED ON USER GEOLOCATION
+    getAddress()
 })
 
 let displayOptions = {
@@ -16,7 +17,24 @@ let displayOptions = {
     totalTestResults : false,
     negative : false,
     positive : false,
-    dataQualityGrade : false
+    dataQualityGrade : false,
+    all : false
+};
+
+const covidStatsList = {
+    "hospitalizedCumulative" : "Total Hospitalizations",
+    "hospitalizedCurrently" : "Current Hospitalizations",
+    "inIcuCumulative" : "Total ICUs",
+    "inIcuCurrently" : "Current ICUs",
+    "onVentilatorCumulative" : "Total Ventilators Used",
+    "onVentilatorCurrently" : "Current Ventilators In Use",
+    "recovered" : "Total Recoveries",
+    "death" : "Total Deaths",
+    "totalTestResults" : "Total Test Results",
+    "negative" : "Total Test Results (Negative)",
+    "positive" : "Total Test Results (Positive)",
+    "dataQualityGrade" : "Data Quality",
+    "all" : "All"
 };
 
 const stateList = {
@@ -81,6 +99,10 @@ const stateList = {
     "Virgin Islands": "VI",
 };
 
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+}
+
 function displayRegionOptions() {
     for (state in stateList) {
       $("#state").append(`<option value="${state}">${state}</option>`);
@@ -89,6 +111,12 @@ function displayRegionOptions() {
 
 function getCheckboxChoices(parent){
     let inputs = parent.children('input');
+    // if(inputs.all.checked){
+    //     inputs.each(function() {
+    //         displayOptions[this.id] = true;
+    //     })
+    //     return displayOptions;
+    // }
     inputs.each(function() {
         if(this.checked){
             displayOptions[this.id] = true;
@@ -100,13 +128,12 @@ function getCheckboxChoices(parent){
     return displayOptions;
 }
 
-// todo need to sort by date, not certain if it'll come back sorted being all async and stuff
 function redoSeries(dates, display){
     let arr = [];
     for(option in display){
         if(display[option] === true){
             let obj = {};
-            obj.name = option;
+            obj.name = covidStatsList[option];
             obj.data = [];
 
             dates.forEach(date => {
@@ -118,15 +145,35 @@ function redoSeries(dates, display){
     return arr;
 }
 
+async function getAddress() {
+    let getIP = async () => {
+      return await fetch(
+        `https://ipinfo.io?token=5fcea70b36eb66`
+      ).then((response) => response.json());
+    };
+    let ip = await getIP();
+    passToCovidAPI(ip);
+}
+
+function passToCovidAPI(data) {
+    // MODIFY DATA IF REQUESITNG A TERRITORY
+    let abbr = data.country !== "US" ? data.country : getStateTwoDigitCode(data.region);  
+    getStateData(abbr, displayOptions);
+}
+  
+function getStateTwoDigitCode(stateFullName) {
+    return stateList[stateFullName];
+}
+
 async function getStateData(region, choices) {
-    let today = moment();
+    let yesterday = moment().subtract(1, "days");
     let dates = [];
     let pastToPresent = [];
     let data;
 
     for(let i = 0; i < 5; i++){
-        dates.push(today.format('YYYYMMDD'));
-        today.subtract(7, "days");
+        dates.push(yesterday.format('YYYYMMDD'));
+        yesterday.subtract(7, "days");
     }
 
     let getCovidStatsBy = async (regionAndTime) => {
@@ -135,7 +182,6 @@ async function getStateData(region, choices) {
       ).then((response) => response.json());
     };
 
-    // https://stackoverflow.com/questions/37576685/using-async-await-with-a-foreach-loop
     for (date of dates) {
         data = await getCovidStatsBy(`states/${region}/${date}`)
         pastToPresent.push(data);
@@ -146,13 +192,22 @@ async function getStateData(region, choices) {
 
 function displayChart(data, display){
     let dataToPlot = redoSeries(data, display);
+    if(dataToPlot.length == 0){
+        // todo toast
+        return;
+    }
     let startDate = moment(data[4].date, 'YYYYMMDD').format('MM/DD/YYYY');
     let endDate = moment(data[0].date, 'YYYYMMDD').format('MM/DD/YYYY');
+    // UGLY BUT COULDN'T FIND A SUITABLE METHOD FROM MOMENTJS
+    let utcArr = [
+        parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('YYYY')),
+        parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('MM')),
+        parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('DD')),
+    ];
 
     Highcharts.chart('container', {
-
         title: {
-            text: `${data[0].state} Covid-19 Data, ${startDate} - ${endDate}`
+            text: `${getKeyByValue(stateList, data[0].state)} Covid-19 Data <br/>${startDate} - ${endDate}`
         },
     
         subtitle: {
@@ -166,8 +221,8 @@ function displayChart(data, display){
         },
     
         xAxis: {
+            type: 'datetime',
             accessibility: {
-// TODO MAKE RANGE DYNAMIC, CURRENT MONTH -5 THROUGH TO CURRENT MONTH
                 rangeDescription: `Range: ${startDate} to ${endDate}`
             }
         },
@@ -183,13 +238,11 @@ function displayChart(data, display){
                 label: {
                     connectorAllowed: false
                 },
-// TODO MAKE RANGE DYNAMIC, CURRENT MONTH -5 THROUGH TO CURRENT MONTH
-// todo formating this shit is ugly, maybe just show day
-// todo Date.UTC(2010, 0, 1),
-                pointStart: data[4].date
+                // Highcharts like utc, because life is suffering
+                pointStart: Date.UTC(utcArr[0], utcArr[1] - 1, utcArr[2]), 
+                pointInterval: 24 * 3600 * 1000 * 7 // ONE WEEK INTERVALS
             }
         },
-// todo names and data need to be dynamic for calls to covidtracking
         series: dataToPlot,
         responsive: {
             rules: [{
@@ -205,13 +258,12 @@ function displayChart(data, display){
                 }
             }]
         }
-    
     });
 }
 
-// TODO MAKE THE CALL ON STATE SELECTION AND OR DISPLAY OPTIONS AND REMOVE THE SEARCH BUTTON
-// todo search without state selected is 404ing
 $(".control-search").on("click", function(){
     let choices = getCheckboxChoices($('.data-selector'));
-    getStateData(stateList[$("#state").val()], choices);
+    if($('#state').val()){
+        getStateData(stateList[$("#state").val()], choices);
+    }
 });
