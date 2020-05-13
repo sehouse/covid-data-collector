@@ -1,7 +1,8 @@
 $(function(){
     // SET INITIAL LOAD TO DEATH, CUZ WE SO EDGY
-    loadMap('death')
-    displayStatsOption()
+    displayLoader("#frontPageChart");
+    displayStatsOption();
+    loadMap('death');
 })
 
 const covidStatsList = {
@@ -19,11 +20,22 @@ const covidStatsList = {
     "dataQualityGrade" : "Data Quality",
 };
 
+function displayLoader(){
+    $("#map").append(
+        `<div class='loaderContainer'>
+            <div class='loading'>
+                <div id='largeBox'></div>
+                <div id='smallBox'></div>
+            </div>
+        </div>`
+    )
+}
+
 function displayStatsOption() {
     for (stat in covidStatsList) {
       $(".control").append(
           `<label class="radio">
-                <input type="radio" name="datum" value=${stat}>${covidStatsList[stat]}</label>
+                <input type="radio" name="datum" value=${stat}> ${covidStatsList[stat]}</label>
            </label>`
       );
     }
@@ -36,7 +48,7 @@ function displayMap(data, datum){
     // SET THE MIN/MAX RANGE FOR COLOR SCALE
     let min = Math.min.apply(Math, data.map(function(state) { return state.value; })); 
     let max = Math.max.apply(Math, data.map(function(state) { return state.value; }));
-
+    $("#map").html('');
     Highcharts.mapChart('map', {
         chart: {
             map: 'countries/us/us-all',

@@ -120,7 +120,6 @@ ul.list {
 
 /* CHART */
 /* TODO: RULE IS A BIT OF A HACK TO FORCE THE RED BACKGROUND TO THE BOTTOM OF THE PAGE, IS THERE A MORE ELEGANT SOLUTION? */
-#map,
 #chart,
 #stats{
   min-height: 50vh;
@@ -128,8 +127,6 @@ ul.list {
 
 #chart{
   width: 100%;
-  /* display: flex;
-  align-items: center; */
 }
 
 @media only screen and (max-width: 600px) {
@@ -138,6 +135,7 @@ ul.list {
   }
 }
 
+#map,
 #frontPageChart,
 #resultsChart{
   display: flex;
