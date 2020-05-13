@@ -238,9 +238,9 @@ function displayChart(data, display){
         },
     
         legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom'
         },
     
         plotOptions: {
@@ -257,7 +257,7 @@ function displayChart(data, display){
         responsive: {
             rules: [{
                 condition: {
-                    maxWidth: 500
+                    width: 800
                 },
                 chartOptions: {
                     legend: {
