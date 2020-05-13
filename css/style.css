@@ -1,3 +1,7 @@
+#map{
+  min-height: 50vh;
+}
+
 .hero {
   background-color: #9d1d11;
 }
