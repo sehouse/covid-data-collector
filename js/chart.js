@@ -81,6 +81,10 @@ const stateList = {
   "Virgin Islands": "VI",
 };
 
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+}
+
 function displayRegionOptions() {
   for (state in stateList) {
     $("#state").append(`<option value="${state}">${state}</option>`);
@@ -116,6 +120,26 @@ function redoSeries(dates, display) {
     }
   }
   return arr;
+}
+
+async function getAddress() {
+    let getIP = async () => {
+      return await fetch(
+        `https://ipinfo.io?token=5fcea70b36eb66`
+      ).then((response) => response.json());
+    };
+    let ip = await getIP();
+    passToCovidAPI(ip);
+}
+
+function passToCovidAPI(data) {
+    // MODIFY DATA IF REQUESITNG A TERRITORY
+    let abbr = data.country !== "US" ? data.country : getStateTwoDigitCode(data.region);  
+    getStateData(abbr, displayOptions);
+}
+  
+function getStateTwoDigitCode(stateFullName) {
+    return stateList[stateFullName];
 }
 
 async function getStateData(region, choices) {
