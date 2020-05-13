@@ -1,5 +1,5 @@
 $(function(){
-    // SET INITIAL LOAD TO DEATH
+    // SET INITIAL LOAD TO DEATH, CUZ WE SO EDGY
     loadMap('death')
     displayStatsOption()
 })

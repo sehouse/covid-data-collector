@@ -1,8 +1,10 @@
 $(function(){
     displayRegionOptions()
+    displayStatsOption()
+    // TODO ASK SCOTT IF WE SHOULD LOAD THIS 
     // GETS IP ADDRESS DATA, PASSES IT THROUGH A FILTER FUNCTION, THEN TO COVID API, THEN TO HIGHCHARTS
     // LOAD STATE / DEATH DATA BASED ON USER GEOLOCATION
-    getAddress()
+    // getAddress()
 })
 
 let displayOptions = {
@@ -18,7 +20,6 @@ let displayOptions = {
     negative : false,
     positive : false,
     dataQualityGrade : false,
-    all : false
 };
 
 const covidStatsList = {
@@ -34,7 +35,6 @@ const covidStatsList = {
     "negative" : "Total Test Results (Negative)",
     "positive" : "Total Test Results (Positive)",
     "dataQualityGrade" : "Data Quality",
-    "all" : "All"
 };
 
 const stateList = {
@@ -109,14 +109,30 @@ function displayRegionOptions() {
     }
 }
 
+function displayStatsOption() {
+    for (stat in covidStatsList) {
+      $("#options").append(
+          `<input type="checkbox" id=${stat} />
+          <label for=${stat}>${covidStatsList[stat]}</label>
+          <br />
+          <br />`
+      );
+    }
+}
+
+function setCheckboxChoices(){
+    let choices = $('#options').children('input');
+    let toggle = true;
+
+    choices.prop("checked", !choices.prop("checked"));
+
+    // choices.each(function(){
+    //     this.checked = toggle;
+    // })
+}
+
 function getCheckboxChoices(parent){
     let inputs = parent.children('input');
-    // if(inputs.all.checked){
-    //     inputs.each(function() {
-    //         displayOptions[this.id] = true;
-    //     })
-    //     return displayOptions;
-    // }
     inputs.each(function() {
         if(this.checked){
             displayOptions[this.id] = true;
@@ -144,26 +160,26 @@ function redoSeries(dates, display){
     }
     return arr;
 }
+// TODO ASK SCOTT IF DESIRED TO LOAD INITIAL CHART BASED ON GEO DATA
+// async function getAddress() {
+//     let getIP = async () => {
+//       return await fetch(
+//         `https://ipinfo.io?token=5fcea70b36eb66`
+//       ).then((response) => response.json());
+//     };
+//     let ip = await getIP();
+//     passToCovidAPI(ip);
+// }
 
-async function getAddress() {
-    let getIP = async () => {
-      return await fetch(
-        `https://ipinfo.io?token=5fcea70b36eb66`
-      ).then((response) => response.json());
-    };
-    let ip = await getIP();
-    passToCovidAPI(ip);
-}
-
-function passToCovidAPI(data) {
-    // MODIFY DATA IF REQUESITNG A TERRITORY
-    let abbr = data.country !== "US" ? data.country : getStateTwoDigitCode(data.region);  
-    getStateData(abbr, displayOptions);
-}
+// function passToCovidAPI(data) {
+//     // MODIFY DATA IF REQUESITNG A TERRITORY
+//     let abbr = data.country !== "US" ? data.country : getStateTwoDigitCode(data.region);  
+//     getStateData(abbr, displayOptions);
+// }
   
-function getStateTwoDigitCode(stateFullName) {
-    return stateList[stateFullName];
-}
+// function getStateTwoDigitCode(stateFullName) {
+//     return stateList[stateFullName];
+// }
 
 async function getStateData(region, choices) {
     let yesterday = moment().subtract(1, "days");
@@ -193,7 +209,7 @@ async function getStateData(region, choices) {
 function displayChart(data, display){
     let dataToPlot = redoSeries(data, display);
     if(dataToPlot.length == 0){
-        // todo toast
+// TODO toast ASKIGN FOR A MIN OF ONE SELECTED VALUE
         return;
     }
     let startDate = moment(data[4].date, 'YYYYMMDD').format('MM/DD/YYYY');
@@ -262,7 +278,7 @@ function displayChart(data, display){
 }
 
 $(".control-search").on("click", function(){
-    let choices = getCheckboxChoices($('.data-selector'));
+    let choices = getCheckboxChoices($('#options'));
     if($('#state').val()){
         getStateData(stateList[$("#state").val()], choices);
         $(".frontPage").hide();
@@ -282,3 +298,7 @@ $(".navbar-burger").on("click", () => {
   $(".navbar-burger").toggleClass("is-active");
   $(".navbar-menu").toggleClass("is-active");
 });
+
+$("#checkAll").on("click", () => {
+    setCheckboxChoices()
+})
