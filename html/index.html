@@ -98,18 +98,7 @@
                     <br />
 
                     <div class="placeholder-image">
-<!-- MAP -->
-<div id="map"></div>
-
-                      <!-- <figure class="image center">
-
-                        <img
-                          src="us-covid-map-example.png"
-                          alt="US COVID-19 Map"
-                        />
-
-                      </figure> -->
-
+                      <div id="map" class="indexMap"></div>
                     </div>
 
                     <br />
@@ -151,16 +140,7 @@
                     <br />
 
                     <div class="placeholder-image">
-<!-- CHART -->
-                      <figure class="image center">
-
-                        <img
-                          src="covid-logo-assets/index/covid-chart-example.png"
-                          alt="US COVID-19 Data Chart/Graph"
-                        />
-
-                      </figure>
-
+                        <div id="indexChart" class="indexChart"></div>
                     </div>
 
                     <br />
@@ -202,19 +182,9 @@
                     <br />
 
                     <div class="placeholder-image">
-
-                      <figure class="image center">
-<!-- STAT -->
-
-                        <img
-                          src="covid-data-example.png"
-                          alt="US COVID-19 Data"
-                        />
-
-                      </figure>
-
+                        <div id="stats" class="indexStats"></div>
                     </div>
-
+                    
                   </div>
 
                 </div>
@@ -248,7 +218,7 @@
     <script 
       src="https://code.jquery.com/jquery-3.4.1.min.js">
     </script>
-
+<!-- MAP SCRIPTS -->
     <script 
       src="https://code.highcharts.com/maps/highmaps.js">
     </script>
@@ -273,8 +243,19 @@
       src="https://code.highcharts.com/mapdata/countries/us/us-all.js">
     </script>
 
+<!-- CHART SCRIPTS -->
+    <script src="https://kit.fontawesome.com/8e2f4402c5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
+    <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+ 
+<!-- STAT SCRIPTS -->
+    
     <script 
-      src="../js/map.js">
+      src="../js/index.js">
     </script>
   </body>
 
