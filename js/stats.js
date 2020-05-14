@@ -198,6 +198,7 @@ function passToCovidAPI(data) {
 function getStateTwoDigitCode(stateFullName) {
   return stateList[stateFullName];
 }
+
 function madeSelection(){
     let selected = false;
     getCheckboxChoices()
