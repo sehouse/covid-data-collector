@@ -133,7 +133,7 @@ function displayMap(data, datum){
     let min = Math.min.apply(Math, data.map(function(state) { return state.value; })); 
     let max = Math.max.apply(Math, data.map(function(state) { return state.value; }));
     
-    $("#indexMap").html('');
+    // $("#indexMap").html('');
     Highcharts.mapChart('indexMap', {
         chart: {
             map: 'countries/us/us-all'
