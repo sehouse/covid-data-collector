@@ -1,176 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-   <link
+  <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png. 
+  Custom Logo Font courtesy of https://www.font-generator.com/fonts/ByronMark1/ and author Richard Polt. -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Custom made favicon, using the sourced COVID image. -->
+    <link
       rel="icon"
       type="image/png"
-      href="covid-logo-assets/map/covid-logo-virus-favicon.png"
+      href="covid-logo-assets/covid-logo-virus-favicon.png"
     />
-
-  <title>US COVID-19 Map</title>
-
-  <link 
-    rel="stylesheet" 
-    href="../css/style.css" 
-  />
-
-  <link 
-    rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" 
-  />
-
-  <script 
-    src="https://kit.fontawesome.com/8e2f4402c5.js" 
-    crossorigin="anonymous">
-  </script>
-
-</head>
-
-<body>
-
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-
-    <div class="navbar-brand">
-
-      <a class="navbar-item">
-
-      <img 
-      src="covid-logo-assets/map/covid-logo-branch-header.png" 
-      />
-
-      </a>
-
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-
-      </a>
-
-    </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-
-    <div class="navbar-end">
-
-      <a class="navbar-item" href="index.html">
-        <p class= "navbar-text">Home</p>
-      </a>
-
-      <a class="navbar-item" href="map.html">
-            <p class= "navbar-text">Map</p>
-      </a>
-          
-      <a class="navbar-item" href="chart.html">
-            <p class= "navbar-text">Chart/Graph</p>
-      </a>
-          
-      <a class="navbar-item" href="stats.html">
-            <p class= "navbar-text">Statistics</p>
-      </a>
-      
-    </div>
-
-    </div>
-
-  </nav>
-
-  <section class="frontPage">
-
-    <section class="section">
-
-      <br />
-      <div class="container">
-        <div class="columns">
-          <div class="column">
-            <div class="notification is-danger is-light">
-              <div class="state-selector">
-                <div class="background">
-                  <figure class="image">
-                    <img src="covid-logo-assets/map/covid-logo-map-data-select.png">
-                  </figure>
-                </div>
-                <br>
-                <div class="control">
-                  <!-- RADIO BUTTONS DYNAMICALLY INSERTED HERE -->
-                </div>
-                <br>
-                <div id="map"></div>
-
-              </div>
-            </div>
-          </div>
-
-    </section>
-
-    <section class="section-clear center">
-
-      <p class="control-home">
-        <button class="button is-danger is-outlined is-light is-medium is-rounded">
-          <span>Return to Home</span>
-          <span class="icon is-medium">
-            <i class="fas fa-home"></i>
-          </span>
-        </button>
-      </p>
-
-      <br />
-      <br />
-
-    </section>
-
-  </section>
-
-  <footer>
-
-    <div class="content has-text-centered">
-
-      <p>
-        COVID-19 Data Tracker 2020 DW/SH.
-      </p>
-
-    </div>
-
-  </footer>
-
-  <script 
-    src="https://code.jquery.com/jquery-3.4.1.min.js">
-  </script>
-
-  <script 
-    src="https://code.highcharts.com/maps/highmaps.js">
-  </script>
-
-  <script 
-    src="https://code.highcharts.com/maps/modules/data.js">
-  </script>
-
-  <script 
-    src="https://code.highcharts.com/maps/modules/drilldown.js">
-  </script>
-
-  <script 
-    src="https://code.highcharts.com/maps/modules/exporting.js">
-  </script>
-
-  <script 
-    src="https://code.highcharts.com/maps/modules/offline-exporting.js">
-  </script>
-
-  <script 
-    src="https://code.highcharts.com/mapdata/countries/us/us-all.js">
-  </script>
-
-  <script 
-    src="../js/map.js">
-  </script>
-
-</body>
-
+    <title>US COVID-19 Map</title>
+    <!-- Link to our CSS stylesheet. -->
+    <link 
+      rel="stylesheet" 
+      href="../css/style.css" 
+    />
+    <!-- Link to Bulma, which is used throughout all of our HTML -->
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" 
+    />
+  </head>
+  <body>
+    <!-- Bulma navbar, incorporating a custom small page logo. -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <nav class="navbar-brand">
+        <a class="navbar-item">
+        <!-- Custom small page logo. -->
+        <img 
+          src="covid-logo-assets/covid-logo-branch-header.png" 
+          href="index.html"
+          alt="US COVID-19 tracker."
+        />
+        </a>
+        <!-- Navbar burger, for use on mobile and smaller screens. -->
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </nav>
+      <!-- Left-aligned navbar elements, all of which link to their specified html page. -->
+      <nav id="navbarBasicExample" class="navbar-menu">
+        <nav class="navbar-end">
+          <!-- Link to index.html/Home page. -->
+          <a class="navbar-item" href="index.html">
+            <p class= "navbar-text">
+              Home
+            </p>
+          </a>
+          <!-- Link to map.html/Map page. -->
+          <a class="navbar-item" href="map.html">
+            <p class= "navbar-text">
+              Map
+            </p>
+          </a>   
+          <!-- Link to chart.html/Chart/Graph page. -->
+          <a class="navbar-item" href="chart.html">
+            <p class= "navbar-text">
+              Chart/Graph
+            </p>
+          </a> 
+          <!-- Link to stats.html/Statistics page. -->
+          <a class="navbar-item" href="stats.html">
+            <p class= "navbar-text">
+              Statistics
+            </p>
+          </a>
+        </nav>
+      </nav>
+    </nav>
+    <!-- Main map page element, which consists of a column containing data selection directions, radio elements that select specified data types and a map that displays those selected data types. -->
+    <main class="frontPage">
+      <section class="section">
+        <figure class="container">
+          <section class="columns">
+            <!-- Map display column. -->
+            <section class="column">
+              <section class="content-box">
+                <figure class="state-selector">
+                  <header class="background">
+                    <!-- Custom map data directions logo. -->
+                    <figure class="image">
+                      <img 
+                        src="covid-logo-assets/covid-logo-map-data-select.png"
+                        alt="Please select your desired data category."
+                      />
+                    </figure>
+                  </header>
+                  <br />
+                  <!-- Dynamic insertion of radio elements through J/S. -->
+                  <figure class="control"></figure>
+                  <br />
+                  <!-- An interactive map that shows the requested COVID-19 data for a hovered over State. -->
+                  <figure id="map"></figure>
+                </figure>
+              </section>
+            </section>
+          </section>
+        </figure>
+      </section>
+      <!-- A section below the map column that contains a Return to Home button. -->
+      <section class="section-clear center">
+        <p class="control-home">
+          <!-- Return to Home button. -->
+          <button class="button is-danger is-outlined is-light is-medium is-rounded">
+            <span>
+              Return to Home
+            </span>
+            <!-- FontAwesome "Home" icon. -->
+            <span class="icon is-medium">
+              <i class="fas fa-home"></i>
+            </span>
+          </button>
+        </p>
+      </section>
+    </main>
+    <!-- Page footer. -->
+    <footer>
+      <section class="content has-text-centered">
+        <p>
+          COVID-19 Data Tracker 2020 DW/SH.
+        </p>
+      </section>
+    </footer>
+    <!-- Linked JQuery script. -->
+    <script 
+      src="https://code.jquery.com/jquery-3.4.1.min.js">
+    </script>
+    <!-- Linked HighCharts scripts for the interactive map. -->
+    <script 
+      src="https://code.highcharts.com/maps/highmaps.js">
+    </script>
+    <script 
+      src="https://code.highcharts.com/maps/modules/data.js">
+    </script>
+    <script 
+      src="https://code.highcharts.com/maps/modules/drilldown.js">
+    </script>
+    <script 
+      src="https://code.highcharts.com/maps/modules/exporting.js">
+    </script>
+    <script 
+      src="https://code.highcharts.com/maps/modules/offline-exporting.js">
+    </script>
+    <script 
+      src="https://code.highcharts.com/mapdata/countries/us/us-all.js">
+    </script>
+    <!-- Link to the J/S file that pushes the data selection to the interactive map. -->
+    <script 
+      src="../js/map.js">
+    </script>
+    <!-- Link to FontAwesome, which is used for our button icons. -->
+    <script 
+      src="https://kit.fontawesome.com/8e2f4402c5.js" 
+      crossorigin="anonymous">
+    </script>
+  </body>
 </html>
