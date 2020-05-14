@@ -98,8 +98,8 @@ const stateList = {
 };
 
 function displayLoader(){
-    $("#map").append(
-        `<div class='loaderContainer map'>
+    $("#indexMap").append(
+        `<div class='loaderContainer indexMap'>
             <div class='loading'>
                 <div id='largeBox'></div>
                 <div id='smallBox'></div>
@@ -107,8 +107,8 @@ function displayLoader(){
         </div>`
     )
 
-    $("#chart").append(
-        `<div class='loaderContainer chart'>
+    $("#indexChart").append(
+        `<div class='loaderContainer indexChart'>
             <div class='loading'>
                 <div id='largeBox'></div>
                 <div id='smallBox'></div>
@@ -116,8 +116,8 @@ function displayLoader(){
         </div>`
     )
 
-    $("#stats").append(
-        `<div class='loaderContainer stats'>
+    $("#indexStats").append(
+        `<div class='loaderContainer indexStats'>
             <div class='loading'>
                 <div id='largeBox'></div>
                 <div id='smallBox'></div>
@@ -133,13 +133,10 @@ function displayMap(data, datum){
     let min = Math.min.apply(Math, data.map(function(state) { return state.value; })); 
     let max = Math.max.apply(Math, data.map(function(state) { return state.value; }));
     
-    $(".map").remove();
-    Highcharts.mapChart('map', {
+    $("#indexMap").html('');
+    Highcharts.mapChart('indexMap', {
         chart: {
             map: 'countries/us/us-all'
-            // ,
-            // borderWidth: 0,
-            // borderColor: '#FF0000'
         },
 
         title: {
@@ -293,7 +290,7 @@ function displayChart(data, display){
         parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('DD')),
     ];
 
-    $(".chart").remove();
+    $("#indexChart").html('');
 
     // CREATE CHART
     Highcharts.chart('indexChart', {
@@ -356,8 +353,8 @@ function displayChart(data, display){
 
 function displayData(data) {
 
-    $(".stats").remove();
-    $("#stats").append(
+    $("#indexStats").html('');
+    $("#indexStats").append(
     `<h1 class="data-region"><u>Region Level: 
         ${data.region} ${data.data.state ? getKeyByValue(stateList ,data.data.state) : ""}
         </u></h1>
@@ -370,7 +367,7 @@ function displayData(data) {
 
     for(option in displayOptions) {
         if(displayOptions[option] == true){
-        $("#stats").append(
+        $("#indexStats").append(
             `<li><u>${covidStatsList[option]}</u>: <em>${data.data[option] == null ? 'Unknown/Untracked' : data.data[option]}</em></li>`
         )
         }

@@ -71,6 +71,7 @@ ul.list {
 }
 
 .placeholder-image {
+  /* max-width: 100%; */
   box-shadow: 0 0 3pt 2pt black;
 }
 
@@ -145,15 +146,18 @@ ul.list {
   min-height: 50vh;
 }
 
-.indexChart,
-.indexMap,
-.indexStats{
-  max-width: 100%;
-  display: flex;
+#indexChart,
+#indexMap,
+#indexStats{
   align-items: center;
   min-height: 50vh;
 }
-
+.indexChart,
+.indexMap,
+.indexStats{
+  display: flex;
+  align-items: center;
+}
 .highcharts-figure{
   min-width: 95%;
   margin: 1em auto;
@@ -205,7 +209,7 @@ ul.list {
   margin: 0;
   text-align: center;
   width: 100%;
-  /* border: 2px dotted red; */
+  border: 2px dotted red;
 }
 
 .loading {
