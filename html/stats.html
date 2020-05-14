@@ -30,7 +30,7 @@
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
 
-      <div class="navbar-brand">
+      <nav class="navbar-brand">
 
         <a class="navbar-item">
 
@@ -49,11 +49,11 @@
 
         </a>
 
-      </div>
+      </nav>
 
-      <div id="navbarBasicExample" class="navbar-menu">
+      <nav id="navbarBasicExample" class="navbar-menu">
 
-        <div class="navbar-end">
+        <nav class="navbar-end">
 
           <a class="navbar-item" href="index.html">
 
@@ -87,30 +87,30 @@
 
           </a>
 
-        </div>
+        </nav>
 
-      </div>
+      </nav>
 
     </nav>
 
     <!-- DISPLAYS ON INITIAL NAV TO PAGE -->
-    <section class="frontPage">
+    <main class="frontPage">
 
       <section class="section">
 
         <br />
 
-        <div class="container">
+        <figure class="container">
 
-          <div class="columns">
+          <section class="columns">
 
-            <div class="column">
+            <section class="column">
 
-              <div class="content-box">
+              <section class="content-box">
 
-                <div class="state-selector">
+                <section class="state-selector">
 
-                  <div class="background">
+                  <header class="background">
 
                     <figure class="image center">
 
@@ -121,11 +121,11 @@
 
                     </figure>
 
-                  </div>
+                  </header>
 
                   <br />
 
-                  <div class="option">
+                  <figure class="option">
 
                     <select id="state">
 
@@ -135,12 +135,12 @@
 
                     </select>
 
-                  </div>
+                  </figure>
 
                   <hr class="hr" />
                   <br />
 
-                  <div class="placeholder-image">
+                  <section class="placeholder-image">
 
                     <figure class="image center" id="frontPageStat">
                       <!-- INJECT STAT HERE -->
@@ -157,23 +157,21 @@
                       Source: https://covidtracking.com/
                     </p>
 
-                  </div>
+                  </section>
 
-                  
+                </section>
 
-                </div>
+              </section>
 
-              </div>
+            </section>
 
-            </div>
+            <section class="column">
 
-            <div class="column">
+              <section class="content-box">
 
-              <div class="content-box">
+                <section class="data-selector is-size-6">
 
-                <div class="data-selector is-size-6">
-
-                  <div class="background">
+                  <header class="background">
 
                     <figure class="image center">
 
@@ -184,7 +182,7 @@
 
                     </figure>
 
-                  </div>
+                  </header>
 
                   <br />
 
@@ -196,7 +194,7 @@
 
                   <section class="section-search center">
 
-                    <div class="field is-grouped">
+                    <section class="field is-grouped">
 
                       <p class="control-all">
 
@@ -241,19 +239,19 @@
                       <br />
                       <br />
 
-                    </div>
+                    </section>
 
                   </section>
 
-                </div>
+                </section>
 
-              </div>
+              </section>
 
-            </div>
+            </section>
 
-          </div>
+          </section>
 
-        </div>
+        </figure>
 
         <br />
 
@@ -261,7 +259,7 @@
 
       <section class="section-home center">
 
-        <div class="field is-grouped">
+        <section class="field is-grouped">
 
           <p class="control-home">
 
@@ -286,26 +284,26 @@
           <br />
           <br />
 
-        </div>
+        </section>
 
       </section>
 
-    </section>
+    </main>
 
     <!-- DISPLAYS AFTER SEARCH -->
-    <section class="results">
+    <main class="results">
 
       <section class="section">
 
-        <div class="container center">
+        <figure class="container center">
 
-          <div class="columns">
+          <section class="columns">
 
-            <div class="column">
+            <section class="column">
 
-              <div class="content-box">
+              <section class="content-box">
 
-                <div class="background">
+                <header class="background">
 
                   <figure class="image center">
 
@@ -316,42 +314,42 @@
 
                   </figure>
 
-                </div>
+                </header>
 
                 <br />
 
-                <div class="placeholder-image">
+                <section class="placeholder-image">
 
-                    <figure class="image center" id="resultPageStat">
-                      <!-- INJECT STAT HERE -->
-                    </figure>
+                  <figure class="image center" id="resultPageStat">
+                    <!-- INJECT STAT HERE -->
+                  </figure>
 
-                    <br/>
-                    <hr class="hrTwo" />
+                  <br/>
+                  <hr class="hrTwo" />
 
-                    <p class="center" style="text-align: center;">
-                      Above are the current statistics based on the State of your choice & desired data set. 
-                    </p>
+                  <p class="center" style="text-align: center;">
+                    Above are the current statistics based on the State of your choice & desired data set. 
+                  </p>
 
-                    <p class ="center" style="text-align: center;">
-                      Source: https://covidtracking.com/
-                    </p>
+                  <p class ="center" style="text-align: center;">
+                    Source: https://covidtracking.com/
+                  </p>
 
-                </div>
+                </section>
 
-              </div>
+              </section>
 
-            </div>
+            </section>
 
-          </div>
+          </section>
 
-        </div>
+        </figure>
 
       </section>
 
       <section class="section-clear center">
 
-        <div class="field is-grouped">
+        <section class="field is-grouped">
 
           <p class="control-clear">
 
@@ -393,24 +391,24 @@
           
           </p>
         
-        </div>
+        </section>
         
         <br />
         <br />
 
       </section>
 
-    </section>
+    </main>
 
     <footer>
 
-      <div class="content has-text-centered">
+      <section class="content has-text-centered">
         
         <p>
           COVID-19 Data Tracker 2020 DW/SH.
         </p>
 
-      </div>
+      </section>
 
     </footer>
 
