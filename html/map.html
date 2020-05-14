@@ -1,176 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-   <link
-      rel="icon"
-      type="image/png"
-      href="covid-logo-assets/map/covid-logo-virus-favicon.png"
+    <link
+        rel="icon"
+        type="image/png"
+        href="covid-logo-assets/map/covid-logo-virus-favicon.png"
+        Add Alt Text Here
     />
 
-  <title>US COVID-19 Map</title>
+    <title>US COVID-19 Map</title>
 
-  <link 
-    rel="stylesheet" 
-    href="../css/style.css" 
-  />
+    <link 
+      rel="stylesheet" 
+      href="../css/style.css" 
+    />
 
-  <link 
-    rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" 
-  />
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" 
+    />
 
-  <script 
-    src="https://kit.fontawesome.com/8e2f4402c5.js" 
-    crossorigin="anonymous">
-  </script>
+    <script 
+      src="https://kit.fontawesome.com/8e2f4402c5.js" 
+      crossorigin="anonymous">
+    </script>
 
-</head>
+  </head>
 
-<body>
+  <body>
 
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
 
-    <div class="navbar-brand">
+      <div class="navbar-brand">
 
-      <a class="navbar-item">
+        <a class="navbar-item">
 
-      <img 
-      src="covid-logo-assets/map/covid-logo-branch-header.png" 
-      />
+        <img 
+          src="covid-logo-assets/map/covid-logo-branch-header.png" 
+          Add Alt Text Here
+        />
 
-      </a>
+        </a>
 
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
 
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
 
-      </a>
+        </a>
 
-    </div>
+      </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+      <div id="navbarBasicExample" class="navbar-menu">
 
-    <div class="navbar-end">
+        <div class="navbar-end">
 
-      <a class="navbar-item" href="index.html">
-        <p class= "navbar-text">Home</p>
-      </a>
+          <a class="navbar-item" href="index.html">
 
-      <a class="navbar-item" href="map.html">
-            <p class= "navbar-text">Map</p>
-      </a>
+            <p class= "navbar-text">
+              Home
+            </p>
+            
+          </a>
+
+          <a class="navbar-item" href="map.html">
+
+                <p class= "navbar-text">
+                  Map
+                </p>
+
+          </a>
+              
+          <a class="navbar-item" href="chart.html">
+
+                <p class= "navbar-text">
+                  Chart/Graph
+                </p>
+
+          </a>
+              
+          <a class="navbar-item" href="stats.html">
+
+                <p class= "navbar-text">
+                  Statistics
+                </p>
+
+          </a>
           
-      <a class="navbar-item" href="chart.html">
-            <p class= "navbar-text">Chart/Graph</p>
-      </a>
-          
-      <a class="navbar-item" href="stats.html">
-            <p class= "navbar-text">Statistics</p>
-      </a>
-      
-    </div>
+        </div>
 
-    </div>
+      </div>
 
-  </nav>
+    </nav>
 
-  <section class="frontPage">
+    <section class="frontPage">
 
-    <section class="section">
+      <section class="section">
 
-      <br />
-      <div class="container">
-        <div class="columns">
-          <div class="column">
-            <div class="notification is-danger is-light">
-              <div class="state-selector">
-                <div class="background">
-                  <figure class="image">
-                    <img src="covid-logo-assets/map/covid-logo-map-data-select.png">
-                  </figure>
+        <br />
+
+        <div class="container">
+
+          <div class="columns">
+
+            <div class="column">
+
+              <div class="notification is-danger is-light">
+
+                <div class="state-selector">
+
+                  <div class="background">
+
+                    <figure class="image">
+
+                      <img 
+                        src="covid-logo-assets/map/covid-logo-map-data-select.png"
+                        Add Alt Text Here
+                      />
+
+                    </figure>
+
+                  </div>
+
+                  <br>
+
+                  <div class="control">
+
+                    <!-- RADIO BUTTONS DYNAMICALLY INSERTED HERE -->
+
+                  </div>
+
+                  <br>
+
+                  <div id="map">
+
+                  </div>
+
                 </div>
-                <br>
-                <div class="control">
-                  <!-- RADIO BUTTONS DYNAMICALLY INSERTED HERE -->
-                </div>
-                <br>
-                <div id="map"></div>
 
               </div>
+
             </div>
+
           </div>
 
+        </div>
+
+      </section>
+
+      <section class="section-clear center">
+
+        <p class="control-home">
+
+          <button class="button is-danger is-outlined is-light is-medium is-rounded">
+
+            <span>Return to Home</span>
+
+            <span class="icon is-medium">
+
+              <i class="fas fa-home">
+
+              </i>
+
+            </span>
+
+          </button>
+
+        </p>
+
+        <br />
+        <br />
+
+      </section>
+
     </section>
 
-    <section class="section-clear center">
+    <footer>
 
-      <p class="control-home">
-        <button class="button is-danger is-outlined is-light is-medium is-rounded">
-          <span>Return to Home</span>
-          <span class="icon is-medium">
-            <i class="fas fa-home"></i>
-          </span>
-        </button>
-      </p>
+      <div class="content has-text-centered">
 
-      <br />
-      <br />
+        <p>
+          COVID-19 Data Tracker 2020 DW/SH.
+        </p>
 
-    </section>
+      </div>
 
-  </section>
+    </footer>
 
-  <footer>
+    <script 
+      src="https://code.jquery.com/jquery-3.4.1.min.js">
+    </script>
 
-    <div class="content has-text-centered">
+    <script 
+      src="https://code.highcharts.com/maps/highmaps.js">
+    </script>
 
-      <p>
-        COVID-19 Data Tracker 2020 DW/SH.
-      </p>
+    <script 
+      src="https://code.highcharts.com/maps/modules/data.js">
+    </script>
 
-    </div>
+    <script 
+      src="https://code.highcharts.com/maps/modules/drilldown.js">
+    </script>
 
-  </footer>
+    <script 
+      src="https://code.highcharts.com/maps/modules/exporting.js">
+    </script>
 
-  <script 
-    src="https://code.jquery.com/jquery-3.4.1.min.js">
-  </script>
+    <script 
+      src="https://code.highcharts.com/maps/modules/offline-exporting.js">
+    </script>
 
-  <script 
-    src="https://code.highcharts.com/maps/highmaps.js">
-  </script>
+    <script 
+      src="https://code.highcharts.com/mapdata/countries/us/us-all.js">
+    </script>
 
-  <script 
-    src="https://code.highcharts.com/maps/modules/data.js">
-  </script>
+    <script 
+      src="../js/map.js">
+    </script>
 
-  <script 
-    src="https://code.highcharts.com/maps/modules/drilldown.js">
-  </script>
-
-  <script 
-    src="https://code.highcharts.com/maps/modules/exporting.js">
-  </script>
-
-  <script 
-    src="https://code.highcharts.com/maps/modules/offline-exporting.js">
-  </script>
-
-  <script 
-    src="https://code.highcharts.com/mapdata/countries/us/us-all.js">
-  </script>
-
-  <script 
-    src="../js/map.js">
-  </script>
-
-</body>
+  </body>
 
 </html>
