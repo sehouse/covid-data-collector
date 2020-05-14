@@ -137,6 +137,10 @@
                   </span>
                   <!-- A section within the column that has a "Check All" and a "Search" button -->
                   <section class="section-search center">
+                    <div class="notification" style="display: none;">
+                      <button class="delete"></button>
+                      Please make a selection above.
+                    </div>
                     <section class="field is-grouped">
                       <p class="control-all">
                         <!-- "Check All" button that checks all of the checkboxes. -->
@@ -265,13 +269,10 @@
         </p>
       </section>
     </footer>
+
     <!-- Linked JQuery script. -->
     <script 
       src="https://code.jquery.com/jquery-3.4.1.min.js">
-    </script>
-    <!-- Link to the J/S file that pushes the data selection to the list. -->
-    <script 
-      src="../js/stats.js">
     </script>
     <!-- Link to allow FontAwesome script use. --> 
     <script 
@@ -281,5 +282,10 @@
     <script 
       src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js">
     </script>
+    <!-- Link to the J/S file that pushes the data selection to the list. -->
+    <script 
+      src="../js/stats.js">
+    </script>
+
   </body>
 </html>
