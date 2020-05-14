@@ -134,7 +134,7 @@ function displayMap(data, datum){
     let max = Math.max.apply(Math, data.map(function(state) { return state.value; }));
     console.log(data)
     let date = moment(data[0].dateChecked, 'YYYYMMDD').format('MM/DD/YYYY')
-    // $("#indexMap").html('');
+    $("#indexMap").html('');
     Highcharts.mapChart('indexMap', {
         chart: {
             map: 'countries/us/us-all'
