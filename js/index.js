@@ -393,5 +393,3 @@ async function getData(region) {
         displayData({ region: "country", data: totalUs[0] });
     }
 }
-
-  
