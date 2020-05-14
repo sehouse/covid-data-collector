@@ -1,239 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link
-      rel="icon"
-      type="image/png"
-      href="covid-logo-assets/chart/covid-logo-virus-favicon.png"
+      <link
+        rel="icon"
+        type="image/png"
+        href="covid-logo-assets/chart/covid-logo-virus-favicon.png"
+        Add Alt Text Here
+      />
+
+    <title>US COVID-19 Charts and Graphs</title>
+
+    <link 
+      rel="stylesheet" 
+      href="../css/style.css" 
     />
 
-  <title>US COVID-19 Charts and Graphs</title>
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" 
+    />
 
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css" />
-</head>
+  </head>
 
-<body>
+  <body>
 
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand is-flex">
-      <a class="navbar-item">
-        <img src="covid-logo-assets/map/covid-logo-branch-header.png" />
-      </a>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
 
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-        data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
+      <div class="navbar-brand is-flex">
 
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-end">
-        <a class="navbar-item" href="index.html">
-          <p class="navbar-text">Home</p>
+        <a class="navbar-item">
+
+          <img 
+            src="covid-logo-assets/map/covid-logo-branch-header.png" 
+            Add Alt Text Here
+          />
+
         </a>
-        <a class="navbar-item" href="map.html">
-          <p class="navbar-text">Map</p>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+
         </a>
-        <a class="navbar-item" href="chart.html">
-          <p class="navbar-text">Chart/Graph</p>
-        </a>
-        <a class="navbar-item" href="stats.html">
-          <p class="navbar-text">Statistics</p>
-        </a>
+
       </div>
-    </div>
-  </nav>
-<!-- DISPLAYS ON INITIAL NAV TO PAGE -->
-  <section class="frontPage">
 
-    <section class="section">
+      <div id="navbarBasicExample" class="navbar-menu">
 
-      <br />
-      <div class="container">
-        <div class="columns">
-          <div class="column is-flex">
-            <div class="notification is-danger is-light">
-              <div class="state-selector">
-                <div class="background">
-                  <figure class="image center">
-                    <img src="covid-logo-assets/chart/covid-logo-state-select.png">
-                  </figure>
-                </div>
-                <br>
-                <div class="option">
+        <div class="navbar-end">
 
-                  <select id="state">
-                    <option value="">
-                      --Please choose an option--
-                    </option>
-                  </select>
+          <a class="navbar-item" href="index.html">
 
-                </div>
+            <p class="navbar-text">
+              Home
+            </p>
 
-                <hr class="hr" />
-                <br />
-                <div class="placeholder-image">
-                  <figure class="image center" id="frontPageChart">
-                    <!-- INJECT CHART HERE -->
-                  </figure>
-                  <p class="highcharts-description center">
-                    Above are the timeline statistics related to your State.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          </a>
 
-          <div class="column is-flex">
-            <div class="notification is-danger is-light">
-              <div class="data-selector is-size-6">
-                <div class="background">
-                  <figure class="image center">
-                    <img src="covid-logo-assets/chart/covid-logo-data-select.png">
-                  </figure>
-                </div>
-                <br>
-                <span id="options">
-                  <!-- CHECKBOXES DYNAMICALLY INSERTED HERE -->
-                </span>
-                <br />
-                <section class="section-search center">
-                  <div class="field is-grouped">
-                    <p class="control-all">
-                      <button id="checkAll" class="button is-danger is-outlined is-light is-medium is-rounded">
-                        <span>Check All</span>
-                        <span class="icon is-medium">
-                          <i class="fas fa-check-square"></i>
-                        </span>
-                      </button>
-                    </p>
-                    <p class="control-search">
-                      <button class="button is-danger is-outlined is-light is-medium is-rounded">
-                        <span>Search</span>
-                        <span class="icon is-medium">
-                          <i class="fas fa-search"></i>
-                        </span>
-                      </button>
-                    </p>
-                    <br />
-                    <br />
+          <a class="navbar-item" href="map.html">
+
+            <p class="navbar-text">
+              Map
+            </p>
+
+          </a>
+
+          <a class="navbar-item" href="chart.html">
+
+            <p class="navbar-text">
+              Chart/Graph
+            </p>
+
+          </a>
+
+          <a class="navbar-item" href="stats.html">
+
+            <p class="navbar-text">
+              Statistics
+            </p>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+    <!-- DISPLAYS ON INITIAL NAV TO PAGE -->
+    <section class="frontPage">
+
+      <section class="section">
+
+        <br />
+
+        <div class="container">
+
+          <div class="columns">
+
+            <div class="column is-flex">
+
+              <div class="notification is-danger is-light">
+
+                <div class="state-selector">
+
+                  <div class="background">
+
+                    <figure class="image center">
+
+                      <img 
+                        src="covid-logo-assets/chart/covid-logo-state-select.png"
+                        Add Alt Text Here
+                      />
+
+                    </figure>
+
                   </div>
-                </section>
+
+                  <br />
+
+                  <div class="option">
+
+                    <select id="state">
+
+                      <option value="">
+                        --Please choose an option--
+                      </option>
+
+                    </select>
+
+                  </div>
+
+                  <hr class="hr" />
+
+                  <br />
+
+                  <div class="placeholder-image">
+
+                    <figure class="image center" id="frontPageChart">
+                      <!-- INJECT CHART HERE -->
+                    </figure>
+
+                    <p class="highcharts-description center">
+                      Above are the timeline statistics related to your State.
+                    </p>
+
+                  </div>
+
+                </div>
+
               </div>
+
             </div>
-          </div>
-        </div>
-      </div>
-      <br />
 
-    </section>
+            <div class="column is-flex">
 
-    <section class="section-home center">
+              <div class="notification is-danger is-light">
 
-      <div class="field is-grouped">
-        <p class="control-home">
-          <button class="button is-danger is-outlined is-light is-medium is-rounded">
-            <span>Return to Home</span>
-            <span class="icon is-medium">
-              <i class="fas fa-home"></i>
-            </span>
-          </button>
-        </p>
+                <div class="data-selector is-size-6">
 
-        <br />
-        <br />
+                  <div class="background">
 
-    </section>
+                    <figure class="image center">
 
-  </section>
+                      <img 
+                        src="covid-logo-assets/chart/covid-logo-data-select.png"
+                        Add Alt Text Here
+                      />
 
-<!-- DISPLAYS AFTER SEARCH -->
-  <section class="results">
+                    </figure>
 
-    <section class="section">
+                  </div>
 
-      <div class="container center is-flex">
-        <div class="columns is-flex">
-          <div class="column is-flex">
-            <div class="notification is-danger is-light">
-              <div class="background">
-                <figure class="image center">
-                  <img src="covid-logo-assets/chart/covid-logo-chart-display.png">
-                </figure>
+                  <br>
+
+                  <span id="options">
+                    <!-- CHECKBOXES DYNAMICALLY INSERTED HERE -->
+                  </span>
+
+                  <br />
+
+                  <section class="section-search center">
+
+                    <div class="field is-grouped">
+
+                      <p class="control-all">
+
+                        <button id="checkAll" class="button is-danger is-outlined is-light is-medium is-rounded">
+
+                          <span>
+                            Check All
+                          </span>
+
+                          <span class="icon is-medium">
+
+                            <i class="fas fa-check-square">
+
+                            </i>
+
+                          </span>
+
+                        </button>
+
+                      </p>
+
+                      <p class="control-search">
+
+                        <button class="button is-danger is-outlined is-light is-medium is-rounded">
+
+                          <span>
+                            Search
+                          </span>
+
+                          <span class="icon is-medium">
+
+                            <i class="fas fa-search">
+
+                            </i>
+
+                          </span>
+
+                        </button>
+
+                      </p>
+
+                      <br />
+                      <br />
+
+                    </div>
+
+                  </section>
+
+                </div>
+
               </div>
-              <br>
 
-              <div class="placeholder-image is-flex">
-                  <figure class="highcharts-figure" id="resultsChart">
-                  <!-- INJECT CHART HERE -->
+            </div>
+
+          </div>
+
+        </div>
+
+        <br />
+
+      </section>
+
+      <section class="section-home center">
+
+        <div class="field is-grouped">
+
+          <p class="control-home">
+           
+            <button class="button is-danger is-outlined is-light is-medium is-rounded">
+
+              <span>
+                Return to Home
+              </span>
+
+              <span class="icon is-medium">
+
+                <i class="fas fa-home">
+
+                </i>
+
+              </span>
+              
+            </button>
+
+          </p>
+
+          <br />
+          <br />
+          
+        </div>
+        
+      </section>
+
+    </section>
+
+    <!-- DISPLAYS AFTER SEARCH -->
+    <section class="results">
+
+      <section class="section">
+
+        <div class="container center is-flex">
+
+          <div class="columns is-flex">
+
+            <div class="column is-flex">
+
+              <div class="notification is-danger is-light">
+
+                <div class="background">
+
+                  <figure class="image center">
+
+                    <img 
+                      src="covid-logo-assets/chart/covid-logo-chart-display.png"
+                      Add Alt Text Here
+                    />
+
                   </figure>
-                 
+
+                </div>
+
+                <br>
+
+                <div class="placeholder-image is-flex">
+
+                    <figure class="highcharts-figure" id="resultsChart">
+
+                    <!-- INJECT CHART HERE -->
+
+                    </figure>
+                  
+                </div>
+
+                <br/>
+
+                <p class="highcharts-description center">
+                  Above are the timeline statistics related to the data set & State of your choice.
+                </p>
+
               </div>
-              <br/>
-              <p class="highcharts-description center">
-                Above are the timeline statistics related to the data set & State of your choice.
-              </p>
+
             </div>
+
           </div>
+
         </div>
-      </div>
+
+      </section>
+
+      <section class="section-clear center">
+
+        <div class="field is-grouped">
+
+          <p class="control-clear">
+
+            <button class="button is-danger is-outlined is-light is-medium is-rounded">
+
+              <span>
+                Clear Search Data
+              </span>
+
+              <span class="icon is-medium">
+
+                <i class="fas fa-eraser">
+
+                </i>
+
+              </span>
+
+            </button>
+
+          </p>
+
+          <p class="control-home">
+
+            <button class="button is-danger is-outlined is-light is-medium is-rounded">
+
+              <span>
+                Return to Home
+              </span>
+
+              <span class="icon is-medium">
+
+                <i class="fas fa-home">
+
+                </i>
+
+              </span>
+
+            </button>
+
+          </p>
+
+        </div>
+
+        <br />
+        <br />
+
+      </section>
 
     </section>
 
-    <section class="section-clear center">
+    <footer>
 
-      <div class="field is-grouped">
-        <p class="control-clear">
-          <button class="button is-danger is-outlined is-light is-medium is-rounded">
-            <span>Clear Search Data</span>
-            <span class="icon is-medium">
-              <i class="fas fa-eraser"></i>
-            </span>
-          </button>
+      <div class="content has-text-centered">
+
+        <p>
+          COVID-19 Data Tracker 2020 DW/SH.
         </p>
-        <p class="control-home">
-          <button class="button is-danger is-outlined is-light is-medium is-rounded">
-            <span>Return to Home</span>
-            <span class="icon is-medium">
-              <i class="fas fa-home"></i>
-            </span>
-          </button>
-        </p>
+
       </div>
-      <br />
-      <br />
 
-    </section>
+    </footer>
 
-  </section>
+    <script 
+      src="https://code.jquery.com/jquery-3.4.1.min.js">
+    </script>
 
-  <footer>
+    <script 
+      src="https://kit.fontawesome.com/8e2f4402c5.js">
+    </script>
 
-    <div class="content has-text-centered">
-      <p>
-        COVID-19 Data Tracker 2020 DW/SH.
-      </p>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js">
+    </script>
 
-    </div>
+    <script 
+      src="https://code.highcharts.com/highcharts.js">
+    </script>
+    
+    <script 
+      src="https://code.highcharts.com/modules/series-label.js">
+    </script>
+    
+    <script 
+      src="https://code.highcharts.com/modules/exporting.js">
+    </script>
+    
+    <script 
+      src="https://code.highcharts.com/modules/export-data.js">
+    </script>
+    
+    <script 
+      src="https://code.highcharts.com/modules/accessibility.js">
+    </script>
 
-  </footer>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://kit.fontawesome.com/8e2f4402c5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/series-label.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-  <script src="../js/chart.js"></script>
-</body>
+    <script 
+      src="../js/chart.js">
+    </script>
+
+  </body>
 
 </html>
