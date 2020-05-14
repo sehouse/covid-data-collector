@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Custom made favicon, using the sourced COVID image. -->
     <link
       rel="icon"
       type="image/png"
@@ -14,11 +15,13 @@
 
     <title>US COVID-19 Tracker</title>
 
+    <!-- Link to our CSS stylesheet. -->
     <link 
       rel="stylesheet" 
       href="../css/style.css" 
     />
 
+    <!-- Link to Bulma, which is used throughout all of our HTML -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css"
@@ -28,21 +31,23 @@
 
   <body>
 
+    <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png.
+          
+    Custom Logo Font courtesy of https://www.font-generator.com/fonts/ByronMark1/ and author Richard Polt. -->
+
+    <!-- Page header, containing custom logos and text. -->
     <section class="hero">
 
       <header class="container">
 
         <figure class="image center">
 
+          <!-- Custom header image for the index.html Bulma "Hero". -->
           <img
             id="covid-logo-main"
             src="covid-logo-assets/index/covid-logo-main-header.png"
             alt="United States COVID-19 Tracker"
           />
-
-          <!--COVID image courtesy of https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1200px-SARS-CoV-2_without_background.png
-          
-          Custom Logo Font courtesy of https://www.font-generator.com/fonts/ByronMark1/ and author Richard Polt-->
 
         </figure>
 
@@ -50,6 +55,7 @@
 
       <figure class="image center">
 
+        <!-- Custom page introduction, using sourced Byron Mark 1 font. -->
         <img
           id="covid-subtitle"
           src="covid-logo-assets/index/covid-subtitle.png"
@@ -60,12 +66,14 @@
 
     </section>
 
+    <!-- Main home page element, which consists of page directions and columns that link to the different data elements. -->
     <main class="frontPage">
 
       <section class="section">
 
         <header class="image">
 
+          <!-- Custom directions logo. -->
           <img
             id="covid-directions"
             src="covid-logo-assets/index/covid-logo-directions.png"
@@ -77,22 +85,27 @@
         <br />
         <br />
 
+        <!-- The three home page columns, which can be clicked by the user to traverse to the desired data type. -->
         <figure class="container">
 
           <section class="columns">
 
+            <!-- Map column. -->
             <section class="column">
 
+              <!-- Anchor tag, making the entire content-box element link to the map.html page. -->
               <a href="map.html">
 
                 <section class="content-box">
 
                   <section class="state-selector">
 
+                    <!-- Header containing the custom map logo. -->
                     <header class="background">
 
                       <figure class="image center">
 
+                        <!-- Custom map logo. -->
                         <img 
                           id="covid-logo-map" 
                           src="covid-logo-assets/index/covid-logo-map.png"
@@ -105,6 +118,7 @@
 
                     <br />
 
+                    <!-- An interactive map that shows the total deaths from COVID-19 for a hovered over State. -->
                     <section class="placeholder-image">
 
                       <figure id="indexMap">
@@ -121,18 +135,22 @@
 
             </section>
 
+            <!-- Chart column -->
             <section class="column">
 
+              <!-- Anchor tag, making the entire content-box element link to the chart.html page. -->
               <a href="chart.html">
 
                 <section class="content-box">
 
                   <section class="state-selector">
 
+                    <!-- Header containing the custom chart/graph logo. -->
                     <header class="background">
 
                       <figure class="image center">
 
+                        <!-- Custom chart/graph logo. -->
                         <img 
                           id="covid-logo-chart" 
                           src="covid-logo-assets/index/covid-logo-chart.png" 
@@ -145,6 +163,7 @@
 
                     <br />
 
+                    <!-- An interactive chart showing the COVID-19 statistics for the State associated with the user's IP address. -->
                     <section class="placeholder-image">
 
                         <figure id="indexChart">
@@ -161,18 +180,22 @@
 
             </section>
 
+            <!-- Statistics column -->
             <section class="column">
 
+              <!-- Anchor tag, making the entire content-box element link to the stats.html page. -->
               <a href="stats.html">
 
                 <section class="content-box">
 
                   <section class="data-selector">
 
+                    <!-- Header containing the custom stats logo. -->
                     <header class="background">
 
                       <figure class="image center">
 
+                        <!-- Custom stats logo. -->
                         <img 
                           src="covid-logo-assets/index/covid-logo-stats.png"
                           alt="US COVID-19 statistics."
@@ -184,6 +207,7 @@
 
                     <br/>
 
+                    <!-- An interactive list showing the COVID-19 statistics for the State associated with the user's IP address. -->
                     <section class="placeholder-image">
 
                       <figure id="indexStats">
@@ -208,6 +232,7 @@
 
     </main>
 
+    <!-- Page footer -->
     <footer>
 
       <section class="content has-text-centered">
@@ -220,11 +245,12 @@
 
     </footer>
 
+    <!-- Linked JQuery script. -->
     <script 
       src="https://code.jquery.com/jquery-3.4.1.min.js">
     </script>
 
-    <!-- MAP SCRIPTS -->
+    <!-- Linked HighCharts scripts for the interactive map. -->
     <script 
       src="https://code.highcharts.com/maps/highmaps.js">
     </script>
@@ -249,18 +275,7 @@
       src="https://code.highcharts.com/mapdata/countries/us/us-all.js">
     </script>
 
-    <!-- CHART SCRIPTS -->
-    <script 
-      src="https://kit.fontawesome.com/8e2f4402c5.js">
-    </script>
-
-    <script 
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js">
-    </script>
-
-    <!-- <script 
-      src="https://code.highcharts.com/highcharts.js">
-    </script> -->
+    <!-- Linked HighCharts scripts for the interactive chart/graph. -->
 
     <script 
       src="https://code.highcharts.com/modules/series-label.js">
@@ -278,9 +293,19 @@
       src="https://code.highcharts.com/modules/accessibility.js">
     </script>
  
-    <!-- STAT SCRIPTS -->
+    <!-- Link to the stats data provided by our index.js file. -->
     <script 
       src="../js/index.js">
+    </script>
+
+    <!-- Link to allow FontAwesome script use. --> 
+    <script 
+      src="https://kit.fontawesome.com/8e2f4402c5.js">
+    </script>
+
+    <!-- Link to allow the use of moment.js script. -->
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js">
     </script>
 
   </body>
