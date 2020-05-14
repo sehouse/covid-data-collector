@@ -1,27 +1,9 @@
 $(function(){
-    displayRegionOptions();
-    displayStatsOption();
-    $("#chart").remove();
-    displayLoader("#frontPageChart");  
-    // GETS IP ADDRESS DATA, PASSES IT THROUGH A FILTER FUNCTION, THEN TO COVID API, THEN TO HIGHCHARTS
-    // LOAD STATE / DEATH DATA BASED ON USER GEOLOCATION
+    // SET INITIAL LOAD TO DEATH, CUZ WE SO EDGY
+    displayLoader();
+    loadMap('death');
     getAddress();
 })
-
-let displayOptions = {
-    hospitalizedCumulative : false,
-    hospitalizedCurrently : false,
-    inIcuCumulative : false,
-    inIcuCurrently : false,
-    onVentilatorCumulative : false,
-    onVentilatorCurrently : false,
-    recovered : false,
-    death : true,
-    totalTestResults : false,
-    negative : false,
-    positive : false,
-    dataQualityGrade : false
-};
 
 const covidStatsList = {
     "hospitalizedCumulative" : "Total Hospitalizations",
@@ -36,6 +18,21 @@ const covidStatsList = {
     "negative" : "Total Test Results (Negative)",
     "positive" : "Total Test Results (Positive)",
     "dataQualityGrade" : "Data Quality"
+};
+
+let displayOptions = {
+    hospitalizedCumulative : true,
+    hospitalizedCurrently : true,
+    inIcuCumulative : true,
+    inIcuCurrently : true,
+    onVentilatorCumulative : true,
+    onVentilatorCurrently : true,
+    recovered : true,
+    death : true,
+    totalTestResults : true,
+    negative : true,
+    positive : true,
+    dataQualityGrade : true
 };
 
 const stateList = {
@@ -100,30 +97,27 @@ const stateList = {
     "Virgin Islands": "VI"
 };
 
-function getKeyByValue(object, value) {
-    return Object.keys(object).find(key => object[key] === value);
-}
+function displayLoader(){
+    $("#indexMap").append(
+        `<div class='loaderContainer indexMap'>
+            <div class='loading'>
+                <div id='largeBox'></div>
+                <div id='smallBox'></div>
+            </div>
+        </div>`
+    )
 
-function displayRegionOptions() {
-    for (state in stateList) {
-      $("#state").append(`<option value="${state}">${state}</option>`);
-    }
-}
+    $("#indexChart").append(
+        `<div class='loaderContainer indexChart'>
+            <div class='loading'>
+                <div id='largeBox'></div>
+                <div id='smallBox'></div>
+            </div>
+        </div>`
+    )
 
-function displayStatsOption() {
-    for (stat in covidStatsList) {
-      $("#options").append(
-          `<input type="checkbox" id=${stat} />
-          <label for=${stat}>${covidStatsList[stat]}</label>
-          <br />
-          <br />`
-      );
-    }
-}
-
-function displayLoader(view){
-    $(view).append(
-        `<div class='loaderContainer'>
+    $("#indexStats").append(
+        `<div class='loaderContainer indexStats'>
             <div class='loading'>
                 <div id='largeBox'></div>
                 <div id='smallBox'></div>
@@ -132,22 +126,95 @@ function displayLoader(view){
     )
 }
 
-function setCheckboxChoices(){
-    let choices = $('#options').children('input');
-    choices.prop("checked", !choices.prop("checked"));
+// ==================================== MAP ====================================
+
+function displayMap(data, datum){
+    // SET THE MIN/MAX RANGE FOR COLOR SCALE
+    let min = Math.min.apply(Math, data.map(function(state) { return state.value; })); 
+    let max = Math.max.apply(Math, data.map(function(state) { return state.value; }));
+    console.log(data)
+    let date = moment(data[0].dateChecked, 'YYYYMMDD').format('MM/DD/YYYY')
+    $("#indexMap").html('');
+    Highcharts.mapChart('indexMap', {
+        chart: {
+            map: 'countries/us/us-all'
+        },
+
+        title: {
+            text: `US Covid-19 ${covidStatsList[datum]} / State <br/> ${date}`
+        },
+
+        exporting: {
+            sourceWidth: 600,
+            sourceHeight: 500
+        },
+
+        legend: {
+            layout: 'horizontal',
+            borderWidth: 0,
+            backgroundColor: 'rgba(255,255,255,0.25)',
+            floating: true,
+            verticalAlign: 'bottom',
+            y: 0
+        },
+
+        mapNavigation: {
+            enabled: true
+        },
+
+        colorAxis: {
+            // MIN OF 0 KILLS THE MAP, DISPLAY AS 1
+            min: (min == 0 ? 1 : min),
+            max: max,
+            type: 'logarithmic',
+            stops: [
+                [0, '#FFA07A'],
+                [0.67, '#FF0000'],
+                [1, '#800000']
+            ]
+        },
+
+        series: [{
+            animation: {
+                duration: 1000
+            },
+            data: data,
+            joinBy: ['postal-code', 'code'],
+            dataLabels: {
+                enabled: true,
+                color: '#FFFFFF',
+                format: '{point.code}'
+            },
+            name: datum,
+            tooltip: {
+                pointFormat: '{point.code}: {point.value}'
+            }
+        }]
+    });
 }
 
-function getCheckboxChoices(parent){
-    let inputs = parent.children('input');
-    inputs.each(function() {
-        if(this.checked){
-            displayOptions[this.id] = true;
-        }else{
-            displayOptions[this.id] = false;
-        }
-    })
+function loadMap(datum){
+    fetch('https://covidtracking.com/api/v1/states/current.json')
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            // REMOVE TERRITORIES & RENAME STATE PROPERTY TO PLAY NICE WITH HIGHCHARTS MAP
+            data.splice(51, 5)
+            data.forEach((state) => {
+                state.code = state.state;
+                state.value = state[datum];
+                delete state.state;
+                delete state[datum];
+            })
+            displayMap(data, datum)
+    });
+}
 
-    return displayOptions;
+// ==================================== CHART ====================================
+
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
 }
 
 function redoSeries(dates, display){
@@ -166,7 +233,7 @@ function redoSeries(dates, display){
     }
     return arr;
 }
-// TODO ASK SCOTT IF DESIRED TO LOAD INITIAL CHART BASED ON GEO DATA
+
 async function getAddress() {
     let getIP = async () => {
       return await fetch(
@@ -181,8 +248,9 @@ function passToCovidAPI(data) {
     // MODIFY DATA IF REQUESITNG A TERRITORY
     let abbr = data.country !== "US" ? data.country : getStateTwoDigitCode(data.region);  
     getStateData(abbr, displayOptions);
+    getData(abbr)
 }
-  
+
 function getStateTwoDigitCode(stateFullName) {
     return stateList[stateFullName];
 }
@@ -214,10 +282,6 @@ async function getStateData(region, choices) {
 
 function displayChart(data, display){
     let dataToPlot = redoSeries(data, display);
-    if(dataToPlot.length == 0){
-// TODO toast ASKIGN FOR A MIN OF ONE SELECTED VALUE
-        return;
-    }
     let startDate = moment(data[4].date, 'YYYYMMDD').format('MM/DD/YYYY');
     let endDate = moment(data[0].date, 'YYYYMMDD').format('MM/DD/YYYY');
     // UGLY BUT COULDN'T FIND A SUITABLE METHOD FROM MOMENTJS
@@ -226,13 +290,11 @@ function displayChart(data, display){
         parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('MM')),
         parseInt(moment.utc(data[4].date, 'YYYYMMDD').format('DD')),
     ];
-    // CONDITIONALLY REMOVE SPINNER & ADD DIV FOR CHART TO RESIDE IN 
-    let parent = $(".loaderContainer").parent();
-    $('.loaderContainer').remove()
-    parent.prepend("<div id='chart'></div>");
+
+    $("#indexChart").html('');
 
     // CREATE CHART
-    Highcharts.chart('chart', {
+    Highcharts.chart('indexChart', {
         title: {
             text: `${getKeyByValue(stateList, data[0].state)} Covid-19 Data <br/>${startDate} - ${endDate}`
         },
@@ -288,31 +350,48 @@ function displayChart(data, display){
     });
 }
 
-$(".control-search").on("click", function(){
-    let choices = getCheckboxChoices($('#options'));
-    if($('#state').val()){
-        $("#chart").remove();
-        displayLoader("#resultsChart")
-        getStateData(stateList[$("#state").val()], choices);
-        $(".frontPage").hide();
-        $(".results").show();
+// ==================================== STATS ====================================
+
+function displayData(data) {
+
+    $("#indexStats").html('');
+    $("#indexStats").append(
+    `<h1 class="data-region"><u>Region Level: 
+        ${data.region} ${data.data.state ? getKeyByValue(stateList ,data.data.state) : ""}
+        </u></h1>
+        <li><u>Current as of</u>: <em>
+        ${moment(data.region == "country"
+            ? data.data.lastModified
+            : data.data.dateModified).format('MM/DD/YYYY')
+        }</em></li>`
+    );
+
+    for(option in displayOptions) {
+        if(displayOptions[option] == true){
+        $("#indexStats").append(
+            `<li><u>${covidStatsList[option]}</u>: <em>${data.data[option] == null ? 'Unknown/Untracked' : data.data[option]}</em></li>`
+        )
+        }
     }
-// TODO TOAST WOULD BE NICE HERE AS WELL, REMIND THE USER THAT THIS VIEW REQUIRES TWO INPUTS
-});
+};
 
-$(".control-clear").on("click", () => {
-  location.reload();
-});
+async function getData(region) {
+    let totalUs;
+    let totalState;
 
-$(".control-home").on("click", () => {
-  window.location.href = "index.html";
-});
+    let getCovidStatsBy = async (region) => {
+        return await fetch(
+        `https://covidtracking.com/api/v1/${region}.json`
+        ).then((response) => response.json());
+    };
 
-$(".navbar-burger").on("click", () => {
-  $(".navbar-burger").toggleClass("is-active");
-  $(".navbar-menu").toggleClass("is-active");
-});
+    if (region) {
+        totalState = await getCovidStatsBy(`states/${region}/current`);
+        displayData({ region: "State/Territory of", data: totalState });
+    } else {
+        totalUs = await getCovidStatsBy(`us/current`);
+        displayData({ region: "country", data: totalUs[0] });
+    }
+}
 
-$("#checkAll").on("click", () => {
-    setCheckboxChoices()
-})
+  

@@ -145,6 +145,22 @@ ul.list {
   min-height: 50vh;
 }
 
+#indexChart,
+#indexMap,
+#indexStats{
+  position: relative;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.indexChart,
+.indexMap,
+.indexStats{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
 .highcharts-figure{
   min-width: 95%;
   margin: 1em auto;
@@ -196,7 +212,6 @@ ul.list {
   margin: 0;
   text-align: center;
   width: 100%;
-  /* border: 2px dotted red; */
 }
 
 .loading {
