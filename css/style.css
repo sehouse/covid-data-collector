@@ -125,6 +125,10 @@ ul.list {
   background-color: #9d1d11;
 }
 
+.navbar-burger.burger{
+  color: white;
+}
+
 /* CHART */
 /* TODO: RULE IS A BIT OF A HACK TO FORCE THE RED BACKGROUND TO THE BOTTOM OF THE PAGE, IS THERE A MORE ELEGANT SOLUTION? */
 #chart,
