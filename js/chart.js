@@ -16,7 +16,7 @@ let displayOptions = {
     onVentilatorCumulative : false,
     onVentilatorCurrently : false,
     recovered : false,
-    death : true,
+    death : false,
     totalTestResults : false,
     negative : false,
     positive : false,
@@ -193,7 +193,7 @@ function redoSeries(dates, display){
     }
     return arr;
 }
-// TODO ASK SCOTT IF DESIRED TO LOAD INITIAL CHART BASED ON GEO DATA
+
 async function getAddress() {
     let getIP = async () => {
       return await fetch(
@@ -206,7 +206,8 @@ async function getAddress() {
 
 function passToCovidAPI(data) {
     // MODIFY DATA IF REQUESITNG A TERRITORY
-    let abbr = data.country !== "US" ? data.country : getStateTwoDigitCode(data.region);  
+    let abbr = data.country !== "US" ? data.country : getStateTwoDigitCode(data.region);
+    displayOptions.death = true;
     getStateData(abbr, displayOptions);
 }
   
@@ -241,9 +242,9 @@ async function getStateData(region, choices) {
 
 function displayChart(data, display){
     let dataToPlot = redoSeries(data, display);
-    if(dataToPlot.length == 0){
-// TODO toast ASKIGN FOR A MIN OF ONE SELECTED VALUE
-        return;
+    // RESET SELECTED OPTIONS
+    for(option in displayOptions){
+        displayOptions[option] = false;
     }
     let startDate = moment(data[4].date, 'YYYYMMDD').format('MM/DD/YYYY');
     let endDate = moment(data[0].date, 'YYYYMMDD').format('MM/DD/YYYY');
@@ -316,8 +317,8 @@ function displayChart(data, display){
 }
 
 $(".control-search").on("click", function(){
-    if(madeSelection() && madeChoice($("#state").val())){
-        let choices = getCheckboxChoices($('#options'));
+    let choices = getCheckboxChoices($('#options'));
+    if(madeSelection() && madeChoice($("#state").val())){ 
         $("#chart").remove();
         displayLoader("#resultsChart")
         getStateData(stateList[$("#state").val()], choices);
