@@ -80,6 +80,11 @@ ul.list {
   box-shadow: 0 0 3pt 2pt black;
 }
 
+.placeholder-image-stats {
+  box-shadow: 0 0 3pt 2pt black;
+  padding-left: 5px;
+}
+
 #covid-directions {
   display: block;
   margin-left: auto;
@@ -127,6 +132,34 @@ ul.list {
 
 .navbar-burger.burger{
   color: white;
+}
+
+.control-all{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.control-clear{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.control-home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.control-search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button{
+  display: inline-block;
 }
 
 /* CHART */
