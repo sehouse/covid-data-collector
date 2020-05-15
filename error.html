@@ -22,7 +22,73 @@
     />
   </head>
   <body>
-      <h1>404</h1>
-      <h4>You should probably not be here.</h4>
+    <!-- Bulma navbar, incorporating a custom small page logo. -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <nav class="navbar-brand">
+        <nav class="navbar-item">
+          <!-- Custom small page logo. -->
+          <img 
+            src="view/covid-logo-assets/covid-logo-branch-header.png"
+            alt="US COVID-19 tracker."
+          />
+        </nav>
+        <!-- Navbar burger, for use on mobile and smaller screens. -->
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </nav>
+      <!-- Left-aligned navbar elements, all of which link to their specified html page. -->
+      <nav id="navbarBasicExample" class="navbar-menu">
+        <nav class="navbar-end">
+          <!-- Link to index.html/Home page. -->
+          <a class="navbar-item" href="index.html">
+            <p class="navbar-text">
+              Home
+            </p>
+          </a>
+          <!-- Link to map.html/Map page. -->
+          <a class="navbar-item" href="view/map.html">
+            <p class="navbar-text">
+              Map
+            </p>
+          </a>
+          <!-- Link to chart.html/Chart/Graph page. -->
+          <a class="navbar-item" href="view/chart.html">
+            <p class="navbar-text">
+              Chart/Graph
+            </p>
+          </a>
+          <!-- Link to stats.html/Statistics page. -->
+          <a class="navbar-item" href="view/stats.html">
+            <p class="navbar-text">
+              Statistics
+            </p>
+          </a>
+        </nav>
+      </nav>
+    </nav>
+    <main class="frontPage">
+      <section class="section">
+        <figure class="container">
+          <section class="columns">
+            <section class="column">
+              <section class="content-box">
+                <h1>404</h1>
+                <h4>You should probably not be here.</h4>
+              </section>
+            </section>
+          </section>
+        </figure>
+      </section>
+    </main>
+    <footer>
+      <section class="content has-text-centered">
+        <p>
+          COVID-19 Data Tracker 2020 DW/SH
+        </p>
+      </section>
+    </footer>
   </body>
 </html>
