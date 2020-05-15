@@ -131,6 +131,17 @@ ul.list {
 
 /* CHART */
 /* TODO: RULE IS A BIT OF A HACK TO FORCE THE RED BACKGROUND TO THE BOTTOM OF THE PAGE, IS THERE A MORE ELEGANT SOLUTION? */
+
+select{
+  box-shadow: 0 0 3pt 2pt black;
+  width: 100%;
+  height: 2em;
+  font-size: 1.5em;
+  background-color: #feecf0;
+  text-align-last: center;
+  text-align: center;
+}
+
 #chart,
 #stats{
   min-height: 50vh;

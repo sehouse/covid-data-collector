@@ -162,7 +162,7 @@ function displayData(data) {
 
 function displayRegionOptions() {
   for (state in stateList) {
-    $("#state").append(`<option value="${state}">${state}</option>`);
+    $("#state").append(`<option value="${state}" class="dropdown-item">${state}</option>`);
   }
 }
 
@@ -271,3 +271,7 @@ $("#checkAll").on("click", () => {
 $(".delete").on("click", () => {
   removeToast()
 });
+
+$(".dropdown").on("click", function(){
+  $(this).toggleClass("is-active")
+})
