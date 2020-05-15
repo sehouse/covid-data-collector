@@ -124,6 +124,16 @@ function displayStatsOption() {
   }
 }
 
+function displayToast(){
+  $(".section-search > .field").hide(400);
+  $(".notification").show(400)
+}
+
+function removeToast(){
+  $(".notification").hide(400);
+  $(".section-search > .field").show(400)
+}
+
 function displayData(data) {
     // CONDITIONALLY REMOVE SPINNER & ADD DIV FOR CHART TO RESIDE IN 
     let parent = $(".loaderContainer").parent();
@@ -152,7 +162,7 @@ function displayData(data) {
 
 function displayRegionOptions() {
   for (state in stateList) {
-    $("#state").append(`<option value="${state}">${state}</option>`);
+    $("#state").append(`<option value="${state}" class="dropdown-item">${state}</option>`);
   }
 }
 
@@ -189,6 +199,17 @@ function getStateTwoDigitCode(stateFullName) {
   return stateList[stateFullName];
 }
 
+function madeSelection(){
+    let selected = false;
+    getCheckboxChoices()
+    for(option in displayOptions) {
+      if(displayOptions[option] == true){
+        selected = true;
+      }
+    }
+    return selected;
+}
+
 async function getData(region) {
   let totalUs;
   let totalState;
@@ -219,22 +240,16 @@ async function getAddress(region) {
 }
 
 $(".control-search").on("click", () => {
-  $("#stats").remove();
-  displayLoader("#resultPageStat")
-
-  passToCovidAPI($("#state").val());
-  getCheckboxChoices()
-// TODO SEARCH WITH CHECKBOX SHOULD BE BLOCKEDWITH A FRIELDNY TOAST
-  $(".frontPage").hide();
-  $(".results").show();
+  if(madeSelection()){
+    $("#stats").remove();
+    displayLoader("#resultPageStat")
+    passToCovidAPI($("#state").val());
+    $(".frontPage").hide();
+    $(".results").show();
+  }else{
+    displayToast()
+  }
 });
-
-
-// $("#stats").remove();
-// displayLoader("#frontPageStat")    
-// getAddress();
-// displayRegionOptions();
-// displayStatsOption();
 
 $(".control-clear").on("click", () => {
   location.reload();
@@ -251,4 +266,12 @@ $(".navbar-burger").on("click", () => {
 
 $("#checkAll").on("click", () => {
   setCheckboxChoices()
+})
+
+$(".delete").on("click", () => {
+  removeToast()
+});
+
+$(".dropdown").on("click", function(){
+  $(this).toggleClass("is-active")
 })

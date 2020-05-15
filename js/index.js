@@ -132,7 +132,6 @@ function displayMap(data, datum){
     // SET THE MIN/MAX RANGE FOR COLOR SCALE
     let min = Math.min.apply(Math, data.map(function(state) { return state.value; })); 
     let max = Math.max.apply(Math, data.map(function(state) { return state.value; }));
-    console.log(data)
     let date = moment(data[0].dateChecked, 'YYYYMMDD').format('MM/DD/YYYY')
     $("#indexMap").html('');
     Highcharts.mapChart('indexMap', {

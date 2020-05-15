@@ -132,6 +132,33 @@ function displayLoader(view){
     )
 }
 
+function displayToast(){
+    $(".section-search > .field").hide(400);
+    $(".notification").show(400)
+  }
+  
+  function removeToast(){
+    $(".notification").hide(400);
+    $(".section-search > .field").show(400)
+  }
+
+  function madeSelection(){
+    let selected = false;
+    for(option in displayOptions) {
+      if(displayOptions[option] == true){
+        selected = true;
+      }
+    }
+    return selected;
+}
+
+function madeChoice(choice){
+    if(choice == false){
+        return false;
+    }
+    return true;
+}
+
 function setCheckboxChoices(){
     let choices = $('#options').children('input');
     choices.prop("checked", !choices.prop("checked"));
@@ -289,15 +316,16 @@ function displayChart(data, display){
 }
 
 $(".control-search").on("click", function(){
-    let choices = getCheckboxChoices($('#options'));
-    if($('#state').val()){
+    if(madeSelection() && madeChoice($("#state").val())){
+        let choices = getCheckboxChoices($('#options'));
         $("#chart").remove();
         displayLoader("#resultsChart")
         getStateData(stateList[$("#state").val()], choices);
         $(".frontPage").hide();
         $(".results").show();
-    }
-// TODO TOAST WOULD BE NICE HERE AS WELL, REMIND THE USER THAT THIS VIEW REQUIRES TWO INPUTS
+    }else{
+        displayToast()
+  }
 });
 
 $(".control-clear").on("click", () => {
@@ -315,4 +343,8 @@ $(".navbar-burger").on("click", () => {
 
 $("#checkAll").on("click", () => {
     setCheckboxChoices()
-})
+});
+
+$(".delete").on("click", () => {
+    removeToast()
+});
