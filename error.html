@@ -20,6 +20,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css"
     />
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+      }
+      </style>
   </head>
   <body>
     <!-- Bulma navbar, incorporating a custom small page logo. -->
@@ -69,14 +75,25 @@
         </nav>
       </nav>
     </nav>
-    <main class="frontPage">
-      <section class="section">
+    <main class="frontPage-error">
+      <section class="section-error">
         <figure class="container">
           <section class="columns">
             <section class="column">
-              <section class="content-box">
-                <h1>404</h1>
-                <h4>You should probably not be here.</h4>
+              <br/>
+              <br/>
+              <section class="content-box-error">
+                <section class="state-selector">
+                  <header class="background-error">
+                    <!-- Custom directions logo. -->
+                    <figure class="image center">
+                      <img 
+                        src="view/covid-logo-assets/covid-logo-404.png"
+                        alt="404 Error."
+                      />
+                    </figure>
+                  </header>
+                </section>      
               </section>
             </section>
           </section>
