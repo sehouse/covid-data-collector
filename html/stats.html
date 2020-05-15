@@ -27,13 +27,13 @@
     <!-- Bulma navbar, incorporating a custom small page logo. -->
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <nav class="navbar-brand">
-        <a class="navbar-item">
+        <nav class="navbar-item">
           <!-- Custom small page logo. -->
           <img 
             src="covid-logo-assets/covid-logo-branch-header.png"
             alt="US COVID-19 tracker."
           />
-        </a>
+        </nav>
         <!-- Navbar burger, for use on mobile and smaller screens. -->
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
@@ -103,8 +103,9 @@
                   <br />
                   <!-- Automatic IP address list is injected here through J/S. -->
                   <section class="placeholder-image">
+                    <br />
                     <figure class="image center" id="frontPageStat"></figure>
-                    <br/>
+                    <br />
                     <hr class="hrTwo" />
                     <!-- Description of the displayed chart statistics. -->
                     <p class="center" style="text-align: center;">
@@ -114,6 +115,7 @@
                     <p class ="center" style="text-align: center;">
                       Source: https://covidtracking.com/
                     </p>
+                    <br />
                   </section>
                 </section>
               </section>
@@ -155,6 +157,7 @@
                           </span>
                         </button>
                       </p>
+                      <br />
                       <p class="control-search">
                         <!-- "Search" button that hides the "frontPage" pulls up the "results" main element, containing the chart requested by the user. -->
                         <button class="button is-danger is-outlined is-light is-medium is-rounded">
@@ -215,8 +218,9 @@
                 <br />
                 <!-- List is injected here through J/S. -->
                 <section class="placeholder-image">
+                  <br />
                   <figure class="image center" id="resultPageStat"></figure>
-                  <br/>
+                  <br />
                   <hr class="hrTwo" />
                   <!-- Description of the displayed chart statistics. -->
                   <p class="center" style="text-align: center;">
@@ -226,6 +230,7 @@
                   <p class ="center" style="text-align: center;">
                     Source: https://covidtracking.com/
                   </p>
+                  <br />
                 </section>
               </section>
             </section>
@@ -234,7 +239,7 @@
       </section>
       <!-- A section at the bottom of the page that contains a "Clear Search Data" button and a "Return to Home" button. -->
       <section class="section-clear center">
-        <section class="field is-grouped">
+        <section class="field">
           <p class="control-clear">
             <!-- "Clear Search Data" button. -->
             <button class="button is-danger is-outlined is-light is-medium is-rounded">
@@ -247,6 +252,7 @@
               </span>
             </button>
           </p>
+          <br />
           <p class="control-home">
             <!-- "Return to Home" button. -->
             <button class="button is-danger is-outlined is-light is-medium is-rounded">
@@ -266,7 +272,7 @@
     <footer>
       <section class="content has-text-centered">
         <p>
-          COVID-19 Data Tracker 2020 DW/SH.
+          COVID-19 Data Tracker 2020 DW/SH
         </p>
       </section>
     </footer>

@@ -27,13 +27,13 @@
     <!-- Bulma navbar, incorporating a custom small page logo. -->
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <nav class="navbar-brand is-flex">
-        <a class="navbar-item">
+        <nav class="navbar-item">
           <!-- Custom small page logo. -->
           <img 
             src="covid-logo-assets/covid-logo-branch-header.png" 
             alt="US COVID-19 Tracker."
           />
-        </a>
+        </nav>
         <!-- Navbar burger, for use on mobile and smaller screens. -->
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
@@ -92,7 +92,7 @@
                   <br />
                   <!-- State selection option. -->
                   <figure class="option">
-                    <!-- Loads an alphabetical llist of States. -->
+                    <!-- Loads an alphabetical list of States. -->
                     <select id="state">
                       <option value="">
                         -- Please choose a State/Territory --
@@ -103,13 +103,14 @@
                   <br />
                   <!-- Automatic IP address chart is injected here through J/S. -->
                   <section class="placeholder-image">
-                    <figure class="image center" id="frontPageChart"></figure>
                     <br />
+                    <figure class="image center" id="frontPageChart"></figure>
                     <hr class="hrTwo" />
                     <!-- Description of the displayed chart statistics. -->
                     <p class="highcharts-description center">
                       Above are the "Death" timeline statistics related to your State.
                     </p>
+                    <br />
                   </section>
                 </section>
               </section>
@@ -137,7 +138,7 @@
                       <button class="delete"></button>
                       Please choose a State & make a selection above.
                     </div>
-                    <section class="field is-grouped">
+                    <section class="field">
                       <p class="control-all">
                         <!-- "Check All" button that checks all of the checkboxes. -->
                         <button id="checkAll" class="button is-danger is-outlined is-light is-medium is-rounded">
@@ -150,6 +151,7 @@
                           </span>
                         </button>
                       </p>
+                      <br />
                       <p class="control-search">
                         <!-- "Search" button that hides the "frontPage" pulls up the "results" main element, containing the chart requested by the user. -->
                         <button class="button is-danger is-outlined is-light is-medium is-rounded">
@@ -210,6 +212,7 @@
                 <br />
                 <section class="placeholder-image">
                   <!-- Chart is injected here through J/S. -->
+                  <br />
                     <figure class="highcharts-figure" id="resultsChart">
                     </figure>
                     <hr class="hrTwo" />
@@ -217,6 +220,7 @@
                     <p class="highcharts-description center">
                       Above are the timeline statistics related to the data set & State of your choice.
                     </p>
+                    <br/>
                 </section>
               </section>
             </section>
@@ -225,7 +229,7 @@
       </section>
       <!-- A section at the bottom of the page that contains a "Clear Search Data" button and a "Return to Home" button. -->
       <section class="section-clear center">
-        <section class="field is-grouped">
+        <section class="field">
           <p class="control-clear">
             <!-- "Clear Search Data" button. -->
             <button class="button is-danger is-outlined is-light is-medium is-rounded">
@@ -238,6 +242,7 @@
               </span>
             </button>
           </p>
+          <br />
           <p class="control-home">
             <!-- "Return to Home" button. -->
             <button class="button is-danger is-outlined is-light is-medium is-rounded">
@@ -257,7 +262,7 @@
     <footer>
       <section class="content has-text-centered">
         <p>
-          COVID-19 Data Tracker 2020 DW/SH.
+          COVID-19 Data Tracker 2020 DW/SH
         </p>
       </section>
     </footer>
