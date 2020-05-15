@@ -128,7 +128,7 @@ function loadMap(datum){
 }
 
 $(".control-home").on("click", () => {
-    window.location.href = "index.html";
+    window.location.href = "../index.html";
 });
 
 $(".navbar-burger").on("click", () => {
