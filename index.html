@@ -9,13 +9,13 @@
     <link
       rel="icon"
       type="image/png"
-      href="covid-logo-assets/covid-logo-virus-favicon.png"
+      href="./view/covid-logo-assets/covid-logo-virus-favicon.png"
     />
     <title>US COVID-19 Tracker</title>
     <!-- Link to our CSS stylesheet. -->
     <link 
       rel="stylesheet" 
-      href="../css/style.css" 
+      href="./css/style.css" 
     />
     <!-- Link to Bulma, which is used throughout all of our HTML -->
     <link
@@ -31,7 +31,7 @@
           <!-- Custom header image for the index.html Bulma "Hero". -->
           <img
             id="covid-logo-main"
-            src="covid-logo-assets/covid-logo-main-header.png"
+            src="./view/covid-logo-assets/covid-logo-main-header.png"
             alt="United States COVID-19 Tracker"
           />
         </figure>
@@ -40,7 +40,7 @@
         <!-- Custom page introduction, using sourced Byron Mark 1 font. -->
         <img
           id="covid-subtitle"
-          src="covid-logo-assets/covid-subtitle.png"
+          src="./view/covid-logo-assets/covid-subtitle.png"
           alt="A useful tool to track the statistics related to COVID-19 in a state/territory of your choosing."
         />
       </figure>
@@ -53,7 +53,7 @@
           <figure class="image center">
             <img
               class="data-select"
-              src="covid-logo-assets/covid-logo-directions.png"
+              src="./view/covid-logo-assets/covid-logo-directions.png"
               alt="Please select your desired Covid-19 data type."
             />
         </figure>
@@ -66,7 +66,7 @@
             <!-- Map column. -->
             <section class="column">
               <!-- Anchor tag, making the entire content-box element link to the map.html page. -->
-              <a href="map.html">
+              <a href="./view/map.html">
                 <section class="content-box">
                   <section class="state-selector">
                     <!-- Header containing the custom map logo. -->
@@ -75,7 +75,7 @@
                         <!-- Custom map logo. -->
                         <img 
                           id="covid-logo-map" 
-                          src="covid-logo-assets/covid-logo-map.png"
+                          src="./view/covid-logo-assets/covid-logo-map.png"
                           alt="US COVID-19 map."
                         />
                       </figure>
@@ -92,7 +92,7 @@
             <!-- Chart column -->
             <section class="column">
               <!-- Anchor tag, making the entire content-box element link to the chart.html page. -->
-              <a href="chart.html">
+              <a href="./view/chart.html">
                 <section class="content-box">
                   <section class="state-selector">
                     <!-- Header containing the custom chart/graph logo. -->
@@ -101,7 +101,7 @@
                         <!-- Custom chart/graph logo. -->
                         <img 
                           id="covid-logo-chart" 
-                          src="covid-logo-assets/covid-logo-chart.png" 
+                          src="./view/covid-logo-assets/covid-logo-chart.png" 
                           alt="US COVID-19 chart/graph."
                         />
                       </figure>
@@ -118,7 +118,7 @@
             <!-- Statistics column -->
             <section class="column">
               <!-- Anchor tag, making the entire content-box element link to the stats.html page. -->
-              <a href="stats.html">
+              <a href="./view/stats.html">
                 <section class="content-box">
                   <section class="data-selector">
                     <!-- Header containing the custom stats logo. -->
@@ -126,7 +126,7 @@
                       <figure class="image center">
                         <!-- Custom stats logo. -->
                         <img 
-                          src="covid-logo-assets/covid-logo-stats.png"
+                          src="./view/covid-logo-assets/covid-logo-stats.png"
                           alt="US COVID-19 statistics."
                         />
                       </figure>
@@ -188,10 +188,6 @@
     <script 
       src="https://code.highcharts.com/modules/accessibility.js">
     </script>
-    <!-- Link to the stats data provided by our index.js file. -->
-    <script 
-      src="../js/index.js">
-    </script>
     <!-- Link to allow FontAwesome script use. --> 
     <script 
       src="https://kit.fontawesome.com/8e2f4402c5.js">
@@ -199,6 +195,10 @@
     <!-- Link to allow the use of moment.js script. -->
     <script 
       src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js">
+    </script>
+    <!-- Link to the stats data provided by our index.js file. -->
+    <script 
+      src="./js/index.js">
     </script>
   </body>
 </html>
