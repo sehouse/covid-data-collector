@@ -20,6 +20,43 @@ const covidStatsList = {
     "dataQualityGrade" : "Data Quality",
 };
 
+function convertGrade(datum){
+    let val;
+
+    switch(datum){
+        case "A+":
+           val = 10;
+           break; 
+        case "A":
+           val = 9;
+           break; 
+        case "B+":
+           val = 8;
+           break; 
+        case "B":
+           val = 7;
+           break; 
+        case "C+":
+           val = 6;
+           break; 
+        case "C":
+           val = 5;
+           break; 
+        case "D+":
+           val = 4;
+           break;
+        case "D":
+           val = 3;
+           break;
+        case "F":
+           val = 2;
+           break;
+        default:
+            val = 1;
+    }
+    return val;
+}
+
 function displayLoader(){
     $("#map").append(
         `<div class='loaderContainer'>
@@ -122,7 +159,12 @@ function loadMap(datum){
                 state.value = state[datum];
                 delete state.state;
                 delete state[datum];
+                
+                if(typeof state.value === 'string'){
+                    state.value = convertGrade(state.value);
+                }
             })
+            
             displayMap(data, datum)
     });
 }
