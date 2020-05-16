@@ -24,6 +24,7 @@ This application utilizes multiple web frameworks & libraries, including:
   * [covidtracking-us](http://covidtracking-us.com)
   * [GitHub Pages Site](http://www.spazcool.com/covid-data-collector/html/index.html)
   * [Repo](https://github.com/Spazcool/project-one)
+  * [Presentation](https://drive.google.com/file/d/1GP0_pxp7C0A78KH0lzi4MmXc5BvUBC1p/view?usp=sharing)
 
 ## Team Members / Contributers
   * [Scott House](https://github.com/sehouse) 
