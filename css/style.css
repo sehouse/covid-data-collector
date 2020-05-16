@@ -87,6 +87,17 @@ ul.list {
   box-shadow: 0 0 3pt 2pt black;
 }
 
+.background-error {
+  background-color: #9d1d11;
+  border-radius: 5px;
+  box-shadow: 0 0 3pt 2pt black;
+  height:75%;
+  width:75%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .placeholder-image {
   box-shadow: 0 0 3pt 2pt black;
 }
@@ -114,7 +125,29 @@ ul.list {
   border: 20px solid #feecf0;
   box-shadow: 0 0 3pt 2pt black;
   border-radius: 5px;
-  color: #9d1d11
+  color: #9d1d11;
+  text-align: center;
+}
+
+.frontPage-error{
+  height: 100%;
+}
+.section-error{
+  height: 100%;
+  background: #cc0f35;
+}
+.content-box-error {
+  background-color: #feecf0;
+  height: 75%;
+  width: 50%;
+  border: 20px solid #feecf0;
+  box-shadow: 0 0 3pt 2pt black;
+  border-radius: 5px;
+  color: #9d1d11;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .navbar-brand {
