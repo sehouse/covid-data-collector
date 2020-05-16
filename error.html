@@ -10,15 +10,16 @@
       href="http://covidtracking-us.com/view/covid-logo-assets/covid-logo-virus-favicon.png"
     />
     <title>404 Error</title>
-    <!-- Link to our CSS stylesheet. -->
-    <link 
-      rel="stylesheet" 
-      href="http://covidtracking-us.com/css/style.css" 
-    />
+  
     <!-- Link to Bulma, which is used throughout all of our HTML -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.2/css/bulma.min.css"
+    />
+      <!-- Link to our CSS stylesheet. -->
+    <link 
+      rel="stylesheet" 
+      href="http://covidtracking-us.com/css/style.css" 
     />
     <style>
       html, body {
@@ -107,5 +108,15 @@
         </p>
       </section>
     </footer>
+    
+    <script 
+     src="https://code.jquery.com/jquery-3.4.1.min.js">
+    </script>
+    <script>
+      $(".navbar-burger").on("click", () => {
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
+      });
+    </script>
   </body>
 </html>

@@ -82,7 +82,6 @@ function displayStatsOption() {
 }
 
 function displayMap(data, datum){
-    console.log(data)
     // SET THE MIN/MAX RANGE FOR COLOR SCALE
     let min = Math.min.apply(Math, data.map(function(state) { return state.value; })); 
     let max = Math.max.apply(Math, data.map(function(state) { return state.value; }));
