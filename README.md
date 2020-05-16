@@ -1,7 +1,10 @@
 ## US Covid-19 Tracker
+An application for individuals concerned about Covid-19's spread throughout the US, as well as its States and Territories. It is a simple web app designed to display current recorded stats on Covid-19 for a given area / time.
 
-## Who's this for?
-This application is for individuals concerned about Covid-19's spread throughout the US, as well as its States and Territories. It is a simple web app designed to display current recorded stats on Covid-19 for a given area / time.
+<p align="center">
+   <img width="70%" height="300vh" src="./view/covid-logo-assets/demoDesktop.gif">
+   <img width="20%" height="300vh" src="./view/covid-logo-assets/demoMobile.gif">
+</p>
 
 ## Technical Details
 This application utilizes multiple web frameworks & libraries, including:
