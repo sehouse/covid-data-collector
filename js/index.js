@@ -380,12 +380,12 @@ async function getData(region) {
 
     let getCovidStatsBy = async (region) => {
         return await fetch(
-        `https://covidtracking.com/api/v1/${region}.json`
+        `https://covidtracking.com/api/v1/${region.toLowerCase()}.json`
         ).then((response) => response.json());
     };
 
     if (region) {
-        totalState = await getCovidStatsBy(`states/${region}/current`);
+        totalState = await getCovidStatsBy(`states/${region.toLowerCase()}/current`);
         displayData({ region: "State/Territory of", data: totalState });
     } else {
         totalUs = await getCovidStatsBy(`us/current`);

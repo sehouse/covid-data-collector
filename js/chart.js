@@ -233,7 +233,7 @@ async function getStateData(region, choices) {
     };
 
     for (date of dates) {
-        data = await getCovidStatsBy(`states/${region}/${date}`)
+        data = await getCovidStatsBy(`states/${region.toLowerCase()}/${date}`)
         pastToPresent.push(data);
     }
 
