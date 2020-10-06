@@ -147,7 +147,7 @@ function displayMap(data, datum){
 }
 
 function loadMap(datum){
-    fetch('https://covidtracking.com/api/v1/states/current.json')
+    fetch('https://cors-anywhere.herokuapp.com/https://covidtracking.com/api/v1/states/current.json')
         .then((response) => {
             return response.json();
         })

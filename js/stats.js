@@ -216,12 +216,12 @@ async function getData(region) {
 
   let getCovidStatsBy = async (region) => {
     return await fetch(
-      `https://covidtracking.com/api/v1/${region}.json`
+      `https://cors-anywhere.herokuapp.com/https://covidtracking.com/api/v1/${region.toLowerCase()}.json`
     ).then((response) => response.json());
   };
 
   if (region) {
-    totalState = await getCovidStatsBy(`states/${region}/current`);
+    totalState = await getCovidStatsBy(`states/${region.toLowerCase()}/current`);
     displayData({ region: "State/Territory of", data: totalState });
   } else {
     totalUs = await getCovidStatsBy(`us/current`);
@@ -232,7 +232,7 @@ async function getData(region) {
 async function getAddress(region) {
   let getIP = async (region) => {
     return await fetch(
-      `https://ipinfo.io?token=5fcea70b36eb66`
+      `https://cors-anywhere.herokuapp.com/https://ipinfo.io?token=5fcea70b36eb66`
     ).then((response) => response.json());
   };
   let ip = await getIP();

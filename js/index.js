@@ -193,7 +193,7 @@ function displayMap(data, datum){
 }
 
 function loadMap(datum){
-    fetch('https://covidtracking.com/api/v1/states/current.json')
+    fetch('https://cors-anywhere.herokuapp.com/https://covidtracking.com/api/v1/states/current.json')
         .then((response) => {
             return response.json();
         })
@@ -236,7 +236,7 @@ function redoSeries(dates, display){
 async function getAddress() {
     let getIP = async () => {
       return await fetch(
-        `https://ipinfo.io?token=5fcea70b36eb66`
+        `https://cors-anywhere.herokuapp.com/https://ipinfo.io?token=5fcea70b36eb66`
       ).then((response) => response.json());
     };
     let ip = await getIP();
@@ -267,15 +267,14 @@ async function getStateData(region, choices) {
 
     let getCovidStatsBy = async (regionAndTime) => {
       return await fetch(
-        `https://covidtracking.com/api/v1/${regionAndTime}.json`
+        `https://cors-anywhere.herokuapp.com/https://covidtracking.com/api/v1/${regionAndTime}.json`
       ).then((response) => response.json());
     };
 
     for (date of dates) {
-        data = await getCovidStatsBy(`states/${region}/${date}`)
+        data = await getCovidStatsBy(`states/${region.toLowerCase()}/${date}`)
         pastToPresent.push(data);
     }
-
     displayChart(pastToPresent, choices)
 }
 
@@ -380,12 +379,12 @@ async function getData(region) {
 
     let getCovidStatsBy = async (region) => {
         return await fetch(
-        `https://covidtracking.com/api/v1/${region}.json`
+        `https://cors-anywhere.herokuapp.com/https://covidtracking.com/api/v1/${region.toLowerCase()}.json`
         ).then((response) => response.json());
     };
 
     if (region) {
-        totalState = await getCovidStatsBy(`states/${region}/current`);
+        totalState = await getCovidStatsBy(`states/${region.toLowerCase()}/current`);
         displayData({ region: "State/Territory of", data: totalState });
     } else {
         totalUs = await getCovidStatsBy(`us/current`);
